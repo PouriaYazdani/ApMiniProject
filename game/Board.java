@@ -58,6 +58,7 @@ public class Board {
     }
 
     private boolean isIn(int x,int[] arr){
+        x++;
         for (int i = 0; i < arr.length; i++) {
             if(arr[i] == x)
                 return true;
