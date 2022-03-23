@@ -1,4 +1,4 @@
 package game;
 
-public class BankManager extends RuntimeException{
+public class BankManager {
 }

@@ -1,4 +1,4 @@
 package game.exceptions;
 
-public class MonopolyException {
+public class MonopolyException extends RuntimeException{
 }
