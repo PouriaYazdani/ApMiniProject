@@ -1,5 +1,5 @@
 package game.properties;
 
 public enum Colors {
-    BLUE,RED,GREEN,YELLOW,WHITE
+    BLUE,RED,GREEN,YELLOW
 }
