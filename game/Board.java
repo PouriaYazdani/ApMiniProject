@@ -1,5 +1,7 @@
 package game;
 
+import game.properties.Field;
+
 public class Board {
     private static Board board;
 
@@ -10,4 +12,8 @@ public class Board {
             board = new Board();
         return board;
     }
+
+    private Field[] fields;
+    private final int NUM_OF_FIELDS = 24;
+
 }
