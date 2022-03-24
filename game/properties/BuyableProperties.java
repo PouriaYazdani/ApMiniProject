@@ -10,7 +10,7 @@ public abstract class BuyableProperties extends Field{
 
     public abstract void buy(Player player);
 
-    public abstract void sell();
+    public abstract void sell(Player player);
 
     public int getPurchasePrice() {
         return purchasePrice;
