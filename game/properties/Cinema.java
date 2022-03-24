@@ -19,8 +19,4 @@ public class Cinema extends BuyableProperties{
         }
         this.atField = atField;
     }
-
-    public Colors getColor() {
-        return color;
-    }
 }
