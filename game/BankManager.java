@@ -1,4 +1,4 @@
 package game;
 
-public class BankManager {
+public class BankManager implements Owner{
 }

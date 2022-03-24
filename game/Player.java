@@ -1,3 +1,3 @@
 package game;
-public class Player {
+public class Player implements Owner {
 }
