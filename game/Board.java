@@ -4,7 +4,7 @@ import game.properties.*;
 
 public class Board {
     private static Board board;
-    private Field[] fields;
+    Field[] fields;
     private final int NUM_OF_FIELDS = 24;
 
     private Board(){
