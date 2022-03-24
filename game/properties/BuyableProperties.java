@@ -8,7 +8,7 @@ public abstract class BuyableProperties extends Field{
     protected int currentRentPrice;
     protected Owner owner = new BankManager();
 
-    public abstract void buy();
+    public abstract void buy(Player player);
 
     public abstract void sell();
 
