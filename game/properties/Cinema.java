@@ -1,13 +1,13 @@
 package game.properties;
 
 import game.*;
-import game.exceptions.IllegalSell;
+import game.exceptions.*;
 
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
     {
         purchasePrice = 200;
-        currentRentPrice = 0;
+        currentRentPrice = 25;
     }
 
     public Cinema(int atField){
@@ -60,6 +60,26 @@ public class Cinema extends BuyableProperties{
 
     @Override
     public void chargeRent(Player player){
+        int rent = 0;
+        if(this.owner != BankManager.getInstance()){
+            switch ((Player)this.owner.getOwnedCinemas()){
+                case 1:
+                      rent = 25 * 1;
+                    break;
+                case 2:
+                      rent = 25 * 2;
+                    break;
+                case 3:
+                      rent = 25 * 3;
+                    break;
+                case 4:
+                      rent = 25 * 4;
+            }
+            if(rent > player.getCash()){
+                throw new NotEnoughCashToRent("You don't have enough money to watch a movie! try selling you're properties");
+            }
+            player.setCash(player.getCash - rent);
+        }
 
     }
 }
