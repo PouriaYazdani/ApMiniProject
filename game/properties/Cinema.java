@@ -1,6 +1,9 @@
 package game.properties;
 
 import game.*;
+import game.exceptions.IllegalSell;
+
+import java.awt.desktop.AppForegroundListener;
 
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
@@ -34,14 +37,26 @@ public class Cinema extends BuyableProperties{
         player.setCash(player.getCash() - purchasePrice);//get the money
         this.owner = player;//give the Ownership
         player.getOwnedProperties().add(this);//add the property to the player's list of owned properties
-        int newNetWorth = player.getNetWorth() + (purchasePrice/2 - purchasePrice);
+        int newNetWorth = player.getNetWorth() + (purchasePrice/2 - purchasePrice);//BUG***************
         player.setNetWorth(newNetWorth);//update netWorth
         player.setOwnedCinemas(player.getOwnedCinemas() + 1);//update number of owned cinemas
     }
 
     @Override
     public void sell(Player player){
-
+        if(this.owner == BankManager.getInstance()){
+            throw new IllegalSell("This property belongs to the Bank you can't sell it!");
+        }
+        else if(this.owner != player){
+            throw new IllegalSell("This property belongs to " + (Player)owner.getName() + "you can't sell it!");
+        }
+        player.setCash(player.getCash() + purchasePrice/2);//give the money
+        this.owner = BankManager.getInstance();//take the Ownership
+        player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
+        player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2);
+        int newNetWorth = player.getCash() + player.getPropertyWorth();
+        player.setNetWorth(newNetWorth);//update net worth
+        player.setOwnedCinemas(player.getOwnedCinemas() - 1);//update number of owned cinemas
     }
 
 }
