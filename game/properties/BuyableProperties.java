@@ -12,6 +12,8 @@ public abstract class BuyableProperties extends Field{
 
     public abstract void sell(Player player);
 
+    public abstract void chargeRent(Player player);
+
     public int getPurchasePrice() {
         return purchasePrice;
     }
