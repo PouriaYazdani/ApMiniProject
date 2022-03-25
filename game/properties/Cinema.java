@@ -1,8 +1,6 @@
 package game.properties;
 
-import game.BankManager;
-import game.Player;
-import game.exceptions.IllegalPurchase;
+import game.*;
 
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
