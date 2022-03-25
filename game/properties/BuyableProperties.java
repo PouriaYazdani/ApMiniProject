@@ -6,7 +6,7 @@ public abstract class BuyableProperties extends Field{
     protected Colors color;
     protected int purchasePrice;
     protected int currentRentPrice;
-    protected Owner owner = new BankManager();
+    protected Owner owner = BankManager.getInstance();
 
     public abstract void buy(Player player);
 
