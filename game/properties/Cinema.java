@@ -1,7 +1,13 @@
 package game.properties;
 
+import game.Player;
+
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
+    {
+        purchasePrice = 200;
+        currentRentPrice = 0;
+    }
 
     public Cinema(int atField){
         switch (atField){
@@ -19,4 +25,15 @@ public class Cinema extends BuyableProperties{
         }
         this.atField = atField;
     }
+
+    @Override
+    public void buy(Player player){
+
+    }
+
+    @Override
+    public void sell(Player player){
+
+    }
+
 }
