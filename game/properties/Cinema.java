@@ -32,6 +32,9 @@ public class Cinema extends BuyableProperties{
         if(this.owner != BankManager.getInstance()){
             throw new IllegalPurchase("This property belongs to " + (Player)owner.getName()+ " you can't purchase it!");
         }
+        else if(purchasePrice > player.getCash()){
+            throw new NotEnoughCashToBuy("You don't have enough money to buy this property! You can sell some of your properties in order to do so.");
+        }
         player.setCash(player.getCash() - purchasePrice);//get the money
         this.owner = player;//give the Ownership
         player.getOwnedProperties().add(this);//add the property to the player's list of owned properties
@@ -76,7 +79,7 @@ public class Cinema extends BuyableProperties{
                       rent = 25 * 4;
             }
             if(rent > player.getCash()){
-                throw new NotEnoughCashToRent("You don't have enough money to watch a movie! try selling you're properties");
+                throw new NotEnoughCashToRent("You don't have enough money to watch a movie! Try selling you're properties");
             }
             player.setCash(player.getCash - rent);
         }
