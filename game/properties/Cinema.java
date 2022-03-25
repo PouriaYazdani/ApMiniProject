@@ -37,7 +37,8 @@ public class Cinema extends BuyableProperties{
         player.setCash(player.getCash() - purchasePrice);//get the money
         this.owner = player;//give the Ownership
         player.getOwnedProperties().add(this);//add the property to the player's list of owned properties
-        int newNetWorth = player.getNetWorth() + (purchasePrice/2 - purchasePrice);//BUG***************
+        player.setPropertyWorth(player.getPropertyWorth() + purchasePrice/2);
+        int newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update netWorth
         player.setOwnedCinemas(player.getOwnedCinemas() + 1);//update number of owned cinemas
     }
@@ -53,7 +54,7 @@ public class Cinema extends BuyableProperties{
         player.setCash(player.getCash() + purchasePrice/2);//give the money
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
-        player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2);
+        player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2);//update property worth
         int newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update net worth
         player.setOwnedCinemas(player.getOwnedCinemas() - 1);//update number of owned cinemas
