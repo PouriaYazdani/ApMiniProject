@@ -86,18 +86,23 @@ public class EmptyField extends BuyableProperties{
     }
 
     public void addBuilding(Player player){
-        if(numberOfBuildings == MAXIMUM_BUILDINGS){
-            buildHotel(player);
-//            throw new IllegalConstruction("You have reached maximum number of buildings in this field!");
+        if(player.getCash() < BUILDING_COST){//does player have enough cash?
+            throw new NotEnoughCashToBuild("You do not have enough cash to construct building/hotel! Try selling you're properties");
         }
-        else if(!buildPermission(player)){
+        else if(!buildPermission(player)){//did the player distribute the building correctly?
             throw new IllegalConstruction("You have not distributed you're buildings correctly!");
         }
-        else if(player.getBuiltBuildings() == 5){//better implementation?
-            throw new IllegalConstruction("You have reached building construction limit!");
+        else if(player.getBuiltBuildings() == 5){//has the player reached construction limit?
+            throw new IllegalConstruction("You have reached you're building construction limit!");
         }
-        else if(player.getCash() < BUILDING_COST){
-            throw new NotEnoughCashToBuild("You do not have enough cash to construct building/hotel! Try selling you're properties");
+        else if(isThereHotel){//already built a hotel?
+            throw new IllegalConstruction("You have already constructed a hotel in this field! there's nothing else you can do.");
+        }
+        else if(this.owner != player){//who's the owner?
+            throw new IllegalConstruction("this field belongs to " + (Player)owner.getName() + "! you can't construct a building/hotel here.");
+        }
+        else if(numberOfBuildings == MAXIMUM_BUILDINGS){//does the player want to build a hotel?
+            buildHotel(player);
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
         player.setNetWorth(player.getNetWorth() + BUILDING_COST/2);//update net worth
@@ -109,7 +114,7 @@ public class EmptyField extends BuyableProperties{
 
     }
 
-    private boolean buildPermission(Player player) {
+    private boolean buildPermission(Player player) {//only checks distribution
         ArrayList ownedProperties = getOwnedProperties();
         for (int i = 0; i < ownedProperties.size(); i++) {
             if (ownedProperties.get(i) instanceof EmptyField) {
