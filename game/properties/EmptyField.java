@@ -1,12 +1,17 @@
 package game.properties;
 
 import game.*;
+import game.properties.*;
 
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
     private int numberOfBuildings;
     private boolean isThereHotel;
     private final int MAXIMUM_BUILDINGS = 4;
+    {
+        purchasePrice = 100;
+        currentRentPrice = 50;
+    }
 
     public EmptyField(int atField){
         switch(atField){
@@ -43,4 +48,13 @@ public class EmptyField extends BuyableProperties{
     public void chargeRent(Player player){
 
     }
+
+    public void addBuilding(Player player){
+
+    }
+
+    private void buildHotel(Player player){
+
+    }
+
 }
