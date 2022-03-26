@@ -95,6 +95,8 @@ public class Player implements Owner {
     // rank method shows the rank of the player by getting a sorted list of Players
     public void rank(){
     }
+    // The buildLicence method checks whether each empty field of the player has the least amount of building,
+    // then returns true and the player can add another building to the desired empty field.
     public boolean buildLicence(){
         return false;
     }
