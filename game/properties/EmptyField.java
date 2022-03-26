@@ -4,7 +4,6 @@ import game.*;
 import game.exceptions.IllegalPurchase;
 import game.exceptions.IllegalSell;
 import game.exceptions.NotEnoughCashToBuy;
-import game.properties.*;
 
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
@@ -15,7 +14,7 @@ public class EmptyField extends BuyableProperties{
     private final int HOTEL_LICENSE_COST = 100;
     {
         purchasePrice = 100;
-        currentRentPrice = 50;
+        baseRentPrice = 50;
     }
 
     public EmptyField(int atField){

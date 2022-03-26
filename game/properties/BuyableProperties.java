@@ -5,7 +5,7 @@ import game.*;
 public abstract class BuyableProperties extends Field{
     protected Colors color;
     protected int purchasePrice;
-    protected int currentRentPrice;
+    protected int baseRentPrice;
     protected Owner owner = BankManager.getInstance();
 
     public abstract void buy(Player player);
@@ -18,8 +18,8 @@ public abstract class BuyableProperties extends Field{
         return purchasePrice;
     }
 
-    public int getCurrentRentPrice() {
-        return currentRentPrice;
+    public int getBaseRentPrice() {
+        return baseRentPrice;
     }
 
     public Owner getOwner() {

@@ -7,7 +7,7 @@ public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
     {
         purchasePrice = 200;
-        currentRentPrice = 25;
+        baseRentPrice = 25;
     }
 
     public Cinema(int atField){
