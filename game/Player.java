@@ -18,7 +18,8 @@ public class Player implements Owner {
     private int investedMoney = 0;
     private int rank;
     private boolean inJail;
-
+    private final int BULDINGS_LIMIT = 5;
+    private int builtBuilding;
     public Player(String name, int cash) {
         this.name = name;
         this.cash = cash;
@@ -86,6 +87,14 @@ public class Player implements Owner {
 
     public void setOwnedProperties(BuyableProperties[] ownedProperties) {
         this.ownedProperties = ownedProperties;
+    }
+
+    public int getBuiltBuilding() {
+        return builtBuilding;
+    }
+
+    public void setBuiltBuilding(int builtBuilding) {
+        this.builtBuilding = builtBuilding;
     }
 
     //move method revive a die number and set the new position
