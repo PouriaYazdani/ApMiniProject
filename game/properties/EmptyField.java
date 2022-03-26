@@ -96,6 +96,9 @@ public class EmptyField extends BuyableProperties{
         else if(player.getBuiltBuildings() == 5){//better implementation?
             throw new IllegalConstruction("You have reached building construction limit!");
         }
+        else if(player.getCash() < BUILDING_COST){
+            throw new NotEnoughCashToBuild("You do not have enough cash to construct building/hotel! Try selling you're properties");
+        }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
         player.setNetWorth(player.getNetWorth() + BUILDING_COST/2);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
@@ -103,6 +106,7 @@ public class EmptyField extends BuyableProperties{
     }
 
     private void buildHotel(Player player){
+
     }
 
     private boolean buildPermission(Player player) {
