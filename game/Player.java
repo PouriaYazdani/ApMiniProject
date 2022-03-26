@@ -16,4 +16,10 @@ public class Player implements Owner {
     private int investedMoney = 0;
     private int rank;
     private boolean inJail;
+
+    public Player(String name, int cash) {
+        this.name = name;
+        this.cash = cash;
+    }
+    
 }
