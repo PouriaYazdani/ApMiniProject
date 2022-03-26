@@ -2,6 +2,8 @@ package game;
 
 import game.properties.BuyableProperties;
 
+import java.util.ArrayList;
+
 public class Player implements Owner {
     private final String name;
     private int cash;
@@ -76,5 +78,24 @@ public class Player implements Owner {
 
     public boolean isInJail() {
         return inJail;
+    }
+    //move method revive a die number and set the new position
+    public void move(int diceNum){
+    }
+    // state method shows the state of player (position and available orders)
+    // than take every penalty and rent and throws exception if there is not enough cash for payment
+    public void state(){
+    }
+    //index method shows the position of player
+    public void index(){
+    }
+    //shows the amount of cash and name of the owned properties
+    public void property(){
+    }
+    // rank method shows the rank of the player by getting a sorted list of Players
+    public void rank(){
+    }
+    public boolean buildLicence(){
+        return false;
     }
 }
