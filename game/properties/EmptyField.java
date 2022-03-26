@@ -50,6 +50,7 @@ public class EmptyField extends BuyableProperties{
         player.setPropertyWorth(player.getPropertyWorth() - emptyFieldWorth/2);//update property worth
         int newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update net worth
+        player.setBuiltBuildings(player.getBuiltBuildings - numberOfBuildings);//update player's number of built buildings
         numberOfBuildings = 0;
         isThereHotel = false;
     }
