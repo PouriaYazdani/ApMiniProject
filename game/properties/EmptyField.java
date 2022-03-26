@@ -1,7 +1,12 @@
 package game.properties;
 
+import game.*;
+
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
+    private int numberOfBuildings;
+    private boolean isThereHotel;
+    private final int MAXIMUM_BUILDINGS = 4;
 
     public EmptyField(int atField){
         switch(atField){
@@ -22,5 +27,20 @@ public class EmptyField extends BuyableProperties{
                 this.color = Colors.BLUE;
         }
         this.atField = atField;
+    }
+
+    @Override
+    public void buy(Player player){
+
+    }
+
+    @Override
+    public void sell(Player player){
+
+    }
+
+    @Override
+    public void chargeRent(Player player){
+
     }
 }
