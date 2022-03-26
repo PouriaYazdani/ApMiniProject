@@ -21,5 +21,37 @@ public class Player implements Owner {
         this.name = name;
         this.cash = cash;
     }
+
+    public int getCash() {
+        return cash;
+    }
+
+    public void setCash(int cash) {
+        this.cash = cash;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getNoTax() {
+        return noTax;
+    }
+
+    public void setNoTax(int noTax) {
+        this.noTax = noTax;
+    }
+
+    public int getNoJail() {
+        return noJail;
+    }
+
+    public void setNoJail(int noJail) {
+        this.noJail = noJail;
+    }
     
 }
