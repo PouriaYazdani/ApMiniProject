@@ -1,9 +1,7 @@
 package game.properties;
 
 import game.*;
-import game.exceptions.IllegalPurchase;
-import game.exceptions.IllegalSell;
-import game.exceptions.NotEnoughCashToBuy;
+import game.exceptions.NotEnoughCashToRent;
 
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
@@ -57,7 +55,32 @@ public class EmptyField extends BuyableProperties{
 
     @Override
     public void chargeRent(Player player){
-
+        int rent = 0;
+        if(isThereHotel){
+            rent = 600;
+        }
+        else {
+            switch (numberOfBuildings){
+                case 0:
+                    rent = baseRentPrice;
+                    break;
+                case 1:
+                    rent = baseRentPrice + 100;
+                    break;
+                case 2:
+                    rent = baseRentPrice + 200;
+                    break;
+                case 3:
+                    rent = baseRentPrice + 300;
+                    break;
+                case 4:
+                    rent = baseRentPrice + 400;
+            }
+        }
+        if(rent > player.getCash()){
+            throw new NotEnoughCashToRent("You don't have enough money to pay the rent of this field! Try selling you're properties");
+        }
+        player.setCash(player.getCash() - rent);
     }
 
     public void addBuilding(Player player){

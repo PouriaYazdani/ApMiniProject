@@ -1,9 +1,7 @@
 package game.properties;
 
 import game.*;
-import game.exceptions.IllegalPurchase;
-import game.exceptions.IllegalSell;
-import game.exceptions.NotEnoughCashToBuy;
+import game.exceptions.*;
 
 public abstract class BuyableProperties extends Field{
     protected Colors color;
