@@ -53,5 +53,28 @@ public class Player implements Owner {
     public void setNoJail(int noJail) {
         this.noJail = noJail;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPropertyWorth() {
+        return propertyWorth;
+    }
+
+    public int getNetWorth() {
+        return netWorth;
+    }
+
+    public int getOwnedCinemas() {
+        return ownedCinemas;
+    }
+
+    public int getInvestedMoney() {
+        return investedMoney;
+    }
+
+    public boolean isInJail() {
+        return inJail;
+    }
 }
