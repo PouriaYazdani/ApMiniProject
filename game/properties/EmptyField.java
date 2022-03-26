@@ -2,7 +2,6 @@ package game.properties;
 
 import game.*;
 import game.exceptions.*;
-
 import java.util.ArrayList;
 
 public class EmptyField extends BuyableProperties{
@@ -103,6 +102,7 @@ public class EmptyField extends BuyableProperties{
         }
         else if(numberOfBuildings == MAXIMUM_BUILDINGS){//does the player want to build a hotel?
             buildHotel(player);
+            return;
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
         player.setNetWorth(player.getNetWorth() + BUILDING_COST/2);//update net worth
@@ -111,7 +111,12 @@ public class EmptyField extends BuyableProperties{
     }
 
     private void buildHotel(Player player){
-
+        if(player.getCash() < HOTEL_LICENSE_COST){
+            throw new IllegalConstruction("You do not have enough cash to construct a hotel! Try selling you're properties.");
+        }
+        isThereHotel = true;
+        player.setCash(player.getCash() - HOTEL_LICENSE_COST);//take the money
+        player.setNetWorth(player.getNetWorth() + HOTEL_LICENSE_COST/2);//update net worth
     }
 
     private boolean buildPermission(Player player) {//only checks distribution
