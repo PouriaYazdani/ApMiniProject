@@ -1,7 +1,9 @@
 package game.properties;
 
 import game.*;
-import game.exceptions.NotEnoughCashToRent;
+import game.exceptions.*;
+
+import java.util.ArrayList;
 
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
@@ -84,9 +86,33 @@ public class EmptyField extends BuyableProperties{
     }
 
     public void addBuilding(Player player){
+        if(numberOfBuildings == MAXIMUM_BUILDINGS){
+            buildHotel(player);
+//            throw new IllegalConstruction("You have reached maximum number of buildings in this field!");
+        }
+        else if(!buildPermission(player)){
+            throw new IllegalConstruction("You have not distributed you're buildings correctly!");
+        }
+        else if(player.getBuiltBuildings() == 5){//better implementation?
+            throw new IllegalConstruction("You have reached building construction limit!");
+        }
+        player.setCash(player.getCash() - BUILDING_COST);//take the money
+        player.setNetWorth(player.getNetWorth() + BUILDING_COST/2);//update net worth
+        player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
+        numberOfBuildings++;
     }
 
     private void buildHotel(Player player){
     }
 
+    private boolean buildPermission(Player player) {
+        ArrayList ownedProperties = getOwnedProperties();
+        for (int i = 0; i < ownedProperties.size(); i++) {
+            if (ownedProperties.get(i) instanceof EmptyField) {
+                if(((EmptyField) ownedProperties.get(i)).numberOfBuildings < this.numberOfBuildings)//***possible bug for not handling all scenarios***
+                    return false;
+            }
+        }
+        return true;
+    }
 }
