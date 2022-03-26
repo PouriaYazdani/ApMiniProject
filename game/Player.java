@@ -9,7 +9,7 @@ public class Player implements Owner {
     private int cash;
     private int position;
     private Integer lastDiceNumber;
-    BuyableProperties[] properties;
+    private BuyableProperties[] ownedProperties;
     private int propertyWorth;
     private int netWorth;
     private int noTax;
@@ -79,6 +79,15 @@ public class Player implements Owner {
     public boolean isInJail() {
         return inJail;
     }
+
+    public BuyableProperties[] getOwnedProperties() {
+        return ownedProperties;
+    }
+
+    public void setOwnedProperties(BuyableProperties[] ownedProperties) {
+        this.ownedProperties = ownedProperties;
+    }
+
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
