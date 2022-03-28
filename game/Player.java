@@ -108,6 +108,14 @@ public class Player implements Owner {
         this.builtBuilding = builtBuilding;
     }
 
+    public void setPropertyWorth(int propertyWorth) {
+        this.propertyWorth = propertyWorth;
+    }
+
+    public void setNetWorth(int netWorth) {
+        this.netWorth = netWorth;
+    }
+
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
