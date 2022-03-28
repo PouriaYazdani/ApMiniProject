@@ -27,6 +27,35 @@ public abstract class BuyableProperties extends Field{
         player.setPropertyWorth(player.getPropertyWorth() + purchasePrice/2);//update property worth
         int newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update netWorth
+        updateMonopoly(player,this.getColor(),'+');
+    }
+
+    protected void updateMonopoly(Player player,Colors color,char operator){
+        switch (color){
+            case BLUE:
+                if(operator == '+')
+                    player.blueProperties++;
+                else
+                    player.blueProperties--;
+                break;
+            case RED:
+                if(operator == '+')
+                    player.redProperties++;
+                else
+                    player.redProperties--;
+                break;
+            case GREEN:
+                if(operator == '+')
+                    player.greenProperties++;
+                else
+                    player.greenProperties--;
+                break;
+            case YELLOW:
+                if(operator == '+')
+                    player.yellowProperties++;
+                else
+                    player.yellowProperties--;
+        }
     }
 
     public void sell(Player player){
@@ -36,6 +65,7 @@ public abstract class BuyableProperties extends Field{
         else if(this.owner != player){
             throw new IllegalSell("This property belongs to " + (Player)owner.getName() + "you can't sell it!");
         }
+        updateMonopoly(player,this.getColor(),'-');
     }
 
     public abstract void chargeRent(Player player);
