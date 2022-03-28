@@ -171,10 +171,15 @@ public class EmptyField extends BuyableProperties{
         ArrayList ownedProperties = getOwnedProperties();
         for (int i = 0; i < ownedProperties.size(); i++) {
             if (ownedProperties.get(i) instanceof EmptyField) {
-                if(((EmptyField) ownedProperties.get(i)).numberOfBuildings < this.numberOfBuildings)//***possible bug for not handling all scenarios***
+                if (((EmptyField) ownedProperties.get(i)).isThereHotel || ownedProperties.get(i) == this) {
+                    continue;
+                }
+                if(((EmptyField) ownedProperties.get(i)).numberOfBuildings < this.numberOfBuildings) {//***possible bug for not handling all scenarios***
                     return false;
+                }
             }
         }
         return true;
     }
 }
+//
