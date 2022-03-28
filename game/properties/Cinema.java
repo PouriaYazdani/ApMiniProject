@@ -62,6 +62,19 @@ public class Cinema extends BuyableProperties{
                 case 4:
                       rent = 25 * 8;
             }
+            boolean boost = false;
+            switch (this.getColor()){//code reuse should be considered later
+                case RED:
+                    boost = player.redMonopoly;
+                case BLUE:
+                    boost = player.blueMonopoly;
+                case GREEN:
+                    boost = player.greenMonopoly;
+                case YELLOW:
+                    boost = player.yellowMonopoly;
+            }
+            if(boost)
+                rent *= 2;
             if(rent > player.getCash()){
                 throw new NotEnoughCashToRent("You don't have enough money to watch a movie! Try selling you're properties");
             }
