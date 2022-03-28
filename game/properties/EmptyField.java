@@ -3,7 +3,11 @@ package game.properties;
 import game.*;
 import game.exceptions.*;
 import java.util.ArrayList;
-
+/**
+ * this class implements all the commands and actions related to empty Fields field in the game.it has several void
+ * functions that do the necessary operations.Buy method in superclass is not overridden here because the necessaries
+ * were already implemented in super.buy().
+ */
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};
     private int numberOfBuildings;
@@ -16,6 +20,11 @@ public class EmptyField extends BuyableProperties{
         baseRentPrice = 50;
     }
 
+    /**
+     * is the only constructor of this class which will assign the number of field in the board and its color through
+     * its parameter.
+     * @param atField
+     */
     public EmptyField(int atField){
         switch(atField){
             case 2:
@@ -38,6 +47,9 @@ public class EmptyField extends BuyableProperties{
     }
 
     @Override
+    /**
+     * uses superclass implementation but the details are implemented here.
+     */
     public void sell(Player player){
         super.sell(player);
         int emptyFieldWorth = purchasePrice + (numberOfBuildings * BUILDING_COST);
@@ -56,6 +68,10 @@ public class EmptyField extends BuyableProperties{
     }
 
     @Override
+    /*
+     * calculates the correct rent cost under different circumstances,sets number of buildings to zero and can throw
+     * an exception which will get caught in gamerunner.
+     */
     public void chargeRent(Player player){
         int rent = 0;
         if(isThereHotel){
@@ -98,6 +114,13 @@ public class EmptyField extends BuyableProperties{
         player.setCash(player.getCash() - rent);
     }
 
+    /**
+     * it handles the build command and decides to construct a building or a hotel considering number of building in this
+     * field and then will charge the cost of construction.If the player wanted to build a hotel {@link #buildHotel(Player)}
+     * is called through this method.Handles several error which may be made by the player the thrown exception are
+     * caught in gamerunner.
+     * @param player
+     */
     public void addBuilding(Player player){
         if(player.getCash() < BUILDING_COST){//does player have enough cash?
             throw new NotEnoughCashToBuild("You do not have enough cash to construct building/hotel! Try selling you're properties");
@@ -124,6 +147,10 @@ public class EmptyField extends BuyableProperties{
         numberOfBuildings++;
     }
 
+    /**
+     * will build a hotel and update number of buildings constructed by the player.
+     * @param player
+     */
     private void buildHotel(Player player){
         if(player.getCash() < HOTEL_LICENSE_COST){
             throw new IllegalConstruction("You do not have enough cash to construct a hotel! Try selling you're properties.");
@@ -133,6 +160,11 @@ public class EmptyField extends BuyableProperties{
         player.setNetWorth(player.getNetWorth() + HOTEL_LICENSE_COST/2);//update net worth
     }
 
+    /**
+     * is called from {@link #addBuilding(Player)} checks the necessary qualifications to construct a new building
+     * @param player
+     * @return whether the players have distributed their building correctly
+     */
     private boolean buildPermission(Player player) {//only checks distribution
         ArrayList ownedProperties = getOwnedProperties();
         for (int i = 0; i < ownedProperties.size(); i++) {

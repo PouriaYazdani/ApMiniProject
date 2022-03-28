@@ -47,7 +47,7 @@ public class Cinema extends BuyableProperties{
 
     @Override
     /**
-     * used superclass implementation but the details are implemented here.
+     * uses superclass implementation but the details are implemented here.
      */
     public void sell(Player player){
         super.sell(player);
