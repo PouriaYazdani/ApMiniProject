@@ -27,7 +27,8 @@ public abstract class BuyableProperties extends Field{
                 throw new IllegalPurchase("You have already purchased this property!");
             }
             else{
-                throw new IllegalPurchase("This property belongs to " + (Player)owner.getName()+ " you can't purchase it!");
+                Player x = (Player) owner;
+                throw new IllegalPurchase("This property belongs to " + x.getName()+ " you can't purchase it!");
             }
         }
         else if(purchasePrice > player.getCash()){
@@ -110,7 +111,8 @@ public abstract class BuyableProperties extends Field{
             throw new IllegalSell("This property belongs to the Bank you can't sell it!");
         }
         else if(this.owner != player){
-            throw new IllegalSell("This property belongs to " + (Player)owner.getName() + "you can't sell it!");
+            Player x = (Player) owner;
+            throw new IllegalSell("This property belongs to " + x.getName() + "you can't sell it!");
         }
         updateMonopoly(player,this.getColor(),'-');
     }
