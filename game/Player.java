@@ -135,7 +135,19 @@ public class Player implements Owner {
     public void setRank(int rank) {
         this.rank = rank;
     }
-    
+
+    public Integer getLastDiceNumber() {
+        return lastDiceNumber;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getBUILDINGS_LIMIT() {
+        return BUILDINGS_LIMIT;
+    }
+
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
