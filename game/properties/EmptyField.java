@@ -175,7 +175,7 @@ public class EmptyField extends BuyableProperties{
      * @return whether the players have distributed their building correctly
      */
     private boolean buildPermission(Player player) {//only checks distribution
-        ArrayList ownedProperties = getOwnedProperties();
+        ArrayList ownedProperties = player.getOwnedProperties();
         for (int i = 0; i < ownedProperties.size(); i++) {
             if (ownedProperties.get(i) instanceof EmptyField) {
                 if (((EmptyField) ownedProperties.get(i)).isThereHotel || ownedProperties.get(i) == this) {
