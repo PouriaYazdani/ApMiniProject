@@ -25,4 +25,12 @@ public class Airport extends BankProperties{
         player.setCash(player.getCash() - FLIGHT_COST);
         player.setPosition(destination);
     }
+    private boolean isIn(int x){
+        x++;
+        for (int i = 0; i < atFields.length; i++) {
+            if(atFields[i] == x)
+                return true;
+        }
+        return false;
+    }
 }
