@@ -141,7 +141,8 @@ public class EmptyField extends BuyableProperties{
             throw new IllegalConstruction("You have already constructed a hotel in this field! there's nothing else you can do.");
         }
         else if(this.owner != player){//who's the owner?
-            throw new IllegalConstruction("this field belongs to " + (Player)owner.getName() + "! you can't construct a building/hotel here.");
+            Player fieldOwner = (Player)owner;
+            throw new IllegalConstruction("this field belongs to " + fieldOwner.getName() + "! you can't construct a building/hotel here.");
         }
         else if(numberOfBuildings == MAXIMUM_BUILDINGS){//does the player want to build a hotel?
             buildHotel(player);
