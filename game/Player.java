@@ -20,6 +20,17 @@ public class Player implements Owner {
     private boolean inJail;
     private final int BULDINGS_LIMIT = 5;
     private int builtBuilding;
+    // these counters are going to use in emptyField Class, if they equal 3 it means it's Monopoly!
+    // (the specific boolean will be True)
+    // if Monopoly happens the rent price will be double!
+    public int blueProperties;
+    public int redProperties;
+    public int greenProperties;
+    public int yellowProperties;
+    public boolean blueMonopoly;
+    public boolean redMonopoly;
+    public boolean greenMonopoly;
+    public boolean yellowMonopoly;
     public Player(String name, int cash) {
         this.name = name;
         this.cash = cash;
