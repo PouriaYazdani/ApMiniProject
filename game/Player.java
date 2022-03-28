@@ -116,6 +116,10 @@ public class Player implements Owner {
         this.netWorth = netWorth;
     }
 
+    public void setOwnedCinemas(int ownedCinemas) {
+        this.ownedCinemas = ownedCinemas;
+    }
+    
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
