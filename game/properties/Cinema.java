@@ -3,6 +3,10 @@ package game.properties;
 import game.*;
 import game.exceptions.*;
 
+/**
+ * this class implements all the commands and actions related to cinema field in the game.it has several void functions
+ * that do the necessary operations.
+ */
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
     {
@@ -10,6 +14,11 @@ public class Cinema extends BuyableProperties{
         baseRentPrice = 25;
     }
 
+    /**
+     * is the only constructor of this class which will decide the color of the field by its parameter and will also
+     * assign the field's number in board.
+     * @param atField
+     */
     public Cinema(int atField){
         switch (atField){
             case 4:
@@ -28,12 +37,18 @@ public class Cinema extends BuyableProperties{
     }
 
     @Override
+    /**
+     * uses superclass implementation but with the added operation of updating the player's number of owned cinemas.
+     */
     public void buy(Player player){
         super.buy(player);
         player.setOwnedCinemas(player.getOwnedCinemas() + 1);//update number of owned cinemas
     }
 
     @Override
+    /**
+     * used superclass implementation but the details are implemented here.
+     */
     public void sell(Player player){
         super.sell(player);
         player.setCash(player.getCash() + purchasePrice/2);//give the money
@@ -46,6 +61,10 @@ public class Cinema extends BuyableProperties{
     }
 
     @Override
+    /**
+     * calculates the correct rent cost under different circumstances and can throw an exception which will get caught
+     * in gamerunner.
+     */
     public void chargeRent(Player player){
         int rent = 0;
         if(this.owner != BankManager.getInstance()){
