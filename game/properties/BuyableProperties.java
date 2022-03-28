@@ -33,28 +33,52 @@ public abstract class BuyableProperties extends Field{
     protected void updateMonopoly(Player player,Colors color,char operator){
         switch (color){
             case BLUE:
-                if(operator == '+')
+                if(operator == '+') {
                     player.blueProperties++;
-                else
+                    if (player.blueProperties == 3)
+                        player.blueMonopoly = true;
+                }
+                else {
                     player.blueProperties--;
+                    if(player.blueProperties + 1 == 3){
+                        player.blueMonopoly = false;
+                    }
+                }
                 break;
             case RED:
-                if(operator == '+')
+                if(operator == '+') {
                     player.redProperties++;
-                else
+                    if(player.redProperties == 3)
+                        player.redMonopoly = true;
+                }
+                else {
                     player.redProperties--;
+                    if(player.redProperties + 1 == 3)
+                        player.redMonopoly = false;
+                }
                 break;
             case GREEN:
-                if(operator == '+')
+                if(operator == '+') {
                     player.greenProperties++;
-                else
+                    if(player.greenProperties == 3)
+                        player.greenMonopoly = true;
+                }
+                else {
                     player.greenProperties--;
-                break;
+                    if(player.greenProperties + 1 == 3)
+                        player.greenMonopoly = false;
+                }
             case YELLOW:
-                if(operator == '+')
+                if(operator == '+') {
                     player.yellowProperties++;
-                else
+                    if(player.yellowProperties == 3)
+                        player.yellowMonopoly = true;
+                }
+                else {
                     player.yellowProperties--;
+                    if(player.yellowProperties + 1 == 3)
+                        player.yellowMonopoly = false;
+                }
         }
     }
 
