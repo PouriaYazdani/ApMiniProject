@@ -158,7 +158,8 @@ public class EmptyField extends BuyableProperties{
         isThereHotel = true;
         player.setCash(player.getCash() - HOTEL_LICENSE_COST);//take the money
         player.setNetWorth(player.getNetWorth() + HOTEL_LICENSE_COST/2);//update net worth
-        player.setBuiltBuildings(1);
+        player.setBuiltBuildings(player.getBuiltBuildings() - 4 + 1);
+        numberOfBuildings = 1;
     }
 
     /**
