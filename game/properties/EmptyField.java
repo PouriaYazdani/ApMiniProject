@@ -163,7 +163,8 @@ public class EmptyField extends BuyableProperties{
     }
 
     /**
-     * is called from {@link #addBuilding(Player)} checks the necessary qualifications to construct a new building
+     * is called from {@link #addBuilding(Player)} checks the necessary qualifications to construct a new building,also
+     * ignores the distribution if a hotel is built in a field.
      * @param player
      * @return whether the players have distributed their building correctly
      */
@@ -182,4 +183,3 @@ public class EmptyField extends BuyableProperties{
         return true;
     }
 }
-//
