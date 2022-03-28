@@ -1,2 +1,5 @@
-package game.properties;public enum LuckyCards {
+package game.properties;
+
+public enum LuckyCards {
+    CASH,GOJAIL,TAX,MOVE,OUTJAIL,NOTAX,GIFT
 }
