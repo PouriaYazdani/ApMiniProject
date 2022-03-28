@@ -6,6 +6,7 @@ import game.exceptions.NotEnoughCashToFly;
 
 public class Airport extends BankProperties{
     public final static int[] atFields = {3,11,20};
+    private final int FLIGHT_COST = 50;
 
     public Airport(int atField) {
         this.atField = atField;
