@@ -11,6 +11,7 @@ import game.exceptions.NotEnoughCashToFly;
 public class Airport extends BankProperties{
     /**
      * is used in initialization process in Board constructor.
+     * @see game.Board
      */
     public final static int[] atFields = {3,11,20};
     private final int FLIGHT_COST = 50;
@@ -26,10 +27,10 @@ public class Airport extends BankProperties{
      * @param destination
      */
     public void fly(Player player,int destination){
-        if(destination == atField){
+        if(destination == atField){//the requested destination is the current airport
             throw new IllegalDestination("You are already in airport NO." + atField + "!");
         }
-        else if(!isIn(destination)){
+        else if(!isIn(destination)){//there is no airport in requested destination
             throw new IllegalDestination("There is no airport in you're requested destination!");
         }
         else if(player.getCash() < FLIGHT_COST){
