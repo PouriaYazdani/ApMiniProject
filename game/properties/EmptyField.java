@@ -15,6 +15,7 @@ public class EmptyField extends BuyableProperties{
     private final int MAXIMUM_BUILDINGS = 4;
     private final int BUILDING_COST = 150;
     private final int HOTEL_LICENSE_COST = 100;
+    private final int MAXIMUM_EMPTYFIELD_WORTH = 800;
     {
         purchasePrice = 100;
         baseRentPrice = 50;
@@ -52,9 +53,12 @@ public class EmptyField extends BuyableProperties{
      */
     public void sell(Player player){
         super.sell(player);
-        int emptyFieldWorth = purchasePrice + (numberOfBuildings * BUILDING_COST);
+        int emptyFieldWorth = 0;
         if(isThereHotel){
-            emptyFieldWorth += HOTEL_LICENSE_COST;
+            emptyFieldWorth = MAXIMUM_EMPTYFIELD_WORTH;
+        }
+        else {
+            emptyFieldWorth = purchasePrice + (numberOfBuildings * BUILDING_COST);
         }
         player.setCash(player.getCash() + emptyFieldWorth/2);//give the money
         this.owner = BankManager.getInstance();//take the Ownership
