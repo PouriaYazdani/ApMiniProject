@@ -3,12 +3,24 @@ package game.properties;
 import game.*;
 import game.exceptions.*;
 
+/**
+ * this abstract class is superclass of all the fields that can get bargained and their owner will change as the game
+ * continues.it has two baseclass -Cinema and EmptyField- which override and reuse the methods defined in this class.
+ * by composition, we set each field's owner BankManager which is a singelton class.
+ */
+
 public abstract class BuyableProperties extends Field{
     protected Colors color;
     protected int purchasePrice;
     protected int baseRentPrice;
     protected Owner owner = BankManager.getInstance();
 
+    /**
+     * will do all the necessities of a transaction including changing the owner and updating cash and propertyWorth of
+     * the player through getters and setter defined in Player class.This method can throw exception which will be caught
+     * in gamerunner.updateMonopoly is used int this method.
+     * @param player
+     */
     public void buy(Player player){
         if(this.owner != BankManager.getInstance()){
             if(this.owner == player){
@@ -30,6 +42,12 @@ public abstract class BuyableProperties extends Field{
         updateMonopoly(player,this.getColor(),'+');
     }
 
+    /**
+     * this method used an enum based switch case to update the player's monopoly rights.
+     * @param player
+     * @param color
+     * @param operator
+     */
     protected void updateMonopoly(Player player,Colors color,char operator){
         switch (color){
             case BLUE:
@@ -82,6 +100,11 @@ public abstract class BuyableProperties extends Field{
         }
     }
 
+    /**
+     * just like buy method,but it holds less similarity between Cinema and EmptyField so the details are implemented in
+     * baseclasses.
+     * @param player
+     */
     public void sell(Player player){
         if(this.owner == BankManager.getInstance()){
             throw new IllegalSell("This property belongs to the Bank you can't sell it!");
@@ -92,6 +115,11 @@ public abstract class BuyableProperties extends Field{
         updateMonopoly(player,this.getColor(),'-');
     }
 
+    /**
+     * with this method which is implemented in baseclasses the rent cost in each field will be charged from the player's
+     * cash ,and also it calculates the correct rent cost considering other belongings of the player.
+     * @param player
+     */
     public abstract void chargeRent(Player player);
 
     public int getPurchasePrice() {
