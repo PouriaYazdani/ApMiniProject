@@ -119,7 +119,35 @@ public class Player implements Owner {
     public void setOwnedCinemas(int ownedCinemas) {
         this.ownedCinemas = ownedCinemas;
     }
-    
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public void setLastDiceNumber(Integer lastDiceNumber) {
+        this.lastDiceNumber = lastDiceNumber;
+    }
+
+    public void setInvestedMoney(int investedMoney) {
+        this.investedMoney = investedMoney;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public Integer getLastDiceNumber() {
+        return lastDiceNumber;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getBUILDINGS_LIMIT() {
+        return BUILDINGS_LIMIT;
+    }
+
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
