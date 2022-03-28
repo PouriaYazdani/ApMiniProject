@@ -6,7 +6,9 @@ import java.util.ArrayList;
 /**
  * this class implements all the commands and actions related to empty Fields field in the game.it has several void
  * functions that do the necessary operations.Buy method in superclass is not overridden here because the necessaries
- * were already implemented in super.buy().
+ * were already implemented in super.buy().{@link #atFields} static array is used in initialization process in Board
+ * constructor .
+ * @see game.Board
  */
 public class EmptyField extends BuyableProperties{
     public final static int[] atFields = {2,7,9,12,14,18,19,23};

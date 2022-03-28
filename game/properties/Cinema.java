@@ -5,7 +5,8 @@ import game.exceptions.*;
 
 /**
  * this class implements all the commands and actions related to cinema field in the game.it has several void functions
- * that do the necessary operations.
+ * that do the necessary operations.{@link #atFields} static array is used in initialization process in Board constructor.
+ * @see game.Board
  */
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
