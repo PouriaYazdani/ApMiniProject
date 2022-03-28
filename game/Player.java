@@ -9,7 +9,7 @@ public class Player implements Owner {
     private int cash;
     private int position;
     private Integer lastDiceNumber;
-    private BuyableProperties[] ownedProperties;
+    private ArrayList<BuyableProperties> ownedProperties;
     private int propertyWorth;
     private int netWorth;
     private int noTax;
@@ -18,7 +18,7 @@ public class Player implements Owner {
     private int investedMoney = 0;
     private int rank;
     private boolean inJail;
-    private final int BULDINGS_LIMIT = 5;
+    private final int BUILDINGS_LIMIT = 5;
     private int builtBuilding;
     // these counters are going to use in emptyField Class, if they equal 3 it means it's Monopoly!
     // (the specific boolean will be True)
@@ -92,14 +92,14 @@ public class Player implements Owner {
         return inJail;
     }
 
-    public BuyableProperties[] getOwnedProperties() {
+    public ArrayList<BuyableProperties> getOwnedProperties() {
         return ownedProperties;
     }
 
-    public void setOwnedProperties(BuyableProperties[] ownedProperties) {
+    public void setOwnedProperties(ArrayList<BuyableProperties> ownedProperties) {
         this.ownedProperties = ownedProperties;
     }
-
+    
     public int getBuiltBuilding() {
         return builtBuilding;
     }
@@ -108,6 +108,18 @@ public class Player implements Owner {
         this.builtBuilding = builtBuilding;
     }
 
+    public void setPropertyWorth(int propertyWorth) {
+        this.propertyWorth = propertyWorth;
+    }
+
+    public void setNetWorth(int netWorth) {
+        this.netWorth = netWorth;
+    }
+
+    public void setOwnedCinemas(int ownedCinemas) {
+        this.ownedCinemas = ownedCinemas;
+    }
+    
     //move method revive a die number and set the new position
     public void move(int diceNum){
     }
