@@ -69,7 +69,8 @@ public class Cinema extends BuyableProperties{
     public void chargeRent(Player player){
         int rent = 0;
         if(this.owner != BankManager.getInstance()){
-            switch ((Player)this.owner.getOwnedCinemas()){
+            Player fieldOwner = (Player)owner;
+            switch (fieldOwner.getOwnedCinemas()){
                 case 1:
                       rent = 25 * 1;
                     break;
