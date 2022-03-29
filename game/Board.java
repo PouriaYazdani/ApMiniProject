@@ -2,11 +2,25 @@ package game;
 
 import game.properties.*;
 
+/**
+ *  is a singelton class which we get an instance of it when create_game is run.
+ *  it is repeatedly used in gamerunner method via composition relation.
+ */
 public class Board {
     private static Board board;
+    /**
+     * is defined package access because is used repeatedly in {@link Monopoly#gamerunner()} method,all the game's
+     * different fields are kept in it and each command/action for different fields are called via the elements
+     * of this array.
+     */
     Field[] fields;
     private final int NUM_OF_FIELDS = 24;
-
+    /**
+     * {@link #fields} is initialized here with the help of each field's static array arField[].
+     * <p>
+     * {@link #isIn(int, int[])} method is called from here to simplifies the process.
+     * </p>
+     */
     private Board(){
         fields = new Field[24];
         for (int i = 0; i < NUM_OF_FIELDS; i++) {
@@ -48,7 +62,12 @@ public class Board {
             board = new Board();
         return board;
     }
-
+    /**
+     * simple method to check if argument x is in each field's atField[].
+     * @param x
+     * @param arr
+     * @return whether x in a specified array or not.
+     */
     private boolean isIn(int x,int[] arr){
         x++;
         for (int i = 0; i < arr.length; i++) {
