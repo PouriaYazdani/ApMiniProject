@@ -37,7 +37,7 @@ public abstract class BuyableProperties extends Field{
         player.setCash(player.getCash() - purchasePrice);//get the money
         this.owner = player;//give the Ownership
         player.getOwnedProperties().add(this);//add the property to the player's list of owned properties
-        player.setPropertyWorth(player.getPropertyWorth() + purchasePrice/2);//update property worth
+        player.setPropertyWorth(player.getPropertyWorth() + purchasePrice/2.0);//update property worth
         double newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update netWorth
         updateMonopoly(player,this.getColor(),'+');

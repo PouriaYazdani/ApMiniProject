@@ -15,12 +15,12 @@ public class EmptyField extends BuyableProperties{
     private int numberOfBuildings;
     private boolean isThereHotel = false;
     private final int MAXIMUM_BUILDINGS = 4;
-    private final int BUILDING_COST = 150;
-    private final int HOTEL_LICENSE_COST = 100;
-    private final int MAXIMUM_EMPTYFIELD_WORTH = 800;
+    private final double BUILDING_COST = 150.0;
+    private final double HOTEL_LICENSE_COST = 100.0;
+    private final double MAXIMUM_EMPTYFIELD_WORTH = 800.0;
     {
-        purchasePrice = 100;
-        baseRentPrice = 50;
+        purchasePrice = 100.0;
+        baseRentPrice = 50.0;
     }
 
     /**
@@ -55,18 +55,18 @@ public class EmptyField extends BuyableProperties{
      */
     public void sell(Player player){
         super.sell(player);
-        int emptyFieldWorth = 0;
+        double emptyFieldWorth = 0;
         if(isThereHotel){
             emptyFieldWorth = MAXIMUM_EMPTYFIELD_WORTH;
         }
         else {
             emptyFieldWorth = purchasePrice + (numberOfBuildings * BUILDING_COST);
         }
-        player.setCash(player.getCash() + emptyFieldWorth/2);//give the money
+        player.setCash(player.getCash() + emptyFieldWorth/2.0);//give the money
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
-        player.setPropertyWorth(player.getPropertyWorth() - emptyFieldWorth/2);//update property worth
-        int newNetWorth = player.getCash() + player.getPropertyWorth();
+        player.setPropertyWorth(player.getPropertyWorth() - emptyFieldWorth/2.0);//update property worth
+        double newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() - numberOfBuildings);//update player's number of built buildings
         numberOfBuildings = 0;
@@ -79,9 +79,9 @@ public class EmptyField extends BuyableProperties{
      * an exception which will get caught in gamerunner.
      */
     public void chargeRent(Player player){
-        int rent = 0;
+        double rent = 0;
         if(isThereHotel){
-            rent = 600;
+            rent = 600.0;
         }
         else {
             switch (numberOfBuildings){
@@ -89,16 +89,16 @@ public class EmptyField extends BuyableProperties{
                     rent = baseRentPrice;
                     break;
                 case 1:
-                    rent = baseRentPrice + 100;
+                    rent = baseRentPrice + 100.0;
                     break;
                 case 2:
-                    rent = baseRentPrice + 200;
+                    rent = baseRentPrice + 200.0;
                     break;
                 case 3:
-                    rent = baseRentPrice + 300;
+                    rent = baseRentPrice + 300.0;
                     break;
                 case 4:
-                    rent = baseRentPrice + 400;
+                    rent = baseRentPrice + 400.0;
             }
         }
         boolean boost = false;
@@ -113,7 +113,7 @@ public class EmptyField extends BuyableProperties{
                 boost = player.yellowMonopoly;
         }
         if(boost)
-            rent *= 2;
+            rent *= 2.0;
         if(rent > player.getCash()){
             throw new NotEnoughCashToRent("You don't have enough money to pay the rent of this field! Try selling you're properties");
         }
@@ -149,7 +149,7 @@ public class EmptyField extends BuyableProperties{
             return;
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
-        player.setNetWorth(player.getNetWorth() + BUILDING_COST/2);//update net worth
+        player.setNetWorth(player.getNetWorth() + BUILDING_COST/2.0);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
         numberOfBuildings++;
     }
