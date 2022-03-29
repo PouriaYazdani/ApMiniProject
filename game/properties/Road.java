@@ -8,14 +8,14 @@ import game.exceptions.NotEnoughCashToPayToll;
  */
 public class Road extends BankProperties{
     public final static int[] atFields = {5,10,16};
-    private final double tollPrice = 100.0;
+    private final double TOLL_PRICE = 100.0;
     public Road(int atField) {
         this.atField = atField;
     }
     public void payToll(Player player){
-        if (player.getCash() < tollPrice){
+        if (player.getCash() < TOLL_PRICE){
             throw new NotEnoughCashToPayToll("you don't have enough cash to pay your toll, try selling your property in order to do so");
         }
-        player.setCash(player.getCash() - tollPrice);// getting a 100$ toll
+        player.setCash(player.getCash() - TOLL_PRICE);// getting a 100$ toll
     }
 }
