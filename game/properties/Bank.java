@@ -27,7 +27,6 @@ public class Bank extends BankProperties{
         double investedMoney = player.getCash() * INVEST_RATIO;
         player.setInvestedMoney(investedMoney);
         player.setCash(player.getCash() - investedMoney);
-        player.setNetWorth(player.getPropertyWorth() + player.getCash());//update net worth
     }
 
     /**
@@ -39,7 +38,6 @@ public class Bank extends BankProperties{
         if(player.getInvestedMoney() != 0){
             double addedCash = player.getInvestedMoney() * PROFIT_RATIO;
             player.setCash(player.getCash() + addedCash);
-            player.setNetWorth(player.getPropertyWorth() + player.getCash());//update net worth
             player.setInvestedMoney(0);//update invested money
         }
     }
