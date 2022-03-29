@@ -57,7 +57,7 @@ public class Board {
         }
     }
 
-    public static Board getBoard() {
+    public static Board getInstance() {
         if(board == null)
             board = new Board();
         return board;
