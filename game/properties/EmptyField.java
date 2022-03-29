@@ -66,8 +66,6 @@ public class EmptyField extends BuyableProperties{
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
         player.setPropertyWorth(player.getPropertyWorth() - emptyFieldWorth/2.0);//update property worth
-        double newNetWorth = player.getCash() + player.getPropertyWorth();
-        player.setNetWorth(newNetWorth);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() - numberOfBuildings);//update player's number of built buildings
         numberOfBuildings = 0;
         isThereHotel = false;
@@ -149,7 +147,6 @@ public class EmptyField extends BuyableProperties{
             return;
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
-        player.setNetWorth(player.getNetWorth() + BUILDING_COST/2.0);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
         numberOfBuildings++;
     }
@@ -164,7 +161,6 @@ public class EmptyField extends BuyableProperties{
         }
         isThereHotel = true;
         player.setCash(player.getCash() - HOTEL_LICENSE_COST);//take the money
-        player.setNetWorth(player.getNetWorth() + HOTEL_LICENSE_COST/2);//update net worth
         player.setBuiltBuildings(player.getBuiltBuildings() - 4 + 1);
         numberOfBuildings = 1;
     }
