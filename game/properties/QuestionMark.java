@@ -15,7 +15,7 @@ public class QuestionMark extends Field{
     public QuestionMark(int atField) {
         this.atField = atField;
     }
-        public static void randomCard(Player  player){
+        public void randomCard(Player  player){
             Random random = new Random();
             int randNumber = random.nextInt(7);
             LuckyCards[] cards = LuckyCards.values();
