@@ -12,7 +12,10 @@ public class Bank extends BankProperties{
     }
 
     public void invest(Player player){
-
+        double investedMoney = player.getCash() * INVEST_RATIO;
+        player.setInvestedMoney((int)investedMoney);
+        player.setCash(player.getCash() - (int)investedMoney);
+        player.setNetWorth(player.getPropertyWorth() + player.getCash());//update net worth
     }
 
     public void profit(Player player){
