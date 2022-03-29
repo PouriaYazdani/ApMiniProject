@@ -4,7 +4,10 @@ import java.util.Random;
 import game.Player;
 
 /**
- *
+ * In this class we have a static method named {@link QuestionMark#randomCard(Player)} that randomly
+ * selects a lucky card and acts on it
+ * also for the GIFT situation we have a method named {@link QuestionMark#giveGift(Player)} and this method will gave
+ * each player 10$
  */
 public class QuestionMark extends Field{
     public final static int[] atFields = {24};
