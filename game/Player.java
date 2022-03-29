@@ -15,7 +15,7 @@ public class Player implements Owner {
     private int noTax;
     private int noJail;
     private int ownedCinemas;
-    private int investedMoney = 0;
+    private double investedMoney = 0;
     private int rank;
     private boolean inJail;
     private final int BUILDINGS_LIMIT = 5;
@@ -92,7 +92,7 @@ public class Player implements Owner {
         return ownedCinemas;
     }
 
-    public int getInvestedMoney() {
+    public double getInvestedMoney() {
         return investedMoney;
     }
 
@@ -136,7 +136,7 @@ public class Player implements Owner {
         this.lastDiceNumber = lastDiceNumber;
     }
 
-    public void setInvestedMoney(int investedMoney) {
+    public void setInvestedMoney(double investedMoney) {
         this.investedMoney = investedMoney;
     }
 
