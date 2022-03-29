@@ -23,5 +23,15 @@ public class QuestionMark extends Field{
                 case GIFT -> giveGift(player);break;//this method will be here in the class as a public static
             }
         }
+    public static void giveGift(Player p){
+        int countGift = 0;
+        for (int i=0;i<players.length;i++){
+            if(players[i] != p){
+                players[i].setCash(players[i].getCash()+10);
+                countGift++;
+            }else(players[i] == p) {
+                   players[i].setCash(players[i].getCash() - 10*countGift);
+            }
+        }
     }
 }
