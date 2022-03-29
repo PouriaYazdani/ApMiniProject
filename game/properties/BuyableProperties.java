@@ -11,8 +11,8 @@ import game.exceptions.*;
 
 public abstract class BuyableProperties extends Field{
     protected Colors color;
-    protected int purchasePrice;
-    protected int baseRentPrice;
+    protected double purchasePrice;
+    protected double baseRentPrice;
     protected Owner owner = BankManager.getInstance();
 
     /**
@@ -38,7 +38,7 @@ public abstract class BuyableProperties extends Field{
         this.owner = player;//give the Ownership
         player.getOwnedProperties().add(this);//add the property to the player's list of owned properties
         player.setPropertyWorth(player.getPropertyWorth() + purchasePrice/2);//update property worth
-        int newNetWorth = player.getCash() + player.getPropertyWorth();
+        double newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update netWorth
         updateMonopoly(player,this.getColor(),'+');
     }
@@ -124,11 +124,11 @@ public abstract class BuyableProperties extends Field{
      */
     public abstract void chargeRent(Player player);
 
-    public int getPurchasePrice() {
+    public double getPurchasePrice() {
         return purchasePrice;
     }
 
-    public int getBaseRentPrice() {
+    public double getBaseRentPrice() {
         return baseRentPrice;
     }
 
