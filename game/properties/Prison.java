@@ -6,6 +6,7 @@ import game.exceptions.NotEnoughCashForFreedom;
 public class Prison extends BankProperties{
     public final static int[] atFields = {13};
     private final double FREEDOM_COST = 50.0;
+    private final double JAIL_COST = 10.0;
     public Prison(int atField){
         this.atField = atField;
     }
@@ -25,5 +26,14 @@ public class Prison extends BankProperties{
         player.setCash(player.getCash() - FREEDOM_COST);
         player.setInJail(false);
         System.out.println("you're free to go!");
+    }
+    public void luckyDice(Player player){
+        if (player.getLastDiceNumber() == 1){
+            player.setInJail(false);
+            System.out.println("you're free to go!");
+        }else {
+            player.setCash(player.getCash() - JAIL_COST);
+            System.out.println("you wasn't lucky, it costs you 10$");
+        }
     }
 }
