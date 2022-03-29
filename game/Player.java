@@ -177,4 +177,7 @@ public class Player implements Owner {
     public boolean buildLicence(){
         return false;
     }
+    public void updateNetWorth(){
+        netWorth = propertyWorth + cash;
+    }
 }
