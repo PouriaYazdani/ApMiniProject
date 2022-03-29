@@ -11,7 +11,7 @@ public class Prize extends BankProperties{
      * @see game.Board
      */
     public final static int[] atFields = {6};
-    private final int PRIZE_VALUE = 200;
+    private final double PRIZE_VALUE = 200.0;
 
     public Prize(int atField) {
         this.atField = atField;
