@@ -11,8 +11,8 @@ import game.exceptions.*;
 public class Cinema extends BuyableProperties{
     public final static int[] atFields = {4,8,15,22};
     {
-        purchasePrice = 200;
-        baseRentPrice = 25;
+        purchasePrice = 200.0;
+        baseRentPrice = 25.0;
     }
 
     /**
@@ -52,11 +52,11 @@ public class Cinema extends BuyableProperties{
      */
     public void sell(Player player){
         super.sell(player);
-        player.setCash(player.getCash() + purchasePrice/2);//give the money
+        player.setCash(player.getCash() + purchasePrice/2.0);//give the money
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
-        player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2);//update property worth
-        int newNetWorth = player.getCash() + player.getPropertyWorth();
+        player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2.0);//update property worth
+        double newNetWorth = player.getCash() + player.getPropertyWorth();
         player.setNetWorth(newNetWorth);//update net worth
         player.setOwnedCinemas(player.getOwnedCinemas() - 1);//update number of owned cinemas
     }
@@ -67,21 +67,21 @@ public class Cinema extends BuyableProperties{
      * in gamerunner.
      */
     public void chargeRent(Player player){
-        int rent = 0;
+        double rent = 0;
         if(this.owner != BankManager.getInstance()){
             Player fieldOwner = (Player)owner;
             switch (fieldOwner.getOwnedCinemas()){
                 case 1:
-                      rent = 25 * 1;
+                      rent = baseRentPrice * 1.0;
                     break;
                 case 2:
-                      rent = 25 * 2;
+                      rent = baseRentPrice * 2.0;
                     break;
                 case 3:
-                      rent = 25 * 4;
+                      rent = baseRentPrice * 4.0;
                     break;
                 case 4:
-                      rent = 25 * 8;
+                      rent = baseRentPrice * 8.0;
             }
             boolean boost = false;
             switch (this.getColor()){//code reuse should be considered later
@@ -95,7 +95,7 @@ public class Cinema extends BuyableProperties{
                     boost = player.yellowMonopoly;
             }
             if(boost)
-                rent *= 2;
+                rent *= 2.0;
             if(rent > player.getCash()){
                 throw new NotEnoughCashToRent("You don't have enough money to watch a movie! Try selling you're properties");
             }
