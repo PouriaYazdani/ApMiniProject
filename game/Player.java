@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class Player implements Owner {
     private final String name;
-    private int cash;
+    private double cash;
     private int position;
     private Integer lastDiceNumber;
     private ArrayList<BuyableProperties> ownedProperties;
-    private int propertyWorth;
-    private int netWorth;
+    private double propertyWorth;
+    private double netWorth;
     private int noTax;
     private int noJail;
     private int ownedCinemas;
@@ -31,16 +31,24 @@ public class Player implements Owner {
     public boolean redMonopoly;
     public boolean greenMonopoly;
     public boolean yellowMonopoly;
-    public Player(String name, int cash) {
+    public Player(String name, double cash) {
         this.name = name;
         this.cash = cash;
     }
 
-    public int getCash() {
+    public void setPropertyWorth(double propertyWorth) {
+        this.propertyWorth = propertyWorth;
+    }
+
+    public void setNetWorth(double netWorth) {
+        this.netWorth = netWorth;
+    }
+
+    public double getCash() {
         return cash;
     }
 
-    public void setCash(int cash) {
+    public void setCash(double cash) {
         this.cash = cash;
     }
 
@@ -72,11 +80,11 @@ public class Player implements Owner {
         return name;
     }
 
-    public int getPropertyWorth() {
+    public double getPropertyWorth() {
         return propertyWorth;
     }
 
-    public int getNetWorth() {
+    public double getNetWorth() {
         return netWorth;
     }
 
