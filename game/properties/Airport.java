@@ -14,7 +14,7 @@ public class Airport extends BankProperties{
      * @see game.Board
      */
     public final static int[] atFields = {3,11,20};
-    private final int FLIGHT_COST = 50;
+    private final double FLIGHT_COST = 50.0;
 
     public Airport(int atField) {
         this.atField = atField;
