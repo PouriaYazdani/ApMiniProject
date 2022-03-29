@@ -2,6 +2,9 @@ package game.properties;
 
 import game.Player;
 
+/**
+ *  every player must pay a 100$ toll then they can pass
+ */
 public class Road extends BankProperties{
     public final static int[] atFields = {5,10,16};
 
