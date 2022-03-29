@@ -1,6 +1,7 @@
 package game.properties;
 
 import game.Player;
+import game.exceptions.NotEnoughCashForFreedom;
 
 public class Prison extends BankProperties{
     public final static int[] atFields = {13};
@@ -20,9 +21,8 @@ public class Prison extends BankProperties{
     public void free(Player player){
         if (player.getCash() < FREEDOM_COST && player.getLastDiceNumber() != 1){
             throw new NotEnoughCashForFreedom("you haven't enough cash to get outta here, try sell your properties in order to do so");
-        }else if (player.getLastDiceNumber() != 1){
-            player.setCash(player.getCash() - FREEDOM_COST);
         }
+        player.setCash(player.getCash() - FREEDOM_COST);
         player.setInJail(false);
         System.out.println("you're free to go!");
     }
