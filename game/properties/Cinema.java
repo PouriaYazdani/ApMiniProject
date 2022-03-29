@@ -56,8 +56,6 @@ public class Cinema extends BuyableProperties{
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
         player.setPropertyWorth(player.getPropertyWorth() - purchasePrice/2.0);//update property worth
-        double newNetWorth = player.getCash() + player.getPropertyWorth();
-        player.setNetWorth(newNetWorth);//update net worth
         player.setOwnedCinemas(player.getOwnedCinemas() - 1);//update number of owned cinemas
     }
 
