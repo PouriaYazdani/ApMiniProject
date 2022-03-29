@@ -27,7 +27,9 @@ public class Tax extends BankProperties{
             System.out.println("You had a NO_TAX coupon! Bee careful next time.");
             player.setNoTax(player.getNoTax() - 1);
         }
-        double chargedTax = player.getCash() * TAX_RATIO;
-        player.setCash(player.getCash() - chargedTax);
+        else {
+            double chargedTax = player.getCash() * TAX_RATIO;
+            player.setCash(player.getCash() - chargedTax);
+        }
     }
 }
