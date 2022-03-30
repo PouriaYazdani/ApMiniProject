@@ -29,7 +29,7 @@ public class Prison extends BankProperties{
         /**
          * If the players have $ 50, we will release them
          */
-        if (player.getCash() < FREEDOM_COST && player.getLastDiceNumber() != 1){
+        if (player.getCash() < FREEDOM_COST){
             throw new NotEnoughCashForFreedom("you haven't enough cash to get outta here, try sell your properties in order to do so");
         }
         player.setCash(player.getCash() - FREEDOM_COST);
