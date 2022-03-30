@@ -2,6 +2,7 @@ package game.properties;
 
 import java.util.Random;
 import game.Player;
+import game.exceptions.NotEnoughCashToRent;
 
 /**
  * In this class we have a static method named {@link QuestionMark#randomCard(Player)} that randomly
@@ -36,6 +37,9 @@ public class QuestionMark extends Field{
             }else {
                 continue;
             }
+        }
+        if ((players.length-1)*10 > p.getCash()){
+            throw new NotEnoughCashToGift("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!")
         }
         p.setCash(p.getCash() - ((players.length-1)*10));
     }
