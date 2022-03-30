@@ -5,31 +5,37 @@ package game;
  *    there are some orders that player can use:
  * </p>
  * <p>
- *     {@link game.Commands#BUY} : to buy a EmptyField or Cinema
+ *     {@link #BUY} : to buy a EmptyField or Cinema
  * </p>
  * <p>
- *     {@link game.Commands#BUILD} : to build a building or hotel on a emptyField
+ *     {@link #BUILD} : to build a building or hotel on a emptyField
  * </p>
  * <p>
- *     {@link game.Commands#SELL} : to sell a emptyField with the buildings on it
+ *     {@link #SELL} : to sell a emptyField with the buildings on it
  * </p>
  * <p>
- *     {@link game.Commands#FLY} : fly from an airport to another one
+ *     {@link #FLY} : fly from an airport to another one
  * </p>
  * <p>
- *     {@link game.Commands#FLY} : getting out of jail by paying a 50$ cost
+ *     {@link #FLY} : getting out of jail by paying a 50$ cost
  * </p>
  * <p>
- *     {@link game.Commands#INVEST} : invest half of your cash at bank
+ *     {@link #INVEST} : invest half of your cash at bank
  * </p>
  * <p>
- *     {@link game.Commands#INDEX} : shows the index of field you are at
+ *     {@link #INDEX} : shows the index of field you are at
  * </p>
  * <p>
- *     {@link game.Commands#TIME} : shows the remained time
+ *     {@link #TIME} : shows the remained time
  * </p>
  * <p>
- *     {@link game.Commands#RANK} : shows the rank of player
+ *     {@link #RANK} : shows the rank of player
+ * </p>
+ * <p>
+ *     {@link #CREATE_GAME} : initializes the board and the players
+ * </p>
+ * <p>
+ *     {@link  #START_GAME} : starts the game sets the timer on
  * </p>
  */
 public enum Commands {
