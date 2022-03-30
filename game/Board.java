@@ -3,8 +3,8 @@ package game;
 import game.properties.*;
 
 /**
- *  is a singelton class which we get an instance of it when create_game is run.
- *  it is repeatedly used in gamerunner method via composition relation.
+ *  is a singelton class which we get an instance of it once when create_game is run.
+ *  it is repeatedly used in {@link Monopoly#gamerunner()} method via composition relation.
  */
 public class Board {
     private static Board board;
