@@ -6,7 +6,7 @@ import java.util.Timer;
 public class Monopoly {
     private Board board;
     private BankManager bankManager;
-    public static ArrayList players;
+    private static ArrayList <Player> players;
     private Timer timer;
     private int gameDuration;//in minutes
 
@@ -26,4 +26,7 @@ public class Monopoly {
         
     }
 
+    public static ArrayList<Player> getPlayers() {
+        return players;
+    }
 }
