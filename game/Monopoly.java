@@ -2,6 +2,7 @@ package game;
 
 import game.exceptions.IllegalCommand;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Timer;
 
@@ -40,12 +41,12 @@ public class Monopoly {
     public void gameInit(){
         board = Board.getInstance();
         bankManager = BankManager.getInstance();
-        System.out.println("Enter player's usernames and then enter command 'start_game',if you want to play the game in" +
+        System.out.println("Enter player's usernames and then enter command 'start_game',\nif you want to play the game in" +
                 " limited time enter command 'time' after you entered players usernames");
         Scanner scanner = new Scanner(System.in);
         int numOfPlayers = 0;
         while(true) {
-//            System.out.println("player " + (numOfPlayers+1));
+            try {
             stringCommand = scanner.next();
             if(stringCommand.equalsIgnoreCase("start_game") || stringCommand.equalsIgnoreCase("time")) {
                 if (numOfPlayers < MINIMUM_PLAYERS) {
@@ -77,6 +78,11 @@ public class Monopoly {
                         " limited time ,Enter 'time' \n if not , enter start_game.");
                 continue;
             }
+            }catch (InputMismatchException e){
+                System.out.println("PLease enter a number to set the timer.");
+                scanner.next();
+            }
+
         }
     }
 
