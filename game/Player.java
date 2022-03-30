@@ -1,6 +1,6 @@
 package game;
 
-import game.properties.BuyableProperties;
+import game.properties.*;
 
 import java.util.ArrayList;
 
@@ -164,9 +164,34 @@ public class Player implements Owner {
         lastDiceNumber = diceNum; //save the dice number
         position += diceNum; // move the player
     }
-    // state method shows the state of player (position and available orders)
-    // than take every penalty and rent and throws exception if there is not enough cash for payment
+
+    /**
+     *   state method take every penalty and rent and throws exception if there is not enough cash for payment
+     *   then shows the state of player (available orders)
+     */
     public void state(){
+        Board board = Board.getInstance();
+        if (board.fields[position-1] instanceof FreeParking){
+
+        } else if (board.fields[position-1] instanceof EmptyField){
+
+        } else if (board.fields[position-1] instanceof Airport){
+
+        }else if (board.fields[position-1] instanceof Cinema){
+
+        }else if (board.fields[position-1] instanceof Road){
+
+        }else if (board.fields[position-1] instanceof Prize){
+
+        }else if (board.fields[position-1] instanceof Prison){
+
+        }else if (board.fields[position-1] instanceof Tax){
+
+        }else if (board.fields[position-1] instanceof Bank){
+
+        }else if (board.fields[position-1] instanceof QuestionMark){
+
+        }
     }
     //index method shows the position of player
     public void index(){
