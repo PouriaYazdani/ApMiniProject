@@ -79,8 +79,8 @@ public class Monopoly {
                 continue;
             }
             }catch (InputMismatchException e){
-                System.out.println("PLease enter a number to set the timer.");
-                scanner.next();
+                System.out.println("PLease enter a valid input to set the timer \n TIME command has been terminated. ");
+                scanner.next();//to read he invalid input and skip it
             }
 
         }
