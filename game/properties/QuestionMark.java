@@ -1,8 +1,10 @@
 package game.properties;
 
+import java.util.ArrayList;
 import java.util.Random;
 import game.Player;
 import game.exceptions.NotEnoughCashToGift;
+import game.Monopoly;
 
 /**
  * In this class we have a static method named {@link QuestionMark#randomCard(Player)} that randomly
@@ -31,6 +33,7 @@ public class QuestionMark extends Field{
             }
         }
     public  void giveGift(Player p){
+        ArrayList<Player> players = Monopoly.getPlayers();
         for (int i=0;i<players.size();i++){
             if(players.get(i) != p){
                 players.get(i).setCash(players.get(i).getCash()+10);
