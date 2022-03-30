@@ -31,16 +31,16 @@ public class QuestionMark extends Field{
             }
         }
     public  void giveGift(Player p){
-        for (int i=0;i<players.length;i++){
-            if(players[i] != p){
-                players[i].setCash(players[i].getCash()+10);
+        for (int i=0;i<players.size();i++){
+            if(players.get(i) != p){
+                players.get(i).setCash(players.get(i).getCash()+10);
             }else {
                 continue;
             }
         }
-        if ((players.length-1)*10 > p.getCash()){
-            throw new NotEnoughCashToGift("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!")
+        if ((players.size()-1)*10 > p.getCash()){
+            throw new NotEnoughCashToGift("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
         }
-        p.setCash(p.getCash() - ((players.length-1)*10));
+        p.setCash(p.getCash() - ((players.size()-1)*10));
     }
 }
