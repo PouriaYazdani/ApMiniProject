@@ -61,9 +61,15 @@ public class Monopoly {
                         case TIME:
                             System.out.println("Enter duration of the game in minutes: ");
                             gameDuration = scanner.nextInt();
-                            return;
+                            System.out.println("The timer has been set for "+ gameDuration + "minutes.\n " +
+                                    "It gets activated once START_GAME is invoked");
+                            continue;
                     }
                 }
+            }
+            if(gameDuration != 0){
+                System.out.println("The list of players have been fixed,You can start the game.");
+                continue;
             }
             if(numOfPlayers < MAXIMUM_PLAYERS && numOfPlayers < MAXIMUM_PLAYERS) {
                 players.add(new Player(stringCommand, STARTING_CASH));
