@@ -2,7 +2,7 @@ package game.properties;
 
 import java.util.Random;
 import game.Player;
-import game.exceptions.NotEnoughCashToRent;
+import game.exceptions.NotEnoughCashToGift;
 
 /**
  * In this class we have a static method named {@link QuestionMark#randomCard(Player)} that randomly
