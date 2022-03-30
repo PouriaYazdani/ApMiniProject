@@ -156,8 +156,13 @@ public class Player implements Owner {
         return BUILDINGS_LIMIT;
     }
 
-    //move method revive a die number and set the new position
+    /**
+     * move method receive a die number and set the new position
+     * @param diceNum diceNum entered dice
+     */
     public void move(int diceNum){
+        lastDiceNumber = diceNum; //save the dice number
+        position += diceNum; // move the player
     }
     // state method shows the state of player (position and available orders)
     // than take every penalty and rent and throws exception if there is not enough cash for payment
