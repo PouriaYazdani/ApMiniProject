@@ -171,8 +171,11 @@ public class Player implements Owner {
      */
     public void state(){
         Board board = Board.getInstance();
+        String defOrders = "index, rank, time, property ";
         if (board.fields[position-1] instanceof FreeParking){
-
+            FreeParking tmp = new FreeParking(1);
+            tmp.enterParking();
+            System.out.println("available orders are:\n"+defOrders);
         } else if (board.fields[position-1] instanceof EmptyField){
 
         } else if (board.fields[position-1] instanceof Airport){
