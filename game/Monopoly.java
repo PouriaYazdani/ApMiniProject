@@ -118,7 +118,9 @@ public class Monopoly {
     }
 
     private void swap(int a ,int b){
-
+        Player temp = players.get(a);
+        players.add(a,players.get(b));
+        players.add(b,temp);
     }
 
     private Commands commandProcessor(String command){
