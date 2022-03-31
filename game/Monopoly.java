@@ -105,11 +105,15 @@ public class Monopoly {
                 for (; i < players.size(); i++) {
                 System.out.print(players.get(i).getName() + ": ");
                 players.get(i).setLastDiceNumber(scanner.nextInt());
+                if(players.get(i).getLastDiceNumber() > 6 || players.get(i).getLastDiceNumber() < 1 )
+                    throw new InvalidDiceNumber("Please enter a number between 1 and 6");
                 }
                 flag = false;
             }catch (InputMismatchException e){
                 System.out.println("Please enter a valid input");
                 scanner.next();
+            }catch (InvalidDiceNumber e){
+                System.out.println(e.getMessage());
             }
         }
         sortPlayers();
