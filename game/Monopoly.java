@@ -114,7 +114,9 @@ public class Monopoly {
         sortPlayers();
         printPlayers();
         System.out.println("The timer has been activated");
-        setTimer();
+        if(gameDuration != 0)
+            setTimer();
+
     }
 
     private void printPlayers(){
