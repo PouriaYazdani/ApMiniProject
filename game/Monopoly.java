@@ -104,8 +104,20 @@ public class Monopoly {
         sortPlayers();
         System.out.println("the order is as following:");
         for (int i = 0; i < players.size(); i++) {
-            System.out.println((i+1) + "." + players.get(i).getName());
+            System.out.println((i + 1) + "." + players.get(i).getName());
         }
+    }
+
+    private void sortPlayers(){
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (int j = 0; j < players.size() - i - 1; j++) {
+                if(players.get(j).getLastDiceNumber() > players.get(j + 1).getLastDiceNumber())
+                    swap(j,j + 1);
+            }
+        }
+    }
+
+    private void swap(int a ,int b){
 
     }
 
