@@ -102,6 +102,10 @@ public class Monopoly {
             players.get(i).setLastDiceNumber(scanner.nextInt());
         }
         sortPlayers();
+        printPlayers();
+    }
+
+    private void printPlayers(){
         System.out.println("the order is as following:");
         for (int i = 0; i < players.size(); i++) {
             System.out.println((i + 1) + "." + players.get(i).getName());
