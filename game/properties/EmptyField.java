@@ -116,7 +116,7 @@ public class EmptyField extends BuyableProperties{
             throw new NotEnoughCashToRent("You don't have enough money to pay the rent of this field! Try selling you're properties");
         }
         player.setCash(player.getCash() - rent);
-        ((Player) owner).setCash(player.getCash() + rent);//transfer the rent to owner's pocket
+        ((Player) owner).setCash(((Player) owner).getCash() + rent);//transfer the rent to owner's pocket
     }
 
     /**
