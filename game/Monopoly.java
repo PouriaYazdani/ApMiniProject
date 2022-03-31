@@ -1,6 +1,7 @@
 package game;
 
 import game.exceptions.IllegalCommand;
+import game.exceptions.InvalidDiceNumber;
 import game.exceptions.NotEnoughPlayers;
 
 import java.util.ArrayList;
@@ -95,14 +96,25 @@ public class Monopoly {
     }
 
     public void gamerunner(){
+        boolean flag = true;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter you're Dice number to arrange order of players in rolling the dice through the game.");
-        for (int i = 0; i < players.size(); i++) {
-            System.out.print(players.get(i).getName() + ": ");
-            players.get(i).setLastDiceNumber(scanner.nextInt());
+        int i = 0;
+        while(flag){
+            try{
+                for (; i < players.size(); i++) {
+                System.out.print(players.get(i).getName() + ": ");
+                players.get(i).setLastDiceNumber(scanner.nextInt());
+                }
+                flag = false;
+            }catch (InputMismatchException e){
+                System.out.println("Please enter a valid input");
+                scanner.next();
+            }
         }
         sortPlayers();
         printPlayers();
+
     }
 
     private void printPlayers(){
