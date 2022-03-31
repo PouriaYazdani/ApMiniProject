@@ -4,10 +4,7 @@ import game.exceptions.IllegalCommand;
 import game.exceptions.InvalidDiceNumber;
 import game.exceptions.NotEnoughPlayers;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.Timer;
+import java.util.*;
 
 public class Monopoly {
     private Board board;
@@ -116,7 +113,8 @@ public class Monopoly {
         }
         sortPlayers();
         printPlayers();
-
+        System.out.println("The timer has been activated");
+        setTimer();
     }
 
     private void printPlayers(){
@@ -125,6 +123,17 @@ public class Monopoly {
             System.out.println((i + 1) + "." + players.get(i).getName());
             players.get(i).setLastDiceNumber(0);//resetting dice number to prevent going to jail at the first move
         }
+    }
+
+    private void setTimer(){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                endGame();
+                timer.cancel();
+            }
+        }, gameDuration * 1000 * 60);
     }
 
     /**
