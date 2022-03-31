@@ -49,15 +49,14 @@ public class Monopoly {
         int numOfPlayers = 0;
         while(true) {
             try {
-            stringCommand = scanner.next();
+            stringCommand = scanner.nextLine();
             if(stringCommand.equalsIgnoreCase("start_game") || stringCommand.equalsIgnoreCase("time")) {
                 if (numOfPlayers < MINIMUM_PLAYERS) {
-                    throw new NotEnoughPlayers("Minimum number of players (\" + MINIMUM_PLAYERS + \" )has not been reached!");
+                    throw new NotEnoughPlayers("Minimum number of players (" + MINIMUM_PLAYERS + ")has not been reached!");
                 } else {
                     enumCommand = commandProcessor(stringCommand);
                     switch (enumCommand) {
                         case START_GAME:
-                            System.out.println("reached start_game");
                             return;
                         case TIME:
                             System.out.println("Enter duration of the game in minutes: ");
@@ -86,7 +85,7 @@ public class Monopoly {
             }
             }catch (InputMismatchException e){
                 System.out.println("PLease enter a valid input to set the timer \n TIME command has been terminated. ");
-                scanner.next();//to read he invalid input and skip it
+                scanner.nextLine();//to read he invalid input and skip it
             }catch (NotEnoughPlayers e){
                 System.out.println(e.getMessage());
             }
