@@ -95,6 +95,17 @@ public class Monopoly {
     }
 
     public void gamerunner(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter you're Dice number to arrange order of players in rolling the dice through the game.");
+        for (int i = 0; i < players.size(); i++) {
+            System.out.print(players.get(i).getName() + ": ");
+            players.get(i).setLastDiceNumber(scanner.nextInt());
+        }
+        sortPlayers();
+        System.out.println("the order is as following:");
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println((i+1) + "." + players.get(i).getName());
+        }
 
     }
 
