@@ -105,9 +105,13 @@ public class Monopoly {
         System.out.println("the order is as following:");
         for (int i = 0; i < players.size(); i++) {
             System.out.println((i + 1) + "." + players.get(i).getName());
+            players.get(i).setLastDiceNumber(0);//resetting dice number to prevent going to jail at the first move
         }
     }
 
+    /**
+     * sorts the {@link #players} with the help of swap method.
+     */
     private void sortPlayers(){
         for (int i = 0; i < players.size() - 1; i++) {
             for (int j = 0; j < players.size() - i - 1; j++) {
@@ -117,6 +121,11 @@ public class Monopoly {
         }
     }
 
+    /**
+     * simple swap method for arraylist to simplifies the process sorting the players
+     * @param a
+     * @param b
+     */
     private void swap(int a ,int b){
         Player temp = players.get(a);
         players.set(a,players.get(b));
