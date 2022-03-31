@@ -1,6 +1,8 @@
 package game;
 
 import game.exceptions.IllegalCommand;
+import game.exceptions.NotEnoughPlayers;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -50,8 +52,7 @@ public class Monopoly {
             stringCommand = scanner.next();
             if(stringCommand.equalsIgnoreCase("start_game") || stringCommand.equalsIgnoreCase("time")) {
                 if (numOfPlayers < MINIMUM_PLAYERS) {
-                    System.out.println("Minimum number of players (" + MINIMUM_PLAYERS + ")has not been reached!");
-                    continue;
+                    throw new NotEnoughPlayers("Minimum number of players (\" + MINIMUM_PLAYERS + \" )has not been reached!");
                 } else {
                     enumCommand = commandProcessor(stringCommand);
                     switch (enumCommand) {
@@ -73,7 +74,6 @@ public class Monopoly {
             }
             if(numOfPlayers < MAXIMUM_PLAYERS && numOfPlayers < MAXIMUM_PLAYERS) {
                 players.add(new Player(stringCommand, STARTING_CASH));
-//                if(numOfPlayers < MAXIMUM_PLAYERS - 1)
                     numOfPlayers++;
                 for (int i = 0; i < players.size(); i++) {
                     System.out.println("player " + (i+1)+ ":" +players.get(i).getName());
@@ -87,6 +87,8 @@ public class Monopoly {
             }catch (InputMismatchException e){
                 System.out.println("PLease enter a valid input to set the timer \n TIME command has been terminated. ");
                 scanner.next();//to read he invalid input and skip it
+            }catch (NotEnoughPlayers e){
+                System.out.println(e.getMessage());
             }
 
         }
