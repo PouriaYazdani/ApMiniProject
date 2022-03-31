@@ -62,7 +62,7 @@ public class Monopoly {
                         case TIME:
                             System.out.println("Enter duration of the game in minutes: ");
                             gameDuration = scanner.nextInt();
-                            System.out.println("The timer has been set for "+ gameDuration + "minutes.\n " +
+                            System.out.println("The timer has been set for "+ gameDuration + " minutes.\n " +
                                     "It gets activated once START_GAME is invoked");
                             continue;
                     }
@@ -81,7 +81,7 @@ public class Monopoly {
             }
              if(players.size() == MAXIMUM_PLAYERS){
                 System.out.println("Maximum number of players has been reached \nIf you want to play the game in a" +
-                        " limited time ,Enter 'time' \n if not , enter start_game.");
+                        " limited time ,Enter 'time' \n if not , enter 'start_game'.");
                 continue;
             }
             }catch (InputMismatchException e){
