@@ -48,7 +48,7 @@ public class Monopoly {
                 " limited time enter command 'time' after you entered players usernames");
         Scanner scanner = new Scanner(System.in);
         int numOfPlayers = 0;
-        while(true) {
+        outer :while(true) {
             try {
             stringCommand = scanner.nextLine();
             if(stringCommand.equalsIgnoreCase("start_game") || stringCommand.equalsIgnoreCase("time")) {
@@ -58,7 +58,7 @@ public class Monopoly {
                     enumCommand = commandProcessor(stringCommand);
                     switch (enumCommand) {
                         case START_GAME:
-                            return;
+                            break outer;
                         case TIME:
                             System.out.println("Enter duration of the game in minutes: ");
                             gameDuration = scanner.nextInt();
@@ -95,22 +95,17 @@ public class Monopoly {
             }catch (IllegalCommand e){
                 System.out.println(e.getMessage());
             }
-
         }
-    }
-
-    public void gamerunner(){
         boolean flag = true;
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter you're Dice number to arrange order of players in rolling the dice through the game.");
         int i = 0;
         while(flag){
             try{
                 for (; i < players.size(); i++) {
-                System.out.print(players.get(i).getName() + ": ");
-                players.get(i).setLastDiceNumber(scanner.nextInt());
-                if(players.get(i).getLastDiceNumber() > 6 || players.get(i).getLastDiceNumber() < 1 )
-                    throw new InvalidDiceNumber("Please enter a number between 1 and 6");
+                    System.out.print(players.get(i).getName() + ": ");
+                    players.get(i).setLastDiceNumber(scanner.nextInt());
+                    if(players.get(i).getLastDiceNumber() > 6 || players.get(i).getLastDiceNumber() < 1 )
+                        throw new InvalidDiceNumber("Please enter a number between 1 and 6");
                 }
                 flag = false;
             }catch (InputMismatchException e){
@@ -122,6 +117,10 @@ public class Monopoly {
         }
         sortPlayers();
         printPlayers();
+    }
+
+    public void gamerunner(){
+        Scanner scanner = new Scanner(System.in);
         System.out.println("The timer has been activated");
         start = Instant.now();
         if(gameDuration != 0)
