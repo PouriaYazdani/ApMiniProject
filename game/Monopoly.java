@@ -63,14 +63,17 @@ public class Monopoly {
                             System.out.println("Enter duration of the game in minutes: ");
                             gameDuration = scanner.nextInt();
                             System.out.println("The timer has been set for "+ gameDuration + " minutes.\n " +
-                                    "It gets activated once START_GAME is invoked");
+                                    "It gets activated once 'start_game' is invoked");
+                            scanner.nextLine();
                             continue;
                     }
                 }
             }
             if(gameDuration != 0){
                 System.out.println("The list of players have been fixed,You can start the game.");
-                continue;
+                if(!stringCommand.equalsIgnoreCase("start_game"))
+                    throw new IllegalCommand("PLease enter a valid command.");
+                    continue;
             }
             if(numOfPlayers < MAXIMUM_PLAYERS && numOfPlayers < MAXIMUM_PLAYERS) {
                 players.add(new Player(stringCommand, STARTING_CASH));
@@ -88,6 +91,8 @@ public class Monopoly {
                 System.out.println("PLease enter a valid input to set the timer \n TIME command has been terminated. ");
                 scanner.nextLine();//to read he invalid input and skip it
             }catch (NotEnoughPlayers e){
+                System.out.println(e.getMessage());
+            }catch (IllegalCommand e){
                 System.out.println(e.getMessage());
             }
 
