@@ -4,6 +4,8 @@ import game.exceptions.IllegalCommand;
 import game.exceptions.InvalidDiceNumber;
 import game.exceptions.NotEnoughPlayers;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 public class Monopoly {
@@ -17,6 +19,7 @@ public class Monopoly {
     private final int MAXIMUM_PLAYERS = 4;
     private final int MINIMUM_PLAYERS = 2;
     private final double STARTING_CASH = 1500.0;
+    private Instant start;
 
     public void waitingMenu(){
         Scanner scanner = new Scanner(System.in);
@@ -114,9 +117,27 @@ public class Monopoly {
         sortPlayers();
         printPlayers();
         System.out.println("The timer has been activated");
+        start = Instant.now();
         if(gameDuration != 0)
             setTimer();
+        while(true){
+            for (int j = 0; j < players.size(); j++) {
+                System.out.println(players.get(j).getName() + "'s turn:");
+                stringCommand = scanner.next();
+                enumCommand = commandProcessor(stringCommand);
+                switch (enumCommand){
+                    case TIME:
+                        System.out.println(time() + " minutes to the end of the game");
+                }
+            }
+        }
 
+    }
+
+    private Long time(){
+        Instant now = Instant.now();
+        Duration timeElapsed = Duration.between(start,now);
+        return gameDuration - timeElapsed.toMinutes();
     }
 
     private void printPlayers(){
@@ -132,7 +153,7 @@ public class Monopoly {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                endGame();
+//                endGame();
                 timer.cancel();
             }
         }, gameDuration * 1000 * 60);
