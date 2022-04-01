@@ -203,8 +203,30 @@ public class Player implements Owner {
     public void index(){
         System.out.println("you are at field " + position);
     }
-    //shows the amount of cash and name of the owned properties
+
+    /**
+     * shows the amount of cash and name of the owned properties
+     */
     public void property(){
+        System.out.println("cash : " + cash + "$  property worth : " + propertyWorth + "$  net worth : " + netWorth +"$");
+        for (int i=0; i<ownedProperties.size();i++){
+            System.out.printf("%d - ",i+1);
+            if (ownedProperties.get(i) instanceof Cinema){
+                System.out.printf("Cinema : \n");
+            } else {
+                System.out.printf("EmptyField : \n");
+            }
+            System.out.printf("position : " + ownedProperties.get(i).getAtField() + "  color : "
+                    + ownedProperties.get(i).getColor());
+            if (ownedProperties.get(i) instanceof EmptyField){
+                EmptyField tmp = (EmptyField) ownedProperties.get(i);
+                if (tmp.isThereHotel()){
+                    System.out.printf("there is a Hotel here");
+                } else {
+                    System.out.printf("buildings : " + tmp.getNumberOfBuildings());
+                }
+            }
+        }
     }
     // rank method shows the rank of the player by getting a sorted list of Players
     public void rank(){
