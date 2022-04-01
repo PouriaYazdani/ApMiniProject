@@ -20,6 +20,7 @@ public class Monopoly {
     private final int MINIMUM_PLAYERS = 2;
     private final double STARTING_CASH = 1500.0;
     private Instant start;
+    private int roundCounter;
 
     public void waitingMenu(){
         Scanner scanner = new Scanner(System.in);
@@ -121,8 +122,9 @@ public class Monopoly {
         if(gameDuration != 0)
             setTimer();
         while(true){
+            roundCounter++;
             for (int j = 0; j < players.size(); j++) {
-                System.out.println(players.get(j).getName() + "'s turn:");
+                System.out.println("round " + roundCounter + '\n' + players.get(j).getName() + "'s turn:");
                 stringCommand = scanner.next();
                 enumCommand = commandProcessor(stringCommand);
                 switch (enumCommand){
