@@ -23,6 +23,14 @@ public class EmptyField extends BuyableProperties{
         baseRentPrice = 50.0;
     }
 
+    public int getNumberOfBuildings() {
+        return numberOfBuildings;
+    }
+
+    public boolean isThereHotel() {
+        return isThereHotel;
+    }
+
     /**
      * is the only constructor of this class which will assign the number of field in the board and its color through
      * its parameter.
