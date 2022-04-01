@@ -3,10 +3,12 @@ package game;
 import game.exceptions.IllegalCommand;
 import game.exceptions.InvalidDiceNumber;
 import game.exceptions.NotEnoughPlayers;
+import game.properties.Prison;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import game.properties.Prison;
 
 public class Monopoly {
     private Board board;
@@ -119,25 +121,87 @@ public class Monopoly {
         printPlayers();
     }
 
-    public void gamerunner(){
+    public void gamerunner() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("The timer has been activated");
-        start = Instant.now();
-        if(gameDuration != 0)
+        if (gameDuration != 0){
+            System.out.println("The timer has been activated");
+            start = Instant.now();
             setTimer();
+        }
+        int i = 0;
         while(true){
             roundCounter++;
-            for (int j = 0; j < players.size(); j++) {
-                System.out.println("round " + roundCounter + '\n' + players.get(j).getName() + "'s turn:");
-                stringCommand = scanner.next();
-                enumCommand = commandProcessor(stringCommand);
-                switch (enumCommand){
-                    case TIME:
-                        System.out.println(time() + " minutes to the end of the game");
+            for (; i < players.size(); i++) {
+                System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
+                if (players.get(i).isInJail()) {
+                    jailManager(players.get(i));
+                } else {
+                    int diceNumber = scanner.nextInt();
+                    sendToJail(players.get(i), diceNumber);
+                    players.get(i).move(diceNumber);
+                    players.get(i).state();
+                    scanner.nextLine();//to consume the \n so we can enter two part command like sell and fly
+                    stringCommand = scanner.nextLine();
+                    enumCommand = commandProcessor(stringCommand);
+                    switch (enumCommand) {//if there wasn't a field related command we'll execute it here
+                        case TIME:
+                            System.out.println(time() + " minutes to the end of the game");
+                            break;
+                        case INDEX:
+                            System.out.println(players.get(i).getPosition());
+                            break;
+                        case PROPERTY:
+                            players.get(i).property();
+                            break;
+                        case RANK:
+                            System.out.println(players.get(i).getRank());
+                    }
+//                    players.get(i).X(enumCommand);
+                    if (diceNumber == 6) {
+                        i--;
+                    }
                 }
             }
         }
 
+    }
+
+    private void jailManager(Player player){
+        Prison prison = (Prison)board.fields[13];
+        boolean isNumber = true;
+        int diceNumber = 0;
+        System.out.println("You are in jail,you can try your luck and roll a dice or pay 50$ to free yourself");
+        Scanner scanner = new Scanner(System.in);
+        stringCommand = scanner.nextLine();
+        try{
+            diceNumber = Integer.parseInt(stringCommand);
+        }catch(NumberFormatException e){//the player has entered a command
+            isNumber = false;
+        }
+        if(isNumber){
+            if(diceNumber > 6 || diceNumber < 1){
+                throw new InvalidDiceNumber("Please enter a number between 1 and 6");
+            }
+            else {
+                player.setLastDiceNumber(diceNumber);
+                prison.luckyDice(player);
+            }
+        }else{
+            enumCommand = commandProcessor(stringCommand);//throws exception if the player entered giberish
+            // -IllegalArgumentexception- it should say invalid command
+            if(enumCommand == Commands.FREE){
+                prison.free(player);
+            }else{
+                throw new IllegalCommand("You have entered illegal command ! ,please try again.");//gets handled here
+            }
+        }
+
+    }
+
+    private void sendToJail(Player player,int currentDiceNumber){
+        if(player.getLastDiceNumber() == currentDiceNumber && currentDiceNumber == 6){
+            Prison.imprisonment(player);
+        }
     }
 
     private Long time(){
