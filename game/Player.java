@@ -196,8 +196,12 @@ public class Player implements Owner {
 
         }
     }
-    //index method shows the position of player
+
+    /**
+     * index method shows the position of player
+     */
     public void index(){
+        System.out.println("you are at field " + position);
     }
     //shows the amount of cash and name of the owned properties
     public void property(){
