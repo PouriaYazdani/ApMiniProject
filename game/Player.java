@@ -241,11 +241,7 @@ public class Player implements Owner {
         }
         System.out.println("Rank : " + rank);
     }
-    // The buildLicence method checks whether each empty field of the player has the least amount of building,
-    // then returns true and the player can add another building to the desired empty field.
-    public boolean buildLicence(){
-        return false;
-    }
+    
     public void updateNetWorth(){
         netWorth = propertyWorth + cash;
     }
