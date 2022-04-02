@@ -168,7 +168,17 @@ public class Monopoly {
 
     }
 
-    private String collapseCommand(){
+    private Integer collapseCommand(){
+        String temp = stringCommand;
+        int idx = 0;
+        for (int i = 0; i < stringCommand.length(); i++) {
+            if(stringCommand.charAt(i) == ' '){
+                idx = i;
+                break;
+            }
+        }
+        stringCommand = stringCommand.substring(0,idx);
+        return Integer.parseInt(temp.substring(idx + 1));
     }
 
     private void jailManager(Player player){
