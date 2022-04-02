@@ -198,6 +198,19 @@ public class Player implements Owner {
             + ",fly");
 
         }else if (board.fields[position-1] instanceof Cinema){
+            Cinema tmp = (Cinema) board.fields[position-1];
+            if (tmp.getOwner() == this){
+                System.out.println("you are at your own cinema!");
+                System.out.println("available orders are:\n"+defOrders);
+            }else if (tmp.getOwner() == BankManager.getInstance()){
+                System.out.println("this cinema is a bank property, you can buy it!");
+                System.out.println("available orders are:\n"+defOrders +
+                ",buy");
+            } else {
+                tmp.chargeRent(this);
+                System.out.println("you are at someone else's cinema!\nenjoy the movie!");
+                System.out.println("available orders are:\n"+defOrders);
+            }
 
         }else if (board.fields[position-1] instanceof Road){
 
