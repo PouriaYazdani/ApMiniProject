@@ -238,7 +238,9 @@ public class Player implements Owner {
             System.out.println("available orders are:\n"+defOrders + ",invest");
 
         }else if (board.fields[position-1] instanceof QuestionMark){
-
+            System.out.println("well well well! let see what's behind the cards");
+            QuestionMark questionMark = (QuestionMark) board.fields[position-1];
+            questionMark.randomCard(this);
         }
     }
 
