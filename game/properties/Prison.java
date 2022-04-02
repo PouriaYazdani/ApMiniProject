@@ -23,6 +23,7 @@ public class Prison extends BankProperties{
             System.out.println("You had a NO_JAIL coupon! Be careful next time.");
             player.setNoJail(player.getNoJail() - 1);
         } else {
+            System.out.println("You have been thrown in jail,If you want to get free you know what to do...");
             player.setInJail(true);
             player.setPosition(atFields[0]); // change the position of player to it's
         }
