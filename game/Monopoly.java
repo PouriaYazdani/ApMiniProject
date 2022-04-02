@@ -128,10 +128,9 @@ public class Monopoly {
             start = Instant.now();
             setTimer();
         }
-        int i = 0;
         while(true){
             roundCounter++;
-            for (; i < players.size(); i++) {
+            for (int i = 0; i < players.size(); i++) {
                 Integer possibleIndex = null;
                 System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
                 if (players.get(i).isInJail()) {
