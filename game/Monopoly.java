@@ -159,6 +159,9 @@ public class Monopoly {
                             break;
                         case RANK:
                             players.get(i).rank();
+                            break;
+                        case PASS:
+                            continue;
                     }
 //                    players.get(i).X(enumCommand,possibleIndex);
                     if (diceNumber == 6) {
