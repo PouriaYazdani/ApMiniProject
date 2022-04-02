@@ -193,6 +193,9 @@ public class Player implements Owner {
             }
 
         } else if (board.fields[position-1] instanceof Airport){
+            System.out.println("you are at airport NO."+position);
+            System.out.println("available orders are:\n"+defOrders
+            + ",fly");
 
         }else if (board.fields[position-1] instanceof Cinema){
 
