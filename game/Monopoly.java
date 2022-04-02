@@ -160,8 +160,7 @@ public class Monopoly {
                         case RANK:
                             players.get(i).rank();
                             break;
-                        case PASS:
-                            continue;
+                        case PASS://does nothing
                     }
 //                    players.get(i).X(enumCommand,possibleIndex);
                     if (diceNumber == 6) {
