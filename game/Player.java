@@ -217,6 +217,10 @@ public class Player implements Owner {
             road.payToll(this);
             System.out.println("you are on the road, just pay the toll!");
         }else if (board.fields[position-1] instanceof Prize){
+            Prize prize = (Prize) board.fields[position-1];
+            prize.wonPrize(this);
+            System.out.println("you won a 200$ prize!");
+            System.out.println("available orders are:\n"+defOrders);
 
         }else if (board.fields[position-1] instanceof Prison){
 
