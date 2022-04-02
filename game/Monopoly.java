@@ -132,6 +132,7 @@ public class Monopoly {
         while(true){
             roundCounter++;
             for (; i < players.size(); i++) {
+                Integer possibleIndex = null;
                 System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
                 if (players.get(i).isInJail()) {
                     jailManager(players.get(i));
@@ -143,7 +144,7 @@ public class Monopoly {
                     scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                     stringCommand = scanner.nextLine();
                     if(stringCommand.contains(" "))
-                        collapseCommand();
+                        possibleIndex = collapseCommand();
                     enumCommand = commandProcessor(stringCommand);//can throw exception
                     switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                         case TIME:
@@ -158,7 +159,7 @@ public class Monopoly {
                         case RANK:
                             System.out.println(players.get(i).getRank());
                     }
-//                    players.get(i).X(enumCommand);
+//                    players.get(i).X(enumCommand,possibleIndex);
                     if (diceNumber == 6) {
                         i--;
                     }
