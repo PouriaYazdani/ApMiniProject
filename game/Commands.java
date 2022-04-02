@@ -35,9 +35,12 @@ package game;
  *     {@link #CREATE_GAME} : initializes the board and the players
  * </p>
  * <p>
- *     {@link  #START_GAME} : starts the game sets the timer on
+ *     {@link  #START_GAME} : starts the game, sets the timer on
+ * </p>
+ * <p>
+ *     {@link  #PASS} : is invoked when the player doesn't want to enter a command
  * </p>
  */
 public enum Commands {
-    BUY,BUILD,SELL,FLY,FREE,INVEST,INDEX,PROPERTY,TIME,RANK,CREATE_GAME,START_GAME
+    BUY,BUILD,SELL,FLY,FREE,INVEST,INDEX,PROPERTY,TIME,RANK,CREATE_GAME,START_GAME,PASS
 }
