@@ -231,6 +231,11 @@ public class Player implements Owner {
             System.out.println("Should 10 percent appear too small, Be thankful I don't take it all");
             System.out.println("available orders are:\n"+defOrders);
         }else if (board.fields[position-1] instanceof Bank){
+            System.out.println("welcome to bank!\n if you invested any money here we'll give it to you now!");
+            Bank bank = (Bank) board.fields[position-1];
+            bank.profit(this);
+            System.out.println("you can invest your money here");
+            System.out.println("available orders are:\n"+defOrders + ",invest");
 
         }else if (board.fields[position-1] instanceof QuestionMark){
 
