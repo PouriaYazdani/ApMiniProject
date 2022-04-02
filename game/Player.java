@@ -171,12 +171,26 @@ public class Player implements Owner {
      */
     public void state(){
         Board board = Board.getInstance();
-        String defOrders = "index, rank, time, property ";
+        String defOrders = "index, rank, time, property, sell ";
         if (board.fields[position-1] instanceof FreeParking){
             FreeParking tmp = new FreeParking(1);
             tmp.enterParking();
             System.out.println("available orders are:\n"+defOrders);
         } else if (board.fields[position-1] instanceof EmptyField){
+            EmptyField tmp = (EmptyField) board.fields[position-1];
+            if (tmp.getOwner() == this){
+                System.out.println("you are at your own property!");
+                System.out.println("available orders are:\n"+defOrders
+                + ",buy, build");
+            }else if(tmp.getOwner() == BankManager.getInstance()){
+                System.out.println("this is a bank property!");
+                System.out.println("available orders are:\n"+defOrders
+                + ",buy");
+            }else {
+                tmp.chargeRent(this);
+                System.out.println("you are at someone else's property!\nwe received the rent");
+                System.out.println("available orders are:\n"+defOrders);
+            }
 
         } else if (board.fields[position-1] instanceof Airport){
 
