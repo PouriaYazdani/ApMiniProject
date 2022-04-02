@@ -138,7 +138,9 @@ public class Monopoly {
                     jailManager(players.get(i));
                 } else {
                     int diceNumber = scanner.nextInt();
-                    sendToJail(players.get(i), diceNumber);
+                    if(sendToJail(players.get(i), diceNumber)){
+                        continue;
+                    }
                     players.get(i).move(diceNumber);
                     players.get(i).state();
                     scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
@@ -214,10 +216,12 @@ public class Monopoly {
 
     }
 
-    private void sendToJail(Player player,int currentDiceNumber){
+    private boolean sendToJail(Player player,int currentDiceNumber){
         if(player.getLastDiceNumber() == currentDiceNumber && currentDiceNumber == 6){
             Prison.imprisonment(player);
+            return true;
         }
+        return false;
     }
 
     private Long time(){
