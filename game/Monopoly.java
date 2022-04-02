@@ -184,7 +184,7 @@ public class Monopoly {
     }
 
     private void jailManager(Player player){
-        Prison prison = (Prison)board.fields[13];
+        Prison prison = (Prison)board.fields[12];
         boolean isNumber = true;
         int diceNumber = 0;
         System.out.println("You are in jail,you can try your luck and roll a dice or pay 50$ to free yourself");
