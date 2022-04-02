@@ -151,13 +151,13 @@ public class Monopoly {
                             System.out.println(time() + " minutes to the end of the game");
                             break;
                         case INDEX:
-                            System.out.println(players.get(i).getPosition());
+                            players.get(i).index();
                             break;
                         case PROPERTY:
                             players.get(i).property();
                             break;
                         case RANK:
-                            System.out.println(players.get(i).getRank());
+                            players.get(i).rank();
                     }
 //                    players.get(i).X(enumCommand,possibleIndex);
                     if (diceNumber == 6) {
