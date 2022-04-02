@@ -213,7 +213,9 @@ public class Player implements Owner {
             }
 
         }else if (board.fields[position-1] instanceof Road){
-
+            Road road = (Road) board.fields[position-1];
+            road.payToll(this);
+            System.out.println("you are on the road, just pay the toll!");
         }else if (board.fields[position-1] instanceof Prize){
 
         }else if (board.fields[position-1] instanceof Prison){
