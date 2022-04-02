@@ -140,9 +140,11 @@ public class Monopoly {
                     sendToJail(players.get(i), diceNumber);
                     players.get(i).move(diceNumber);
                     players.get(i).state();
-                    scanner.nextLine();//to consume the \n so we can enter two part command like sell and fly
+                    scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                     stringCommand = scanner.nextLine();
-                    enumCommand = commandProcessor(stringCommand);
+                    if(stringCommand.contains(" "))
+                        collapseCommand();
+                    enumCommand = commandProcessor(stringCommand);//can throw exception
                     switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                         case TIME:
                             System.out.println(time() + " minutes to the end of the game");
@@ -164,6 +166,9 @@ public class Monopoly {
             }
         }
 
+    }
+
+    private String collapseCommand(){
     }
 
     private void jailManager(Player player){
