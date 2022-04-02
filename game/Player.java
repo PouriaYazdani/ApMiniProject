@@ -223,7 +223,8 @@ public class Player implements Owner {
             System.out.println("available orders are:\n"+defOrders);
 
         }else if (board.fields[position-1] instanceof Prison){
-
+            System.out.println("don't worry, you just passed the prison");
+            System.out.println("available orders are:\n"+defOrders);
         }else if (board.fields[position-1] instanceof Tax){
 
         }else if (board.fields[position-1] instanceof Bank){
