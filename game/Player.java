@@ -215,7 +215,7 @@ public class Player implements Owner {
         }else if (board.fields[position-1] instanceof Road){
             Road road = (Road) board.fields[position-1];
             road.payToll(this);
-            System.out.println("you are on the road, just pay the toll!");
+            System.out.println("you are on the road, the 100$ toll was received");
         }else if (board.fields[position-1] instanceof Prize){
             Prize prize = (Prize) board.fields[position-1];
             prize.wonPrize(this);
@@ -276,6 +276,15 @@ public class Player implements Owner {
         }
     }
 
+    /**
+     * this method receive the players orders and throws exception if they are illegal
+     * otherwise it executes the command
+     * @param commands player order
+     * @param index for sale and fly orders
+     */
+    public void order(Commands commands, Integer index){
+
+    }
     /**
      * rank method shows the rank of the player by getting a sorted list of Players
      */
