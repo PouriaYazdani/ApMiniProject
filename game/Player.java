@@ -277,6 +277,15 @@ public class Player implements Owner {
     }
 
     /**
+     * this method receive the players orders and throws exception if they are illegal
+     * otherwise it executes the command
+     * @param commands player order
+     * @param index for sale and fly orders
+     */
+    public void order(Commands commands, Integer index){
+
+    }
+    /**
      * rank method shows the rank of the player by getting a sorted list of Players
      */
     public void rank(){
