@@ -293,7 +293,6 @@ public class Player implements Owner {
             case SELL: sell(index); break;
             case INDEX: indexShower(); break;
             case RANK: rankShower(); break;
-            case PASS: pass(); break;
         }
     }
     private void buy(){
@@ -396,8 +395,6 @@ public class Player implements Owner {
     }
     private void rankShower(){
         this.rank();
-    }
-    private void pass(){
     }
     /**
      * rank method shows the rank of the player by getting a sorted list of Players
