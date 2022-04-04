@@ -149,8 +149,6 @@ public class Monopoly {
                             players.get(i).state();
                             scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                         }
-//                        outer:
-//                        while (true) {//accept command till PASS is entered
                             acceptDice = false;
                             stringCommand = scanner.nextLine();
                             if (stringCommand.contains(" "))
@@ -181,7 +179,6 @@ public class Monopoly {
                             if (diceNumber == 6) {
                                 i--;
                             }
-//                        }
                     }
                 }catch (InvalidDiceNumber e){
                     System.out.println(e.getMessage());
@@ -192,6 +189,9 @@ public class Monopoly {
                     i--;
                 }catch (IllegalArgumentException e){
                     System.out.println("There is no such command,please enter a valid command");
+                    i--;
+                }catch (IllegalCommand e){
+                    System.out.println(e.getMessage());
                     i--;
                 }
             }
