@@ -1,6 +1,7 @@
 package game;
 
 import game.properties.*;
+import org.w3c.dom.css.CSSImportRule;
 
 import java.util.ArrayList;
 
@@ -296,6 +297,26 @@ public class Player implements Owner {
         }
     }
     private void buy(){
+        Board board = Board.getInstance();
+        if (board.fields[position-1] instanceof BankProperties){ // for unbuyable fields
+            System.out.println("This field isn't Buyable!");
+        }else if (board.fields[position-1] instanceof BuyableProperties){ // buyable properties different situations
+            Owner BankManager = game.BankManager.getInstance();
+            if (((BuyableProperties) board.fields[position-1]).getOwner() != BankManager ||
+                ((BuyableProperties) board.fields[position-1]).getOwner() != this){ // another player's property
+                System.out.println("This property belongs to another player!");
+            }else if (((BuyableProperties) board.fields[position-1]).getOwner() == this){ // self property
+                System.out.println("You own this property!");
+            }else if (((BuyableProperties) board.fields[position-1]).getOwner() == BankManager){ // Authorized purchase
+                if (board.fields[position-1] instanceof EmptyField){ // buying a EmptyField
+                       EmptyField emptyField = new EmptyField(position);
+                       emptyField.buy(this);
+                } else if (board.fields[position-1] instanceof Cinema){ //buying a Cinema
+                    Cinema cinema = new Cinema(position);
+                    cinema.buy(this);
+                }
+            }
+        }
     }
     private void build(){
     }
