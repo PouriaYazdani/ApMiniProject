@@ -355,6 +355,7 @@ public class Player implements Owner {
         }
     }
     private void propertyHandler(){
+        this.property();
     }
     private void invest(){
     }
