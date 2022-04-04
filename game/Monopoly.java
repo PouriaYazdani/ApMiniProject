@@ -131,7 +131,7 @@ public class Monopoly {
         while(true){
             roundCounter++;
             boolean acceptDice = true;
-            for (int i = 0; i < players.size(); i++) {
+            for (int i = 0; i < players.size();) {
                 try {
                     Integer possibleIndex = null;
                     System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
@@ -157,42 +157,24 @@ public class Monopoly {
                             switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                                 case TIME:
                                     System.out.println(time() + " minutes to the end of the game");
-                                    i--;
                                     break;
-                                case INDEX:
-                                    players.get(i).index();
-                                    i--;
-                                    break;
-                                case PROPERTY:
-                                    i--;
-                                    players.get(i).property();
-                                    break;
-                                case RANK:
-                                    i--;
-                                    players.get(i).rank();
-                                    break;
-                                case PASS://does nothing
-//                                    break outer;
+                                case PASS:
+                                    i++;
                                     acceptDice = true;
                             }
 //                    players.get(i).X(enumCommand,possibleIndex);
                             if (diceNumber == 6) {
-                                i--;
                             }
                     }
                 }catch (InvalidDiceNumber e){
                     System.out.println(e.getMessage());
-                    i--;
                 }catch (InputMismatchException e){//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
                     scanner.nextLine();
-                    i--;
                 }catch (IllegalArgumentException e){
                     System.out.println("There is no such command,please enter a valid command");
-                    i--;
                 }catch (IllegalCommand e){
                     System.out.println(e.getMessage());
-                    i--;
                 }
             }
         }
