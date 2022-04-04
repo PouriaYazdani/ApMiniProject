@@ -131,44 +131,51 @@ public class Monopoly {
         while(true){
             roundCounter++;
             for (int i = 0; i < players.size(); i++) {
-                Integer possibleIndex = null;
-                System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
-                if (players.get(i).isInJail()) {
-                    jailManager(players.get(i));
-                } else {
-                    int diceNumber = scanner.nextInt();
-                    if (sendToJail(players.get(i), diceNumber)) {
-                        continue;
-                    }
-                    players.get(i).move(diceNumber);
-                    players.get(i).state();
-                    outer :while (true) {//accept command till PASS is entered
-                        scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
-                        stringCommand = scanner.nextLine();
-                        if (stringCommand.contains(" "))
-                        possibleIndex = collapseCommand();
-                        enumCommand = commandProcessor(stringCommand);//can throw exception
-                        switch (enumCommand) {//if there wasn't a field related command we'll execute it here
-                            case TIME:
-                                System.out.println(time() + " minutes to the end of the game");
-                                break;
-                            case INDEX:
-                                players.get(i).index();
-                                break;
-                            case PROPERTY:
-                                players.get(i).property();
-                                break;
-                            case RANK:
-                                players.get(i).rank();
-                                break;
-                            case PASS://does nothing
-                                break outer;
+                try {
+                    Integer possibleIndex = null;
+                    System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
+                    if (players.get(i).isInJail()) {
+                        jailManager(players.get(i));
+                    } else {
+                        int diceNumber = scanner.nextInt();
+
+                        if (sendToJail(players.get(i), diceNumber)) {
+                            continue;
                         }
+                        players.get(i).move(diceNumber);
+                        players.get(i).state();
+                        outer:
+                        while (true) {//accept command till PASS is entered
+                            scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
+                            stringCommand = scanner.nextLine();
+                            if (stringCommand.contains(" "))
+                                possibleIndex = collapseCommand();
+                            enumCommand = commandProcessor(stringCommand);//can throw exception
+                            switch (enumCommand) {//if there wasn't a field related command we'll execute it here
+                                case TIME:
+                                    System.out.println(time() + " minutes to the end of the game");
+                                    break;
+                                case INDEX:
+                                    players.get(i).index();
+                                    break;
+                                case PROPERTY:
+                                    players.get(i).property();
+                                    break;
+                                case RANK:
+                                    players.get(i).rank();
+                                    break;
+                                case PASS://does nothing
+                                    break outer;
+                            }
 //                    players.get(i).X(enumCommand,possibleIndex);
-                        if (diceNumber == 6) {
-                            i--;
+                            if (diceNumber == 6) {
+                                i--;
+                            }
                         }
                     }
+                }catch (InvalidDiceNumber e){
+                    System.out.println(e.getMessage());
+                    i--;
                 }
             }
         }
