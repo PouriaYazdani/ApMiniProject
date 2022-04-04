@@ -392,6 +392,7 @@ public class Player implements Owner {
         }
     }
     private void indexShower(){
+        this.index();
     }
     private void rankShower(){
     }
