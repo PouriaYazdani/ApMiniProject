@@ -105,9 +105,9 @@ public class Monopoly {
             try{
                 for (; i < players.size(); i++) {
                     System.out.print(players.get(i).getName() + ": ");
-                    players.get(i).setLastDiceNumber(scanner.nextInt());
-                    if(players.get(i).getLastDiceNumber() > 6 || players.get(i).getLastDiceNumber() < 1 )
-                        throw new InvalidDiceNumber("Please enter a number between 1 and 6");
+                    int diceNumber = scanner.nextInt();
+                    checkDiceNumber(diceNumber);
+                    players.get(i).setLastDiceNumber(diceNumber);
                 }
                 flag = false;
             }catch (InputMismatchException e){
@@ -138,15 +138,15 @@ public class Monopoly {
                         jailManager(players.get(i));
                     } else {
                         int diceNumber = scanner.nextInt();
-
+                        checkDiceNumber(diceNumber);
                         if (sendToJail(players.get(i), diceNumber)) {
                             continue;
                         }
                         players.get(i).move(diceNumber);
                         players.get(i).state();
+                        scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                         outer:
                         while (true) {//accept command till PASS is entered
-                            scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                             stringCommand = scanner.nextLine();
                             if (stringCommand.contains(" "))
                                 possibleIndex = collapseCommand();
@@ -285,6 +285,11 @@ public class Monopoly {
 
     private Commands commandProcessor(String command){
         return  Commands.valueOf(command.toUpperCase());
+    }
+
+    private void checkDiceNumber(int diceNumber){
+        if(diceNumber > 6 || diceNumber < 1 )
+            throw new InvalidDiceNumber("Please enter a number between 1 and 6");
     }
 
     public static ArrayList<Player> getPlayers() {
