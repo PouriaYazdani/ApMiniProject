@@ -200,6 +200,7 @@ public class Monopoly {
     }
 
     private Integer collapseCommand(){
+        Integer at;
         String temp = stringCommand;
         int idx = 0;
         for (int i = 0; i < stringCommand.length(); i++) {
@@ -208,8 +209,12 @@ public class Monopoly {
                 break;
             }
         }
+        at = Integer.parseInt(temp.substring(idx + 1));
+        if(at < 1 || at > 24){
+            throw new IllegalCommand("You have entered Illegal command,field number is between 1 and 24 !");
+        }
         stringCommand = stringCommand.substring(0,idx);
-        return Integer.parseInt(temp.substring(idx + 1));
+        return at;
     }
 
     private void jailManager(Player player){
@@ -238,7 +243,7 @@ public class Monopoly {
             if(enumCommand == Commands.FREE){
                 prison.free(player);
             }else{
-                throw new IllegalCommand("You have entered illegal command ! ,please try again.");//gets handled here
+                throw new IllegalCommand("You have entered illegal command ! ,please try again.");
             }
         }
 
