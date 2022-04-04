@@ -137,34 +137,37 @@ public class Monopoly {
                     jailManager(players.get(i));
                 } else {
                     int diceNumber = scanner.nextInt();
-                    if(sendToJail(players.get(i), diceNumber)){
+                    if (sendToJail(players.get(i), diceNumber)) {
                         continue;
                     }
                     players.get(i).move(diceNumber);
                     players.get(i).state();
-                    scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
-                    stringCommand = scanner.nextLine();
-                    if(stringCommand.contains(" "))
+                    outer :while (true) {//accept command till PASS is entered
+                        scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
+                        stringCommand = scanner.nextLine();
+                        if (stringCommand.contains(" "))
                         possibleIndex = collapseCommand();
-                    enumCommand = commandProcessor(stringCommand);//can throw exception
-                    switch (enumCommand) {//if there wasn't a field related command we'll execute it here
-                        case TIME:
-                            System.out.println(time() + " minutes to the end of the game");
-                            break;
-                        case INDEX:
-                            players.get(i).index();
-                            break;
-                        case PROPERTY:
-                            players.get(i).property();
-                            break;
-                        case RANK:
-                            players.get(i).rank();
-                            break;
-                        case PASS://does nothing
-                    }
+                        enumCommand = commandProcessor(stringCommand);//can throw exception
+                        switch (enumCommand) {//if there wasn't a field related command we'll execute it here
+                            case TIME:
+                                System.out.println(time() + " minutes to the end of the game");
+                                break;
+                            case INDEX:
+                                players.get(i).index();
+                                break;
+                            case PROPERTY:
+                                players.get(i).property();
+                                break;
+                            case RANK:
+                                players.get(i).rank();
+                                break;
+                            case PASS://does nothing
+                                break outer;
+                        }
 //                    players.get(i).X(enumCommand,possibleIndex);
-                    if (diceNumber == 6) {
-                        i--;
+                        if (diceNumber == 6) {
+                            i--;
+                        }
                     }
                 }
             }
