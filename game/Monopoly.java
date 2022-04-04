@@ -176,6 +176,10 @@ public class Monopoly {
                 }catch (InvalidDiceNumber e){
                     System.out.println(e.getMessage());
                     i--;
+                }catch (InputMismatchException e){
+                    System.out.println("Please enter enter a number");
+                    scanner.nextLine();
+                    i--;
                 }
             }
         }
