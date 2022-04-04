@@ -339,6 +339,20 @@ public class Player implements Owner {
         }
     }
     private void fly(Integer index){
+        Board board = Board.getInstance();
+        if (board.fields[position-1] instanceof Airport){
+            if (position == index){
+                System.out.println("You already at the destination!");
+            }else if (board.fields[index-1] instanceof Airport){
+                Airport airport = new Airport(position);
+                airport.fly(this,position);
+                System.out.println("The plane landed at the desired destination ");
+            }else {
+                System.out.println("There is no airport at the given destination!");
+            }
+        }else {
+            System.out.println("You are not at any airport!");
+        }
     }
     private void propertyHandler(){
     }
