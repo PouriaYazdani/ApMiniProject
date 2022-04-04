@@ -190,6 +190,9 @@ public class Monopoly {
                     System.out.println("Please enter enter a number");
                     scanner.nextLine();
                     i--;
+                }catch (IllegalArgumentException e){
+                    System.out.println("There is no such command,please enter a valid command");
+                    i--;
                 }
             }
         }
