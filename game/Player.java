@@ -311,14 +311,32 @@ public class Player implements Owner {
                 if (board.fields[position-1] instanceof EmptyField){ // buying a EmptyField
                        EmptyField emptyField = new EmptyField(position);
                        emptyField.buy(this);
+                    System.out.println("You've bought this EmptyField!");
                 } else if (board.fields[position-1] instanceof Cinema){ //buying a Cinema
                     Cinema cinema = new Cinema(position);
                     cinema.buy(this);
+                    System.out.println("You owned this cinema right now!");
                 }
             }
         }
     }
     private void build(){
+        Board board = Board.getInstance();
+        if (board.fields[position-1] instanceof BankProperties || board.fields[position-1] instanceof Cinema){ // for unconstructable
+            System.out.println("You can't build anything here!");
+        }else if (board.fields[position-1] instanceof EmptyField){
+            Owner BankManager = game.BankManager.getInstance();
+            if (((EmptyField) board.fields[position-1]).getOwner() == BankManager){
+                System.out.println("This field belongs to bank, you could buy it and then you can build on it");
+            }else if (((EmptyField) board.fields[position-1]).getOwner() != BankManager
+                    && ((EmptyField) board.fields[position-1]).getOwner() != this){
+                System.out.println("This field belongs to another player");
+            }else {
+                EmptyField emptyField = new EmptyField(position);
+                emptyField.addBuilding(this);
+                System.out.println("Building added!");
+            }
+        }
     }
     private void fly(Integer index){
     }
