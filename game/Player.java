@@ -284,16 +284,34 @@ public class Player implements Owner {
      */
     public void order(Commands commands, Integer index){
         switch (commands){
-            case BUY : break;
-            case BUILD: break;
-            case FLY: break;
-            case PROPERTY: break;
-            case INVEST: break;
-            case SELL: break;
-            case INDEX:break;
-            case RANK: break;
-            case PASS: break;
+            case BUY : buy(); break;
+            case BUILD: build(); break;
+            case FLY: fly(index); break;
+            case PROPERTY: propertyHandler(); break;
+            case INVEST: invest(); break;
+            case SELL: sell(index); break;
+            case INDEX: indexShower(); break;
+            case RANK: rankShower(); break;
+            case PASS: pass(); break;
         }
+    }
+    private void buy(){
+    }
+    private void build(){
+    }
+    private void fly(Integer index){
+    }
+    private void propertyHandler(){
+    }
+    private void invest(){
+    }
+    private void sell(Integer index){
+    }
+    private void indexShower(){
+    }
+    private void rankShower(){
+    }
+    private void pass(){
     }
     /**
      * rank method shows the rank of the player by getting a sorted list of Players
