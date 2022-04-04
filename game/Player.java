@@ -358,6 +358,14 @@ public class Player implements Owner {
         this.property();
     }
     private void invest(){
+        Board board = Board.getInstance();
+        if (board.fields[position-1] instanceof Bank){
+            Bank bank = new Bank(position);
+            bank.invest(this);
+            System.out.println("You have invested your money at the Bank!");
+        }else {
+            System.out.println("you are not at the Bank!");
+        }
     }
     private void sell(Integer index){
     }
