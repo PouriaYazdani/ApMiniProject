@@ -283,7 +283,17 @@ public class Player implements Owner {
      * @param index for sale and fly orders
      */
     public void order(Commands commands, Integer index){
-
+        switch (commands){
+            case BUY : break;
+            case BUILD: break;
+            case FLY: break;
+            case PROPERTY: break;
+            case INVEST: break;
+            case SELL: break;
+            case INDEX:break;
+            case RANK: break;
+            case PASS: break;
+        }
     }
     /**
      * rank method shows the rank of the player by getting a sorted list of Players
