@@ -130,6 +130,7 @@ public class Monopoly {
         }
         while(true){
             roundCounter++;
+            boolean acceptDice = true;
             for (int i = 0; i < players.size(); i++) {
                 try {
                     Integer possibleIndex = null;
@@ -137,16 +138,20 @@ public class Monopoly {
                     if (players.get(i).isInJail()) {
                         jailManager(players.get(i));
                     } else {
-                        int diceNumber = scanner.nextInt();
-                        checkDiceNumber(diceNumber);
-                        if (sendToJail(players.get(i), diceNumber)) {
-                            continue;
+                        int diceNumber = 0;
+                        if(acceptDice) {
+                            diceNumber = scanner.nextInt();
+                            checkDiceNumber(diceNumber);
+                            if (sendToJail(players.get(i), diceNumber)) {
+                                continue;
+                            }
+                            players.get(i).move(diceNumber);
+                            players.get(i).state();
+                            scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                         }
-                        players.get(i).move(diceNumber);
-                        players.get(i).state();
-                        scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
-                        outer:
-                        while (true) {//accept command till PASS is entered
+//                        outer:
+//                        while (true) {//accept command till PASS is entered
+                            acceptDice = false;
                             stringCommand = scanner.nextLine();
                             if (stringCommand.contains(" "))
                                 possibleIndex = collapseCommand();
@@ -154,29 +159,34 @@ public class Monopoly {
                             switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                                 case TIME:
                                     System.out.println(time() + " minutes to the end of the game");
+                                    i--;
                                     break;
                                 case INDEX:
                                     players.get(i).index();
+                                    i--;
                                     break;
                                 case PROPERTY:
+                                    i--;
                                     players.get(i).property();
                                     break;
                                 case RANK:
+                                    i--;
                                     players.get(i).rank();
                                     break;
                                 case PASS://does nothing
-                                    break outer;
+//                                    break outer;
+                                    acceptDice = true;
                             }
 //                    players.get(i).X(enumCommand,possibleIndex);
                             if (diceNumber == 6) {
                                 i--;
                             }
-                        }
+//                        }
                     }
                 }catch (InvalidDiceNumber e){
                     System.out.println(e.getMessage());
                     i--;
-                }catch (InputMismatchException e){
+                }catch (InputMismatchException e){//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
                     scanner.nextLine();
                     i--;
