@@ -393,11 +393,30 @@ public class Player implements Owner {
     private void invest(){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof Bank){
-            Bank bank = new Bank(position);
+            Bank bank = (Bank) board.fields[position-1];
             bank.invest(this);
             System.out.println("You have invested your money at the Bank!");
         }else {
-            System.out.println("you are not at the Bank!");
+            Field field = board.fields[position-1];
+            if (field instanceof Airport){
+                throw new IllegalCommand("You are at Airport not the Bank");
+            }else if (field instanceof Cinema){
+                throw new IllegalCommand("You are at Cinema not the Bank");
+            }else if (field instanceof EmptyField){
+                throw new IllegalCommand("You are at EmptyField not the Bank");
+            }else if (field instanceof FreeParking){
+                throw new IllegalCommand("You are at FreeParking not the Bank");
+            }else if (field instanceof Prison){
+                throw new IllegalCommand("You are at Prison not the Bank");
+            }else if (field instanceof Prize){
+                throw new IllegalCommand("You are at PrizeField not the Bank");
+            }else if (field instanceof QuestionMark){
+                throw new IllegalCommand("You are at QuestionMarkField not the Bank");
+            }else if (field instanceof Road){
+                throw new IllegalCommand("You are at Road not the Bank");
+            }else if (field instanceof Tax){
+                throw new IllegalCommand("You are at TaxField not the Bank");
+            }
         }
     }
     private void sell(Integer index){
