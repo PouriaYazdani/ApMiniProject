@@ -323,19 +323,28 @@ public class Player implements Owner {
     }
     private void build(){
         Board board = Board.getInstance();
-        if (board.fields[position-1] instanceof BankProperties || board.fields[position-1] instanceof Cinema){ // for unconstructable
-            System.out.println("You can't build anything here!");
-        }else if (board.fields[position-1] instanceof EmptyField){
-            Owner BankManager = game.BankManager.getInstance();
-            if (((EmptyField) board.fields[position-1]).getOwner() == BankManager){
-                System.out.println("This field belongs to bank, you could buy it and then you can build on it");
-            }else if (((EmptyField) board.fields[position-1]).getOwner() != BankManager
-                    && ((EmptyField) board.fields[position-1]).getOwner() != this){
-                System.out.println("This field belongs to another player");
-            }else {
-                EmptyField emptyField = new EmptyField(position);
-                emptyField.addBuilding(this);
-                System.out.println("Building added!");
+        if (board.fields[position-1] instanceof EmptyField){
+            EmptyField emptyField = (EmptyField) board.fields[position-1];
+            emptyField.buy(this);
+            System.out.println("Building added!");
+        }else {
+            Field field = board.fields[position-1];
+            if (field instanceof Airport){
+                throw new IllegalCommand("You can't add a building to an Airport!");
+            }else if (field instanceof Bank){
+                throw new IllegalCommand("You can't add a building to the Bank!");
+            }else if (field instanceof Cinema){
+                throw new IllegalCommand("You can't add a building to a Cinema!");
+            }else if (field instanceof FreeParking){
+                throw new IllegalCommand("You can't add a building to the Parking");
+            }else if (field instanceof Prison){
+                throw new IllegalCommand("You can't add a building to the Prison!");
+            }else if (field instanceof Prize){
+                throw new IllegalCommand("You can't add a building to the PrizeField!");
+            }else if (field instanceof QuestionMark){
+                throw new IllegalCommand("You can't add a building to the QuestionMarkField!");
+            }else if (field instanceof Tax){
+                throw new IllegalCommand("You can't add a building to the TaxField!");
             }
         }
     }
