@@ -10,7 +10,7 @@ public class Player implements Owner {
     private double cash;
     private int position;
     private Integer lastDiceNumber;
-    private ArrayList<BuyableProperties> ownedProperties;
+    private ArrayList<BuyableProperties> ownedProperties = new ArrayList<BuyableProperties>();
     private double propertyWorth;
     private double netWorth;
     private int noTax;
