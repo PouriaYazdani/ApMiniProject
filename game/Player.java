@@ -287,15 +287,16 @@ public class Player implements Owner {
      */
     public void order(Commands commands, Integer index){
         switch (commands){
-            case BUY : buy();updateNetWorth(); break;
-            case BUILD: build();updateNetWorth(); break;
-            case FLY: fly(index);updateNetWorth(); break;
+            case BUY : buy(); break;
+            case BUILD: build(); break;
+            case FLY: fly(index); break;
             case PROPERTY: propertyHandler(); break;
-            case INVEST: invest();updateNetWorth(); break;
-            case SELL: sell(index);updateNetWorth(); break;
+            case INVEST: invest(); break;
+            case SELL: sell(index); break;
             case INDEX: indexShower(); break;
             case RANK: rankShower(); break;
         }
+        updateNetWorth();
     }
     private void buy(){
         Board board = Board.getInstance();
