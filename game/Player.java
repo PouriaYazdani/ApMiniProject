@@ -1,5 +1,6 @@
 package game;
 
+import game.exceptions.IllegalCommand;
 import game.properties.*;
 import org.w3c.dom.css.CSSImportRule;
 
@@ -341,17 +342,28 @@ public class Player implements Owner {
     private void fly(Integer index){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof Airport){
-            if (position == index){
-                System.out.println("You already at the destination!");
-            }else if (board.fields[index-1] instanceof Airport){
-                Airport airport = new Airport(position);
-                airport.fly(this,position);
-                System.out.println("The plane landed at the desired destination ");
-            }else {
-                System.out.println("There is no airport at the given destination!");
+            Airport airport = (Airport) board.fields[position-1];
+            airport.fly(this,index);
+            System.out.println("The plane landed at the desired destination");
+        }else{
+            Field field = board.fields[position-1];
+            if (field instanceof Bank){
+                throw new IllegalCommand("You can't fly from Bank!");
+            }else if(field instanceof Cinema){
+                throw new IllegalCommand("You can't fly from Cinema!");
+            }else if(field instanceof EmptyField){
+                throw new IllegalCommand("You can't fly from EmptyField!");
+            }else if (field instanceof FreeParking){
+                throw new IllegalCommand("You can't fly from Parking!");
+            }else if (field instanceof Prize){
+                throw new IllegalCommand("You can't fly from PrizeField!");
+            }else if (field instanceof Prison){
+                throw new IllegalCommand("You can't fly from Prison :)");
+            }else if (field instanceof QuestionMark){
+                throw new IllegalCommand("You can't fly from QuestionMarkField!");
+            }else if (field instanceof Road){
+                throw new IllegalCommand("You can't fly from TaxField!");
             }
-        }else {
-            System.out.println("You are not at any airport!");
         }
     }
     private void propertyHandler(){
