@@ -353,6 +353,8 @@ public class Player implements Owner {
                 throw new IllegalCommand("You can't add a building to the QuestionMarkField!");
             }else if (field instanceof Tax){
                 throw new IllegalCommand("You can't add a building to the TaxField!");
+            }else if (field instanceof Road){
+                throw new IllegalCommand("You can't add a building to the Road!");
             }
         }
     }
