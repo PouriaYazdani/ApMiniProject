@@ -381,6 +381,8 @@ public class Player implements Owner {
             }else if (field instanceof QuestionMark){
                 throw new IllegalCommand("You can't fly from QuestionMarkField!");
             }else if (field instanceof Road){
+                throw new IllegalCommand("You can't fly from Road!");
+            }else if (field instanceof Tax){
                 throw new IllegalCommand("You can't fly from TaxField!");
             }
         }
