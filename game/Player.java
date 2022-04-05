@@ -421,27 +421,35 @@ public class Player implements Owner {
     }
     private void sell(Integer index){
         Board board = Board.getInstance();
-        if (board.fields[index-1] instanceof BankProperties){
-            System.out.println("This field isn't buyable so you cant sell it neither");
-        }else if (board.fields[index-1] instanceof BuyableProperties){
-            if (board.fields[index-1] instanceof EmptyField){
-                if (((EmptyField) board.fields[index-1]).getOwner() == this){
-                    EmptyField emptyField = new EmptyField(index);
-                    emptyField.sell(this);
-                    System.out.println("You have sold this Field to the Bank!");
-                }else {
-                    System.out.println("This EmptyField isn't yours, you can't sell it!");
-                }
-            }else if(board.fields[index-1] instanceof Cinema){
-                if (((Cinema) board.fields[index-1]).getOwner() == this){
-                    Cinema cinema = new Cinema(index);
-                    cinema.sell(this);
-                    System.out.println("You have sold this cinema to the Bank!");
-                }else {
-                    System.out.println("This cinema isn't yours, you can't sell it!");
-                }
+        if (board.fields[index-1] instanceof EmptyField){
+            EmptyField emptyField = (EmptyField) board.fields[index-1];
+            emptyField.sell(this);
+            System.out.println("You have sold this Field to the Bank!");
+        }else if (board.fields[index-1] instanceof Cinema) {
+            Cinema cinema = (Cinema) board.fields[index - 1];
+            cinema.sell(this);
+            System.out.println("You have sold this cinema to the Bank!");
+        }else {
+            Field field = board.fields[index-1];
+            if (field instanceof Airport){
+                throw new IllegalCommand("You can't sell an Airport");
+            }else if (field instanceof Bank){
+                throw new IllegalCommand("You can't sell a Bank");
+            }else if (field instanceof FreeParking){
+                throw new IllegalCommand("You can't sell a Parking");
+            }else if (field instanceof Prison){
+                throw new IllegalCommand("You can't sell a Prion");
+            }else if (field instanceof Prize){
+                throw new IllegalCommand("You can't sell a PrizeBank");
+            }else if (field instanceof QuestionMark){
+                throw new IllegalCommand("You can't sell a QuestionMarkField");
+            }else if (field instanceof Road){
+                throw new IllegalCommand("You can't sell a Road");
+            }else if (field instanceof Tax){
+                throw new IllegalCommand("You can't sell a TaxField");
             }
         }
+
     }
     private void indexShower(){
         this.index();
