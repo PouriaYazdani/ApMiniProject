@@ -299,25 +299,33 @@ public class Player implements Owner {
     }
     private void buy(){
         Board board = Board.getInstance();
-        if (board.fields[position-1] instanceof BankProperties){ // for unbuyable fields
-            System.out.println("This field isn't Buyable!");
-        }else if (board.fields[position-1] instanceof BuyableProperties){ // buyable properties different situations
-            Owner BankManager = game.BankManager.getInstance();
-            if (((BuyableProperties) board.fields[position-1]).getOwner() != BankManager ||
-                ((BuyableProperties) board.fields[position-1]).getOwner() != this){ // another player's property
-                System.out.println("This property belongs to another player!");
-            }else if (((BuyableProperties) board.fields[position-1]).getOwner() == this){ // self property
-                System.out.println("You own this property!");
-            }else if (((BuyableProperties) board.fields[position-1]).getOwner() == BankManager){ // Authorized purchase
-                if (board.fields[position-1] instanceof EmptyField){ // buying a EmptyField
-                       EmptyField emptyField = new EmptyField(position);
-                       emptyField.buy(this);
-                    System.out.println("You've bought this EmptyField!");
-                } else if (board.fields[position-1] instanceof Cinema){ //buying a Cinema
-                    Cinema cinema = new Cinema(position);
-                    cinema.buy(this);
-                    System.out.println("You owned this cinema right now!");
-                }
+        if (board.fields[position-1] instanceof Cinema){
+            Cinema cinema = (Cinema) board.fields[position-1];
+            cinema.buy(this);
+            System.out.println("You owned this cinema right now!");
+
+        } else if (board.fields[position-1] instanceof EmptyField){ // buying a EmptyField
+            EmptyField emptyField = (EmptyField) board.fields[position-1];
+            emptyField.buy(this);
+            System.out.println("You've bought this EmptyField!");
+        }else {
+            Field field = board.fields[position-1];
+            if (field instanceof Airport){
+                throw new IllegalCommand("You can't buy a Airport in Monopoly!");
+            }else if (field instanceof Bank){
+                throw new IllegalCommand("You can't buy a Bank in Monopoly!");
+            }else if (field instanceof FreeParking){
+                throw new IllegalCommand("You can't buy a Parking in Monopoly!");
+            }else if (field instanceof Prize){
+                throw new IllegalCommand("You can't buy a PrizeField in Monopoly!");
+            }else if (field instanceof  Prison){
+                throw new IllegalCommand("You can't buy a Prison in Monopoly!");
+            }else if (field instanceof Road){
+                throw new IllegalCommand("You can't buy a Road in Monopoly!");
+            }else if (field instanceof QuestionMark){
+                throw new IllegalCommand("You can't buy a QuestionMarkField in Monopoly!");
+            }else if (field instanceof Tax){
+                throw new IllegalCommand("You can't buy a TaxField in Monopoly!");
             }
         }
     }
