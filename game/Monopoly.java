@@ -156,13 +156,16 @@ public class Monopoly {
                             enumCommand = commandProcessor(stringCommand);//can throw exception
                             switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                                 case TIME:
+                                    if(gameDuration == 0){
+                                        throw new IllegalCommand("This game has no time limit,TIME command is not valid!");
+                                    }
                                     System.out.println(time() + " minutes to the end of the game");
                                     break;
                                 case PASS:
                                     i++;
                                     acceptDice = true;
                             }
-//                    players.get(i).X(enumCommand,possibleIndex);
+                    players.get(i).order(enumCommand,possibleIndex);
                             if (diceNumber == 6) {
                             }
                     }
