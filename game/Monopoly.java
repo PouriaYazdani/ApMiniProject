@@ -151,7 +151,7 @@ public class Monopoly {
                         }
                             acceptDice = false;
                             stringCommand = scanner.nextLine();
-                            if (stringCommand.contains(" "))
+                            if (stringCommand.contains("fly") || stringCommand.contains("sell"))
                                 possibleIndex = collapseCommand();
                             enumCommand = commandProcessor(stringCommand);//can throw exception
                             switch (enumCommand) {//if there wasn't a field related command we'll execute it here
@@ -194,7 +194,7 @@ public class Monopoly {
                 break;
             }
         }
-        at = Integer.parseInt(temp.substring(idx + 1));
+        at = Integer.parseInt(temp.substring(idx + 1));//throws IllegalArgumentException if there is no index
         if(at < 1 || at > 24){
             throw new IllegalCommand("You have entered Illegal command,field number is between 1 and 24 !");
         }
