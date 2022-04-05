@@ -243,6 +243,7 @@ public class Player implements Owner {
             QuestionMark questionMark = (QuestionMark) board.fields[position-1];
             questionMark.randomCard(this);
         }
+        updateNetWorth();
     }
 
     /**
@@ -285,12 +286,12 @@ public class Player implements Owner {
      */
     public void order(Commands commands, Integer index){
         switch (commands){
-            case BUY : buy(); break;
-            case BUILD: build(); break;
-            case FLY: fly(index); break;
+            case BUY : buy();updateNetWorth(); break;
+            case BUILD: build();updateNetWorth(); break;
+            case FLY: fly(index);updateNetWorth(); break;
             case PROPERTY: propertyHandler(); break;
-            case INVEST: invest(); break;
-            case SELL: sell(index); break;
+            case INVEST: invest();updateNetWorth(); break;
+            case SELL: sell(index);updateNetWorth(); break;
             case INDEX: indexShower(); break;
             case RANK: rankShower(); break;
         }
