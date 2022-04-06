@@ -169,6 +169,8 @@ public class Monopoly {
                             }
                     players.get(i).order(enumCommand,possibleIndex);
                             if (diceNumber == 6) {
+                                i--;//reestablish player's turn
+                                acceptDice = true;
                             }
                     }
                 }catch (InvalidDiceNumber e){
