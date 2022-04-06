@@ -36,6 +36,7 @@ public class Player implements Owner {
     public Player(String name, double cash) {
         this.name = name;
         this.cash = cash;
+        this.position = 1; //starting position of player (FreeParking)
     }
 
     public void setPropertyWorth(double propertyWorth) {
@@ -271,9 +272,9 @@ public class Player implements Owner {
             if (ownedProperties.get(i) instanceof EmptyField){
                 EmptyField tmp = (EmptyField) ownedProperties.get(i);
                 if (tmp.isThereHotel()){
-                    System.out.printf("there is a Hotel here");
+                    System.out.printf(" there is a Hotel here\n");
                 } else {
-                    System.out.printf("buildings : " + tmp.getNumberOfBuildings());
+                    System.out.printf(" buildings : " + tmp.getNumberOfBuildings() +"\n");
                 }
             }
         }
@@ -462,12 +463,12 @@ public class Player implements Owner {
      * rank method shows the rank of the player by getting a sorted list of Players
      */
     public void rank(){
-        ArrayList<Player> sorted = BankManager.getSortedList();
+        /*ArrayList<Player> sorted = BankManager.getSortedList();
         for (int i=0;i<sorted.size();i++){
             if (sorted.get(i) == this){
                 rank = i+1;
             }
-        }
+        }*/
         System.out.println("Rank : " + rank);
     }
     
