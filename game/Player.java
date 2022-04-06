@@ -263,18 +263,18 @@ public class Player implements Owner {
         for (int i=0; i<ownedProperties.size();i++){
             System.out.printf("%d - ",i+1);
             if (ownedProperties.get(i) instanceof Cinema){
-                System.out.printf("Cinema : \n");
+                System.out.println("Cinema : ");
             } else {
-                System.out.printf("EmptyField : \n");
+                System.out.println("EmptyField : ");
             }
-            System.out.printf("position : " + ownedProperties.get(i).getAtField() + "  color : "
+            System.out.println("position : " + ownedProperties.get(i).getAtField() + "  color : "
                     + ownedProperties.get(i).getColor());
             if (ownedProperties.get(i) instanceof EmptyField){
                 EmptyField tmp = (EmptyField) ownedProperties.get(i);
                 if (tmp.isThereHotel()){
-                    System.out.printf(" there is a Hotel here\n");
+                    System.out.println(" there is a Hotel here");
                 } else {
-                    System.out.printf(" buildings : " + tmp.getNumberOfBuildings() +"\n");
+                    System.out.println(" buildings : " + tmp.getNumberOfBuildings());
                 }
             }
         }
@@ -304,12 +304,12 @@ public class Player implements Owner {
         if (board.fields[position-1] instanceof Cinema){
             Cinema cinema = (Cinema) board.fields[position-1];
             cinema.buy(this);
-            System.out.println("You owned this cinema right now!");
+            System.out.println("This Cinema is yours now!");
 
         } else if (board.fields[position-1] instanceof EmptyField){ // buying a EmptyField
             EmptyField emptyField = (EmptyField) board.fields[position-1];
             emptyField.buy(this);
-            System.out.println("You've bought this EmptyField!");
+            System.out.println("This EmptyField is yours now!");
         }else {
             Field field = board.fields[position-1];
             if (field instanceof Airport){
