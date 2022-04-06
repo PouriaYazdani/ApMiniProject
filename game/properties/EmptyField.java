@@ -121,7 +121,7 @@ public class EmptyField extends BuyableProperties{
         if(boost)
             rent *= 2.0;
         if(rent > player.getCash()){
-            throw new NotEnoughCashToRent("You don't have enough money to pay the rent of this field! Try selling you're properties");
+            throw new SeriousDebt("You don't have enough money to pay the rent of this field! Try selling you're properties");
         }
         player.setCash(player.getCash() - rent);
         ((Player) owner).setCash(((Player) owner).getCash() + rent);//transfer the rent to owner's pocket
@@ -136,7 +136,7 @@ public class EmptyField extends BuyableProperties{
      */
     public void addBuilding(Player player){
         if(player.getCash() < BUILDING_COST){//does player have enough cash?
-            throw new NotEnoughCashToBuild("You do not have enough cash to construct building/hotel! Try selling you're properties");
+            throw new NotEnoughCash("You do not have enough cash to construct building/hotel! Try selling you're properties");
         }
         else if(!buildPermission(player)){//did the player distribute the building correctly?
             throw new IllegalConstruction("You have not distributed you're buildings correctly!");

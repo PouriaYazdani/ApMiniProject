@@ -1,7 +1,7 @@
 package game.properties;
 
 import game.Player;
-import game.exceptions.NotEnoughCashToPayToll;
+import game.exceptions.SeriousDebt;
 
 /**
  *  every player must pay a 100$ toll then they can pass
@@ -14,7 +14,7 @@ public class Road extends BankProperties{
     }
     public void payToll(Player player){
         if (player.getCash() < TOLL_PRICE){
-            throw new NotEnoughCashToPayToll("you don't have enough cash to pay your toll, try selling your property in order to do so");
+            throw new SeriousDebt("you don't have enough cash to pay your toll, try selling your property in order to do so");
         }
         player.setCash(player.getCash() - TOLL_PRICE);// getting a 100$ toll
     }

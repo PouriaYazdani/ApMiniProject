@@ -1,7 +1,8 @@
 package game.properties;
 
 import game.Player;
-import game.exceptions.NotEnoughCashForFreedom;
+import game.exceptions.NotEnoughCash;
+import game.exceptions.SeriousDebt;
 
 /**
  *  with this class's methods we'll be able to put a player in jail or get them out
@@ -35,7 +36,7 @@ public class Prison extends BankProperties{
      */
     public void free(Player player){
         if (player.getCash() < FREEDOM_COST){
-            throw new NotEnoughCashForFreedom("you haven't enough cash to get outta here, Try sell your properties in order to do so");
+            throw new NotEnoughCash("you haven't enough cash to get outta here, Try sell your properties in order to do so");
         }
         player.setCash(player.getCash() - FREEDOM_COST);
         player.setInJail(false);
@@ -51,6 +52,9 @@ public class Prison extends BankProperties{
             player.setInJail(false);
             System.out.println("You're free to go!");
         }else {
+            if (player.getCash()<JAIL_COST){
+                throw new SeriousDebt("You don't have enough money to stay at jail!, you should sell your properties in order to pay your debt!")
+            }
             player.setCash(player.getCash() - JAIL_COST);
             System.out.println("You weren't lucky, It costs you 10$");
         }

@@ -2,7 +2,7 @@ package game.properties;
 
 import game.Player;
 import game.exceptions.IllegalDestination;
-import game.exceptions.NotEnoughCashToFly;
+import game.exceptions.NotEnoughCash;
 
 /**
  * this class implements airport fields in the board and contains the only command specifically related to it  {@link
@@ -34,7 +34,7 @@ public class Airport extends BankProperties{
             throw new IllegalDestination("There is no airport in you're requested destination!");
         }
         else if(player.getCash() < FLIGHT_COST){
-            throw new NotEnoughCashToFly("You don't have enough cash to pay for the flight! You can sell you're properties in order to do so.");
+            throw new NotEnoughCash("You don't have enough cash to pay for the flight! You can sell you're properties in order to do so.");
         }
         player.setCash(player.getCash() - FLIGHT_COST);
         player.setPosition(destination);

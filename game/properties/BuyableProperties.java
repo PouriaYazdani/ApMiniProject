@@ -32,7 +32,7 @@ public abstract class BuyableProperties extends Field{
             }
         }
         else if(purchasePrice > player.getCash()){
-            throw new NotEnoughCashToBuy("You don't have enough money to buy this property! You can sell some of your properties in order to do so.");
+            throw new NotEnoughCash("You don't have enough money to buy this property! You can sell some of your properties in order to do so.");
         }
         player.setCash(player.getCash() - purchasePrice);//get the money
         this.owner = player;//give the Ownership
