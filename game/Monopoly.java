@@ -173,14 +173,15 @@ public class Monopoly {
                                 acceptDice = true;
                             }
                     }
-                }catch (InvalidDiceNumber e){
-                    System.out.println(e.getMessage());
                 }catch (InputMismatchException e){//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
                     scanner.nextLine();
                 }catch (IllegalArgumentException e){
                     System.out.println("There is no such command,please enter a valid command");
-                }catch (IllegalCommand e){
+                }catch (SeriousDebt e){
+                    System.out.println(e.getMessage());
+                    //TODO
+                }catch (MonopolyException e){
                     System.out.println(e.getMessage());
                 }
             }
