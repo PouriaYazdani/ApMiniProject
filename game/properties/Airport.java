@@ -46,7 +46,6 @@ public class Airport extends BankProperties{
      * @return whether if there is an airport in destination or not.
      */
     private boolean isIn(int x){
-        x++;
         for (int i = 0; i < atFields.length; i++) {
             if(atFields[i] == x)
                 return true;
