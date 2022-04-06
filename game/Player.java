@@ -165,7 +165,11 @@ public class Player implements Owner {
      */
     public void move(int diceNum){
         lastDiceNumber = diceNum; //save the dice number
-        position += diceNum; // move the player
+        if (position+diceNum > 24){ //crossing the FreeParking
+            position = (diceNum+position) % 24;
+        }else {//normal
+            position += diceNum;
+        }
     }
 
     /**
