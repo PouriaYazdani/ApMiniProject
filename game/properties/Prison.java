@@ -53,7 +53,7 @@ public class Prison extends BankProperties{
             System.out.println("You're free to go!");
         }else {
             if (player.getCash()<JAIL_COST){
-                throw new SeriousDebt("You don't have enough money to stay at jail!, you should sell your properties in order to pay your debt!")
+                throw new SeriousDebt("You don't have enough money to stay at jail!, you should sell your properties in order to pay your debt!");
             }
             player.setCash(player.getCash() - JAIL_COST);
             System.out.println("You weren't lucky, It costs you 10$");
