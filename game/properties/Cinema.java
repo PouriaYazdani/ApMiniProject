@@ -95,7 +95,7 @@ public class Cinema extends BuyableProperties{
             if(boost)
                 rent *= 2.0;
             if(rent > player.getCash()){
-                throw new NotEnoughCashToRent("You don't have enough money to watch a movie! Try selling you're properties");
+                throw new SeriousDebt("You don't have enough money to watch a movie! Try selling you're properties");
             }
             player.setCash(player.getCash() - rent);
             ((Player) owner).setCash(((Player) owner).getCash() + rent);//transfer the rent to owner's pocket

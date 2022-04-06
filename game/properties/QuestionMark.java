@@ -3,8 +3,8 @@ package game.properties;
 import java.util.ArrayList;
 import java.util.Random;
 import game.Player;
-import game.exceptions.NotEnoughCashToGift;
 import game.Monopoly;
+import game.exceptions.SeriousDebt;
 
 /**
  * In this class we have a static method named {@link QuestionMark#randomCard(Player)} that randomly
@@ -56,7 +56,7 @@ public class QuestionMark extends Field{
             }
         }
         if ((players.size()-1)*10 > p.getCash()){
-            throw new NotEnoughCashToGift("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
+            throw new SeriousDebt("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
         }
         p.setCash(p.getCash() - ((players.size()-1)*10));
     }
