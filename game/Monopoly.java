@@ -2,6 +2,7 @@ package game;
 
 import game.exceptions.IllegalCommand;
 import game.exceptions.InvalidDiceNumber;
+import game.exceptions.MonopolyException;
 import game.exceptions.NotEnoughPlayers;
 import game.properties.Prison;
 
@@ -163,6 +164,7 @@ public class Monopoly {
                                     break;
                                 case PASS:
                                     i++;
+                                    i = i % players.size();
                                     acceptDice = true;
                             }
                     players.get(i).order(enumCommand,possibleIndex);
