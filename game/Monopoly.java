@@ -135,11 +135,20 @@ public class Monopoly {
                     System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
                     if (players.get(i).isInJail()) {
                         jailManager(players.get(i));
+                        if(i == players.size()){
+                            break outer;
+                        }
+                        i++;
+                        continue;
                     } else {
                         if(acceptDice) {
                             diceNumber = scanner.nextInt();
                             checkDiceNumber(diceNumber);
                             if (sendToJail(players.get(i), diceNumber)) {
+                                if(i == players.size()){
+                                    break outer;
+                                }
+                                i++;
                                 continue;
                             }
                             players.get(i).move(diceNumber);
