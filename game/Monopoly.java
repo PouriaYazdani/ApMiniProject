@@ -1,15 +1,11 @@
 package game;
 
-import game.exceptions.IllegalCommand;
-import game.exceptions.InvalidDiceNumber;
-import game.exceptions.MonopolyException;
-import game.exceptions.NotEnoughPlayers;
+import game.exceptions.*;
 import game.properties.Prison;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-import game.properties.Prison;
 
 public class Monopoly {
     private Board board;
@@ -131,15 +127,15 @@ public class Monopoly {
         }
         while(true){
             roundCounter++;
+            int diceNumber = 0;
             boolean acceptDice = true;
-            for (int i = 0; i < players.size();) {
+            outer :for (int i = 0; i < players.size();) {
                 try {
                     Integer possibleIndex = null;
                     System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
                     if (players.get(i).isInJail()) {
                         jailManager(players.get(i));
                     } else {
-                        int diceNumber = 0;
                         if(acceptDice) {
                             diceNumber = scanner.nextInt();
                             checkDiceNumber(diceNumber);
@@ -164,14 +160,19 @@ public class Monopoly {
                                     break;
                                 case PASS:
                                     i++;
-                                    i = i % players.size();
+                                    if(i == players.size()){
+                                        if(diceNumber != 6){
+                                            break outer;
+                                        }
+                                        i--;//player has another turn for rolling 6
+                                    }else{
+                                        if(diceNumber == 6){
+                                            i--;
+                                        }
+                                    }
                                     acceptDice = true;
                             }
                     players.get(i).order(enumCommand,possibleIndex);
-                            if (diceNumber == 6) {
-                                i--;//reestablish player's turn
-                                acceptDice = true;
-                            }
                     }
                 }catch (InputMismatchException e){//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
