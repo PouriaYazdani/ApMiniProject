@@ -1,5 +1,7 @@
 package game;
 
+import game.properties.*;
+
 import java.util.*;
 
 public class BankManager implements Owner,Comparator<Player>{
@@ -22,15 +24,50 @@ public class BankManager implements Owner,Comparator<Player>{
     Integer firstPlayerIndex, secondPlayerIndex;
     public void swapWealth(){
         validatePlayers();
-        swapPrimitive();
         swapProp();
     }
-    private void swapPrimitive(){
-
-    }
     private void swapProp(){
-
+        double money = 0;
+        money = sortedList.get(firstPlayerIndex).getCash();
+        sortedList.get(firstPlayerIndex).setCash(sortedList.get(secondPlayerIndex).getCash());
+        sortedList.get(secondPlayerIndex).setCash(money);
+        money = sortedList.get(firstPlayerIndex).getPropertyWorth();
+        sortedList.get(firstPlayerIndex).setPropertyWorth(sortedList.get(secondPlayerIndex).getPropertyWorth());
+        sortedList.get(secondPlayerIndex).setPropertyWorth(money);
+        money = sortedList.get(firstPlayerIndex).getNetWorth();
+        sortedList.get(firstPlayerIndex).setNetWorth(sortedList.get(secondPlayerIndex).getNetWorth());
+        sortedList.get(secondPlayerIndex).setNetWorth(money);
+        int count = 0;
+        count = sortedList.get(firstPlayerIndex).blueProperties;
+        sortedList.get(firstPlayerIndex).blueProperties = sortedList.get(secondPlayerIndex).blueProperties;
+        sortedList.get(secondPlayerIndex).blueProperties = count;
+        count = sortedList.get(firstPlayerIndex).redProperties;
+        sortedList.get(firstPlayerIndex).redProperties = sortedList.get(secondPlayerIndex).redProperties;
+        sortedList.get(secondPlayerIndex).redProperties = count;
+        count = sortedList.get(firstPlayerIndex).greenProperties;
+        sortedList.get(firstPlayerIndex).greenProperties = sortedList.get(secondPlayerIndex).greenProperties;
+        sortedList.get(secondPlayerIndex).greenProperties = count;
+        count = sortedList.get(firstPlayerIndex).yellowProperties;
+        sortedList.get(firstPlayerIndex).yellowProperties = sortedList.get(secondPlayerIndex).yellowProperties;
+        sortedList.get(secondPlayerIndex).yellowProperties = count;
+        boolean monopoly = false;
+        monopoly = sortedList.get(firstPlayerIndex).blueMonopoly;
+        sortedList.get(firstPlayerIndex).blueMonopoly = sortedList.get(secondPlayerIndex).blueMonopoly;
+        sortedList.get(secondPlayerIndex).blueMonopoly = monopoly;
+        monopoly = sortedList.get(firstPlayerIndex).redMonopoly;
+        sortedList.get(firstPlayerIndex).redMonopoly = sortedList.get(secondPlayerIndex).redMonopoly;
+        sortedList.get(secondPlayerIndex).redMonopoly = monopoly;
+        monopoly = sortedList.get(firstPlayerIndex).greenMonopoly;
+        sortedList.get(firstPlayerIndex).greenMonopoly = sortedList.get(secondPlayerIndex).greenMonopoly;
+        sortedList.get(secondPlayerIndex).greenMonopoly = monopoly;
+        monopoly = sortedList.get(firstPlayerIndex).yellowMonopoly;
+        sortedList.get(firstPlayerIndex).yellowMonopoly = sortedList.get(secondPlayerIndex).yellowMonopoly;
+        sortedList.get(secondPlayerIndex).yellowMonopoly = monopoly;
+        ArrayList<BuyableProperties> owned = sortedList.get(firstPlayerIndex).getOwnedProperties();
+        sortedList.get(firstPlayerIndex).setOwnedProperties(sortedList.get(secondPlayerIndex).getOwnedProperties());
+        sortedList.get(secondPlayerIndex).setOwnedProperties(owned);
     }
+
     private void validatePlayers(){
         try {
             boolean first = true;
