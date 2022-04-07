@@ -115,6 +115,7 @@ public class Monopoly {
                 System.out.println(e.getMessage());
             }
         }
+        assignNames();
         sortPlayers();
         printPlayers();
     }
@@ -313,6 +314,13 @@ public class Monopoly {
     private void checkDiceNumber(int diceNumber){
         if(diceNumber > 6 || diceNumber < 1 )
             throw new InvalidDiceNumber("Please enter a number between 1 and 6");
+    }
+
+    private void assignNames(){
+        playersName = new String[players.size()];
+        for (int i = 0; i < playersName.length; i++) {
+            playersName[i] = players.get(i).getName();
+        }
     }
 
     public static ArrayList<Player> getPlayers() {
