@@ -20,6 +20,7 @@ public class Monopoly {
     private final double STARTING_CASH = 1500.0;
     private Instant start;
     private int roundCounter;
+    private String[] playersName;
 
     public void waitingMenu(){
         Scanner scanner = new Scanner(System.in);
@@ -316,5 +317,9 @@ public class Monopoly {
 
     public static ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public String[] getPlayersName(){
+        return playersName;
     }
 }
