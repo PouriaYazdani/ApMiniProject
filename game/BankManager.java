@@ -1,5 +1,6 @@
 package game;
 
+import game.exceptions.IllegalCommand;
 import game.properties.*;
 
 import java.util.*;
@@ -7,6 +8,7 @@ import java.util.*;
 public class BankManager implements Owner,Comparator<Player>{
     private static BankManager bankManager;
     private ArrayList<Player> sortedList = Monopoly.getPlayers();
+    private String[] allPlayers;
     private BankManager(){
 
     }
@@ -29,8 +31,8 @@ public class BankManager implements Owner,Comparator<Player>{
         return sortedList;
     }
     Integer firstPlayerIndex, secondPlayerIndex;
-    public void swapWealth(){
-        validatePlayers();
+    public void swapWealth(String firstPlayerName,String secondPlayerName){
+        validatePlayers(firstPlayerName,secondPlayerName);
         swapProp();
     }
     private void swapProp(){
@@ -75,42 +77,41 @@ public class BankManager implements Owner,Comparator<Player>{
         sortedList.get(secondPlayerIndex).setOwnedProperties(owned);
     }
 
-    private void validatePlayers(){
-        try {
-            boolean first = true;
-            while (first){
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Please enter first player's name : ");
-                String firstPlayer = scanner.next();
-                for (int i=0;i<sortedList.size();i++){
-                    if (sortedList.get(i).getName().equals(firstPlayer)){
-                        firstPlayerIndex = i;
-                    }
-                }
-                if (firstPlayerIndex == null){
-                    throw new RuntimeException("Player not found!");
-                }else {
-                    first = false;
-                    scanner.close();
-                }
+    private void validatePlayers(String firstPlayerName, String secondPlayerName){
+        boolean foundFirst = false,foundSecond = false;
+        for (int i=0;i<allPlayers.length;i++){
+            if (allPlayers[i].equals(firstPlayerName)){
+                foundFirst = true;
             }
-            boolean second = true;
-            while (second){
-                System.out.println("Please enter second player's name : ");
-                Scanner scanner = new Scanner(System.in);
-                String secondPlayer = scanner.next();
-                for (int i=0;i<sortedList.size();i++){
-                    if (sortedList.get(i).getName().equals(secondPlayer)){
-                        secondPlayerIndex = i;
-                    }
-                }
-                if (secondPlayerIndex == null){
-                    throw new RuntimeException("Player not found!");
-                }
+            if (allPlayers[i].equals(secondPlayerName)){
+                foundSecond = true;
             }
-        }catch (RuntimeException e){
-            System.out.println(e.getMessage());
         }
+        boolean isFirstBroke = true,isSecondBroke = true;
+        if (foundFirst && foundSecond){
+            for (int i=0;i<sortedList.size();i++){
+                if (sortedList.get(i).getName().equals(firstPlayerName)){
+                    isFirstBroke = false;
+                }
+                if (sortedList.get(i).getName().equals(secondPlayerName)){
+                    isSecondBroke = false;
+                }
+            }
+        }
+        if (!foundFirst && !foundSecond){
+            throw new IllegalCommand("We didn't find "+firstPlayerName+" and "+secondPlayerName);
+        }else if (!foundFirst){
+            throw new IllegalCommand("We didn't find "+firstPlayerName);
+        }else if (!foundSecond){
+            throw new IllegalCommand("We didn't find "+secondPlayerName);
+        }else if (isFirstBroke &&isSecondBroke){
+            throw new IllegalCommand(firstPlayerName+" and "+secondPlayerName+" are broke!");
+        }else if (isFirstBroke){
+            throw new IllegalCommand(firstPlayerName+ " is broke!");
+        }else if (isSecondBroke){
+            throw new IllegalCommand(secondPlayerName+ " is broke!");
+        }
+
     }
 
     @Override
