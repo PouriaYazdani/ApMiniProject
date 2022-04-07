@@ -16,9 +16,16 @@ public class BankManager implements Owner,Comparator<Player>{
             bankManager = new BankManager();
         return bankManager;
     }
-
+    private void sort(){
+        Collections.sort(sortedList, new Comparator<Player>() {
+            @Override
+            public int compare(Player o1, Player o2) {
+                return Double.compare(o1.getNetWorth(),o2.getNetWorth());
+            }
+        });
+    }
     public ArrayList getSortedList() {
-        Collections.sort(sortedList);
+        sort();
         return sortedList;
     }
     Integer firstPlayerIndex, secondPlayerIndex;
