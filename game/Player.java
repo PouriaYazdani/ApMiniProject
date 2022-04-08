@@ -471,7 +471,8 @@ public class Player implements Owner {
      * rank method shows the rank of the player by getting a sorted list of Players
      */
     public void rank(){
-        ArrayList<Player> sorted = BankManager.getSortedList();
+        BankManager bankManager = BankManager.getInstance();
+        ArrayList<Player> sorted = bankManager.getSortedList();
         for (int i=0;i<sorted.size();i++){
             if (sorted.get(i) == this){
                 rank = i+1;
