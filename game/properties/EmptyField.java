@@ -125,6 +125,7 @@ public class EmptyField extends BuyableProperties{
         if(boost)
             rent *= 2.0;
         if(rent > player.getCash()){
+
             throw new SeriousDebt("You don't have enough money to pay the rent of this field! Try selling you're properties");
         }
         player.setCash(player.getCash() - rent);
