@@ -215,8 +215,10 @@ public class Monopoly {
                             flag = false;
                             break;
                         case SWAP_WEALTH:
-//                          bankManager.swapWealth(player1,player2);
+//                          bankManager.swapWealth(player1,player2);//throws IllegalCommand 
                             flag = false;
+                        default:
+                            throw new IllegalCommand(stringCommand + " is not valid here");
                     }
                 }catch (IllegalArgumentException e) {
                     System.out.println("There is no such command,please enter a valid command");
