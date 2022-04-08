@@ -144,8 +144,12 @@ public class Monopoly {
                             break inner;
                         }
                         i++;
-                        continue;
-                    } else {
+                        continue;}
+//                    }else if(seriousDebt){//define a boolean here at gamerunner
+//                        calls a new method like jailManager that forces the player to sell properties to be able to pay the rent
+//                        the player will come out of this method when the debt is paid and joins normal cycle of the gamerunner,,
+//                    }
+                    else {
                         if (acceptDice) {
                             diceNumber = scanner.nextInt();
                             checkDiceNumber(diceNumber);
@@ -202,7 +206,6 @@ public class Monopoly {
                     System.out.println("There is no such command,please enter a valid command");
                 } catch (SeriousDebt e) {
                     System.out.println(e.getMessage());
-                    //a new method like jailManager that forces the player to sell properties to be able to pay the rent
                 }catch (Bankruptcy e){
                     System.out.println(e.getMessage());
                     //calls the method that removes the player
