@@ -198,12 +198,12 @@ public class Monopoly {
                 }
             }
             System.out.println("The end of this round has been reached,\nThe bank manager can swap the properties of two" +
-                    "players via swap_wealth command followed by the two player's names\nIf not just enter pass");
+                    " players via swap_wealth command followed by the two player's names\nIf not just enter pass");
             String player1 = "";
             String player2 = "";
             stringCommand = scanner.nextLine();
             if(stringCommand.contains("swap_wealth")){
-//                collapseCommand(player1,player2);
+                collapseCommandToString(player1,player2);
             }
             enumCommand = commandProcessor(stringCommand);
             switch (enumCommand){
@@ -213,6 +213,16 @@ public class Monopoly {
 //                    bankManager.swapWealth(player1,player2);
             }
         }
+    }
+
+    private  void collapseCommandToString(String player1, String player2){
+        String temp = stringCommand;
+        int whiteSpace = stringCommand.indexOf(" ");
+        stringCommand = stringCommand.substring(0,whiteSpace);//now is swap_wealth
+        temp = temp.substring(whiteSpace + 1);
+        whiteSpace = temp.indexOf(" ");
+        player1 = temp.substring(0,whiteSpace);
+        player2 = temp.substring(whiteSpace);
     }
 
     private Integer collapseCommandToInteger(){
