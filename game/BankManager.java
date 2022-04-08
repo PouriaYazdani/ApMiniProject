@@ -113,7 +113,18 @@ public class BankManager implements Owner,Comparator<Player>{
         }
 
     }
-
+    public void endGame(String currentPlayer,boolean timeMode){
+        sort();
+        if (timeMode){
+            if (currentPlayer.equals(sortedList.get(sortedList.size()-1).getName())){
+                System.out.println("YOU WON!");
+            }else {
+                System.out.println(sortedList.get(sortedList.size()-1).getName()+" WON THE GAME, YOU LOST!");
+            }
+        }else {
+            System.out.println("YOU LOST, " + sortedList.get(0).getName() + " WON THE GAME!");
+        }
+    }
     @Override
     public int compare(Player o1, Player o2) {
         return Double.compare(o1.getNetWorth(),o2.getNetWorth());
