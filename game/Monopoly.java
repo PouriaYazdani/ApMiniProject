@@ -21,6 +21,7 @@ public class Monopoly {
     private Instant start;
     private int roundCounter;
     private String[] playersName;
+    private boolean isGameFinished = false;
 
     public void waitingMenu(){
         Scanner scanner = new Scanner(System.in);
@@ -127,11 +128,12 @@ public class Monopoly {
             start = Instant.now();
             setTimer();
         }
-        while(true) {
+        outer:
+        while(!isGameFinished) {
             roundCounter++;
             int diceNumber = 0;
             boolean acceptDice = true;
-            outer:
+            inner:
             for (int i = 0; i < players.size(); ) {
                 try {
                     Integer possibleIndex = null;
@@ -139,7 +141,7 @@ public class Monopoly {
                     if (players.get(i).isInJail()) {
                         jailManager(players.get(i));
                         if (i == players.size()) {
-                            break outer;
+                            break inner;
                         }
                         i++;
                         continue;
@@ -149,7 +151,7 @@ public class Monopoly {
                             checkDiceNumber(diceNumber);
                             if (sendToJail(players.get(i), diceNumber)) {
                                 if (i == players.size()) {
-                                    break outer;
+                                    break inner;
                                 }
                                 i++;
                                 continue;
@@ -178,7 +180,7 @@ public class Monopoly {
                                 i++;
                                 if (i == players.size()) {
                                     if (diceNumber != 6) {
-                                        break outer;
+                                        break inner;
                                     }
                                     i--;//player has another turn for rolling 6
                                 } else {
@@ -189,6 +191,9 @@ public class Monopoly {
                                 acceptDice = true;
                         }
                         players.get(i).order(enumCommand, possibleIndex);
+                        if(isGameFinished){
+                            break outer;
+                        }
                     }
                 } catch (InputMismatchException e) {//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
@@ -235,6 +240,7 @@ public class Monopoly {
                 }
             }
         }
+        System.out.println("bankManager.endgame() is called here");
     }
 
     private  String[] collapseCommandToString(){
@@ -326,7 +332,9 @@ public class Monopoly {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-//                endGame();
+                isGameFinished = true;
+                System.out.println("The time limit has been reached\nAt the end of current player's turn we'll know " +
+                        "the winner...");
                 timer.cancel();
             }
         }, gameDuration * 1000 * 60);
