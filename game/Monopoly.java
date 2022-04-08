@@ -127,27 +127,28 @@ public class Monopoly {
             start = Instant.now();
             setTimer();
         }
-        while(true){
+        while(true) {
             roundCounter++;
             int diceNumber = 0;
             boolean acceptDice = true;
-            outer :for (int i = 0; i < players.size();) {
+            outer:
+            for (int i = 0; i < players.size(); ) {
                 try {
                     Integer possibleIndex = null;
                     System.out.println("round " + roundCounter + '\n' + players.get(i).getName() + "'s turn:");
                     if (players.get(i).isInJail()) {
                         jailManager(players.get(i));
-                        if(i == players.size()){
+                        if (i == players.size()) {
                             break outer;
                         }
                         i++;
                         continue;
                     } else {
-                        if(acceptDice) {
+                        if (acceptDice) {
                             diceNumber = scanner.nextInt();
                             checkDiceNumber(diceNumber);
                             if (sendToJail(players.get(i), diceNumber)) {
-                                if(i == players.size()){
+                                if (i == players.size()) {
                                     break outer;
                                 }
                                 i++;
@@ -157,60 +158,73 @@ public class Monopoly {
                             players.get(i).state();
                             scanner.nextLine();//to consume the '\n' so we can enter two part command like sell and fly
                         }
-                            acceptDice = false;
-                            stringCommand = scanner.nextLine();
-                            if (stringCommand.contains("fly") || stringCommand.contains("sell"))
-                                possibleIndex = collapseCommandToInteger();
-                            enumCommand = commandProcessor(stringCommand);//can throw exception
-                            switch (enumCommand) {//if there wasn't a field related command we'll execute it here
-                                case TIME:
-                                    if(gameDuration == 0){
-                                        throw new IllegalCommand("This game has no time limit,TIME command is not valid!");
+                        acceptDice = false;
+                        stringCommand = scanner.nextLine();
+                        if (stringCommand.contains("fly") || stringCommand.contains("sell"))
+                            possibleIndex = collapseCommandToInteger();
+                        enumCommand = commandProcessor(stringCommand);//can throw exception
+                        switch (enumCommand) {//if there wasn't a field related command we'll execute it here
+                            case TIME:
+                                if (gameDuration == 0) {
+                                    throw new IllegalCommand("This game has no time limit,TIME command is not valid!");
+                                }
+                                System.out.println(time() + " minutes to the end of the game");
+                                break;
+                            case PASS:
+                                i++;
+                                if (i == players.size()) {
+                                    if (diceNumber != 6) {
+                                        break outer;
                                     }
-                                    System.out.println(time() + " minutes to the end of the game");
-                                    break;
-                                case PASS:
-                                    i++;
-                                    if(i == players.size()){
-                                        if(diceNumber != 6){
-                                            break outer;
-                                        }
-                                        i--;//player has another turn for rolling 6
-                                    }else{
-                                        if(diceNumber == 6){
-                                            i--;
-                                        }
+                                    i--;//player has another turn for rolling 6
+                                } else {
+                                    if (diceNumber == 6) {
+                                        i--;
                                     }
-                                    acceptDice = true;
-                            }
-                    players.get(i).order(enumCommand,possibleIndex);
+                                }
+                                acceptDice = true;
+                        }
+                        players.get(i).order(enumCommand, possibleIndex);
                     }
-                }catch (InputMismatchException e){//if anything but number entered for dice
+                } catch (InputMismatchException e) {//if anything but number entered for dice
                     System.out.println("Please enter enter a number");
                     scanner.nextLine();
-                }catch (IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                     System.out.println("There is no such command,please enter a valid command");
-                }catch (SeriousDebt e){
+                } catch (SeriousDebt e) {
                     System.out.println(e.getMessage());
                     //TODO
-                }catch (MonopolyException e){
+                } catch (MonopolyException e) {
                     System.out.println(e.getMessage());
                 }
             }
+            boolean flag = true;
             System.out.println("The end of this round has been reached,\nThe bank manager can swap the properties of two" +
                     " players via swap_wealth command followed by the two player's names\nIf not just enter pass");
-            String player1 = "";
-            String player2 = "";
-            stringCommand = scanner.nextLine();
-            if(stringCommand.contains("swap_wealth")){
-                collapseCommandToString(player1,player2);
-            }
-            enumCommand = commandProcessor(stringCommand);
-            switch (enumCommand){
-                case PASS:
-                    break;
-                case SWAP_WEALTH:
-//                    bankManager.swapWealth(player1,player2);
+            while (flag) {
+                String player1 = "";
+                String player2 = "";
+                stringCommand = scanner.nextLine();
+                try {
+                    if (stringCommand.contains("swap_wealth")) {
+                        collapseCommandToString(player1, player2);
+                    }
+                    enumCommand = commandProcessor(stringCommand);
+                    switch (enumCommand) {
+                        case PASS:
+                            flag = false;
+                            break;
+                        case SWAP_WEALTH:
+//                          bankManager.swapWealth(player1,player2);
+                            flag = false;
+                    }
+                }catch (IllegalArgumentException e) {
+                    System.out.println("There is no such command,please enter a valid command");
+                }catch (IllegalCommand e){
+                    System.out.println(e.getMessage());
+                }catch (StringIndexOutOfBoundsException e){
+                    System.out.println("Please enter the command thoroughly");
+                }
             }
         }
     }
