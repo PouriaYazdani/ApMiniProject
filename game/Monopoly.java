@@ -162,8 +162,12 @@ public class Monopoly {
                         stringCommand = scanner.nextLine();
                         if (stringCommand.contains("fly") || stringCommand.contains("sell"))
                             possibleIndex = collapseCommandToInteger();
+                        else if(stringCommand.contains("swap_wealth")){
+                            throw new IllegalCommand("swap_wealth is not allowed here,The bank manager can use it at the"
+                                    + " end of each round");
+                        }
                         enumCommand = commandProcessor(stringCommand);//can throw exception
-                        switch (enumCommand) {//if there wasn't a field related command we'll execute it here
+                        switch (enumCommand) {
                             case TIME:
                                 if (gameDuration == 0) {
                                     throw new IllegalCommand("This game has no time limit,TIME command is not valid!");
@@ -215,7 +219,7 @@ public class Monopoly {
                             flag = false;
                             break;
                         case SWAP_WEALTH:
-//                          bankManager.swapWealth(player1,player2);//throws IllegalCommand 
+//                          bankManager.swapWealth(player1,player2);//throws IllegalCommand
                             flag = false;
                         default:
                             throw new IllegalCommand(stringCommand + " is not valid here");
