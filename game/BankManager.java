@@ -7,10 +7,11 @@ import java.util.*;
 
 public class BankManager implements Owner,Comparator<Player>{
     private static BankManager bankManager;
-    private ArrayList<Player> sortedList = Monopoly.getPlayers();
+    private ArrayList<Player> sortedList;
     private String[] allPlayers;
     private BankManager(){
-
+        sortedList =  Monopoly.getPlayers();
+        allPlayers = bankManager.getPlayersName();
     }
 
     public static BankManager getInstance() {
@@ -19,12 +20,12 @@ public class BankManager implements Owner,Comparator<Player>{
         return bankManager;
     }
     private void sort(){
-        Collections.sort(sortedList, new Comparator<Player>() {
+        Collections.sort(sortedList,Collections.reverseOrder(new Comparator<Player>() {
             @Override
             public int compare(Player o1, Player o2) {
                 return Double.compare(o1.getNetWorth(),o2.getNetWorth());
             }
-        });
+        }));
     }
     public ArrayList getSortedList() {
         sort();
@@ -113,16 +114,25 @@ public class BankManager implements Owner,Comparator<Player>{
         }
 
     }
-    public void endGame(String currentPlayer,boolean timeMode){
+    public void endGame(){
         sort();
-        if (timeMode){
-            if (currentPlayer.equals(sortedList.get(sortedList.size()-1).getName())){
-                System.out.println("YOU WON!");
-            }else {
-                System.out.println(sortedList.get(sortedList.size()-1).getName()+" WON THE GAME, YOU LOST!");
+        System.out.println(sortedList.get(0).getName()+" won the game!");
+        System.out.println("Leaderboard : ");
+        for (int i=0;i<allPlayers.length;){
+            for (int j=0;i<sortedList.size();j++,i++){
+                System.out.println(i+" - "+sortedList.get(j).getName()+"  NetWorth : "+sortedList.get(j).getNetWorth());
             }
-        }else {
-            System.out.println("YOU LOST, " + sortedList.get(0).getName() + " WON THE GAME!");
+            for (int k=0;k<allPlayers.length;k++,i++){
+                boolean foundPlayer = false;
+                for (int p=0;p<sortedList.size();p++){
+                    if (allPlayers[k].equals(sortedList.get(p).getName())){
+                        foundPlayer = true;
+                    }
+                }
+                if (!foundPlayer){
+                    System.out.println(i+"- "+allPlayers[k]+"  Financial situation : Bankruptcy");
+                }
+            }
         }
     }
     @Override
