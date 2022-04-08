@@ -211,7 +211,9 @@ public class Monopoly {
                 stringCommand = scanner.nextLine();
                 try {
                     if (stringCommand.contains("swap_wealth")) {
-                        collapseCommandToString(player1, player2);
+                        String[] arguments = collapseCommandToString();
+                        player1 = arguments[0];
+                        player2 = arguments[1];
                     }
                     enumCommand = commandProcessor(stringCommand);
                     switch (enumCommand) {
@@ -235,14 +237,16 @@ public class Monopoly {
         }
     }
 
-    private  void collapseCommandToString(String player1, String player2){
+    private  String[] collapseCommandToString(){
         String temp = stringCommand;
         int whiteSpace = stringCommand.indexOf(" ");
         stringCommand = stringCommand.substring(0,whiteSpace);//now is swap_wealth
         temp = temp.substring(whiteSpace + 1);
         whiteSpace = temp.indexOf(" ");
-        player1 = temp.substring(0,whiteSpace);
-        player2 = temp.substring(whiteSpace);
+        String player1 = temp.substring(0,whiteSpace);
+        String player2 = temp.substring(whiteSpace);
+        String[] names = {player1,player2};
+        return names;
     }
 
     private Integer collapseCommandToInteger(){
