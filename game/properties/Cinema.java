@@ -84,13 +84,16 @@ public class Cinema extends BuyableProperties{
             boolean boost = false;
             switch (this.getColor()){//code reuse should be considered later
                 case RED:
-                    boost = player.redMonopoly;
+                    boost = fieldOwner.redMonopoly;
+                    break;
                 case BLUE:
-                    boost = player.blueMonopoly;
+                    boost = fieldOwner.blueMonopoly;
+                    break;
                 case GREEN:
-                    boost = player.greenMonopoly;
+                    boost = fieldOwner.greenMonopoly;
+                    break;
                 case YELLOW:
-                    boost = player.yellowMonopoly;
+                    boost = fieldOwner.yellowMonopoly;
             }
             if(boost)
                 rent *= 2.0;

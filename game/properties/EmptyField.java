@@ -85,6 +85,7 @@ public class EmptyField extends BuyableProperties{
      * an exception which will get caught in gamerunner.
      */
     public void chargeRent(Player player){
+        Player fieldOwner = (Player) owner;
         double rent = 0;
         if(isThereHotel){
             rent = 600.0;
@@ -110,13 +111,16 @@ public class EmptyField extends BuyableProperties{
         boolean boost = false;
         switch (this.getColor()){//code reuse should be considered later
             case RED:
-                boost = player.redMonopoly;
+                boost = fieldOwner.redMonopoly;
+                break;
             case BLUE:
-                boost = player.blueMonopoly;
+                boost = fieldOwner.blueMonopoly;
+                break;
             case GREEN:
-                boost = player.greenMonopoly;
+                boost = fieldOwner.greenMonopoly;
+                break;
             case YELLOW:
-                boost = player.yellowMonopoly;
+                boost = fieldOwner.yellowMonopoly;
         }
         if(boost)
             rent *= 2.0;

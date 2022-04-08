@@ -85,6 +85,7 @@ public abstract class BuyableProperties extends Field{
                     if(player.greenProperties + 1 == 3)
                         player.greenMonopoly = false;
                 }
+                break;
             case YELLOW:
                 if(operator == '+') {
                     player.yellowProperties++;
