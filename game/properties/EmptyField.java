@@ -161,6 +161,7 @@ public class EmptyField extends BuyableProperties{
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
         player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
+        player.setPropertyWorth(player.getCash() + BUILDING_COST/2.0);
         numberOfBuildings++;
     }
 
