@@ -160,7 +160,7 @@ public class Monopoly {
                             acceptDice = false;
                             stringCommand = scanner.nextLine();
                             if (stringCommand.contains("fly") || stringCommand.contains("sell"))
-                                possibleIndex = collapseCommand();
+                                possibleIndex = collapseCommandToInteger();
                             enumCommand = commandProcessor(stringCommand);//can throw exception
                             switch (enumCommand) {//if there wasn't a field related command we'll execute it here
                                 case TIME:
@@ -199,23 +199,23 @@ public class Monopoly {
             }
             System.out.println("The end of this round has been reached,\nThe bank manager can swap the properties of two" +
                     "players via swap_wealth command followed by the two player's names\nIf not just enter pass");
-            String player1;
-            String player2;
+            String player1 = "";
+            String player2 = "";
             stringCommand = scanner.nextLine();
             if(stringCommand.contains("swap_wealth")){
-                collapseCommand(player1,player2);
+//                collapseCommand(player1,player2);
             }
             enumCommand = commandProcessor(stringCommand);
             switch (enumCommand){
                 case PASS:
                     break;
                 case SWAP_WEALTH:
-                    bankManager.swapWealth(player1,player2);
+//                    bankManager.swapWealth(player1,player2);
             }
         }
     }
 
-    private Integer collapseCommand(){
+    private Integer collapseCommandToInteger(){
         Integer at;
         String temp = stringCommand;
         int idx = 0;
