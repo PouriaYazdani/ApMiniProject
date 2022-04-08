@@ -40,7 +40,10 @@ package game;
  * <p>
  *     {@link  #PASS} : is invoked when the player doesn't want to enter a command
  * </p>
+ * <p>
+ *     {@link  #SWAP_WEALTH} : can be invoked at the end of each round to swap all non-cash properties of two players
+ * </p>
  */
 public enum Commands {
-    BUY,BUILD,SELL,FLY,FREE,INVEST,INDEX,PROPERTY,TIME,RANK,CREATE_GAME,START_GAME,PASS
+    BUY,BUILD,SELL,FLY,FREE,INVEST,INDEX,PROPERTY,TIME,RANK,CREATE_GAME,START_GAME,PASS,SWAP_WEALTH
 }
