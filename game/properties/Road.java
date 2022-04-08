@@ -1,6 +1,7 @@
 package game.properties;
 
 import game.Player;
+import game.exceptions.Bankruptcy;
 import game.exceptions.SeriousDebt;
 
 /**
@@ -14,6 +15,10 @@ public class Road extends BankProperties{
     }
     public void payToll(Player player){
         if (player.getCash() < TOLL_PRICE){
+            if(TOLL_PRICE > player.getNetWorth()){
+                throw new Bankruptcy("You do not have enough net worth to pay the toll," + player.getName() + "the game " +
+                        "is OVER for you");
+            }
             throw new SeriousDebt("you don't have enough cash to pay your toll, try selling your property in order to do so");
         }
         player.setCash(player.getCash() - TOLL_PRICE);// getting a 100$ toll

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import game.Player;
 import game.Monopoly;
+import game.exceptions.Bankruptcy;
 import game.exceptions.SeriousDebt;
 
 /**
@@ -56,6 +57,10 @@ public class QuestionMark extends Field{
             }
         }
         if ((players.size()-1)*10 > p.getCash()){
+            if((players.size()-1)*10 > p.getNetWorth()){
+                throw new Bankruptcy("You do not have enough net worth to give gift to other players" + p.getName() + "the game " +
+                        "is OVER for you");
+            }
             throw new SeriousDebt("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
         }
         p.setCash(p.getCash() - ((players.size()-1)*10));

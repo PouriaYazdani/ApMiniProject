@@ -1,6 +1,7 @@
 package game.properties;
 
 import game.Player;
+import game.exceptions.Bankruptcy;
 import game.exceptions.NotEnoughCash;
 import game.exceptions.SeriousDebt;
 
@@ -53,6 +54,10 @@ public class Prison extends BankProperties{
             System.out.println("You're free to go!");
         }else {
             if (player.getCash()<JAIL_COST){
+                if(JAIL_COST > player.getNetWorth()){
+                    throw new Bankruptcy("You do not have enough net worth to pay the jail tax," + player.getName() + "the game " +
+                            "is OVER for you");
+                }
                 throw new SeriousDebt("You don't have enough money to stay at jail!, you should sell your properties in order to pay your debt!");
             }
             player.setCash(player.getCash() - JAIL_COST);
