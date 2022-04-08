@@ -73,7 +73,7 @@ public class EmptyField extends BuyableProperties{
         player.setCash(player.getCash() + emptyFieldWorth/2.0);//give the money
         this.owner = BankManager.getInstance();//take the Ownership
         player.getOwnedProperties().remove(this);//remove the sold properties from the player's list of owned properties
-        player.setPropertyWorth(player.getPropertyWorth() - emptyFieldWorth/2.0);//update property worth
+        player.setPropertyWorth(player.getPropertyWorth() + emptyFieldWorth/2.0);//update property worth
         player.setBuiltBuildings(player.getBuiltBuildings() - numberOfBuildings);//update player's number of built buildings
         numberOfBuildings = 0;
         isThereHotel = false;
