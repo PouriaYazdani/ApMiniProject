@@ -202,8 +202,16 @@ public class Monopoly {
                     System.out.println("There is no such command,please enter a valid command");
                 } catch (SeriousDebt e) {
                     System.out.println(e.getMessage());
-                    //TODO
-                } catch (MonopolyException e) {
+                    //a new method like jailManager that forces the player to sell properties to be able to pay the rent
+                }catch (Bankruptcy e){
+                    System.out.println(e.getMessage());
+                    //calls the method that removes the player
+                    i++;//next players turn...
+                    if(players.size() == i){
+                        break inner;
+                    }
+                }
+                catch (MonopolyException e) {
                     System.out.println(e.getMessage());
                 }
             }
