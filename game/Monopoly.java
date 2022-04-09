@@ -208,6 +208,7 @@ public class Monopoly {
                     System.out.println(e.getMessage());
                 }catch (Bankruptcy e){
                     System.out.println(e.getMessage());
+                    removePlayer(i);
                     //calls the method that removes the player
                     if(players.size() == 1){//
                         break outer;
@@ -259,7 +260,10 @@ public class Monopoly {
         System.out.println("bankManager.endgame() is called here");
         bankManager.endGame();
     }
-
+    private void removePlayer(int index){
+        System.out.println(players.get(index).getName()+" has been removed from game!");
+        players.remove(players.get(index));
+    }
     private  String[] collapseCommandToString(){
         String temp = stringCommand;
         int whiteSpace = stringCommand.indexOf(" ");
