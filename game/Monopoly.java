@@ -1,7 +1,7 @@
 package game;
 
 import game.exceptions.*;
-import game.properties.Prison;
+import game.properties.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -206,6 +206,9 @@ public class Monopoly {
                     System.out.println("There is no such command,please enter a valid command");
                 } catch (SeriousDebt e) {
                     System.out.println(e.getMessage());
+                    debtManager(i);
+                    System.out.println("You paid your debt!\nNow you can continue playing!");
+                    i++;
                 }catch (Bankruptcy e){
                     System.out.println(e.getMessage());
                     removePlayer(i);
@@ -259,6 +262,55 @@ public class Monopoly {
         }
         System.out.println("bankManager.endgame() is called here");
         bankManager.endGame();
+    }
+    private void debtManager(int index){
+        try {
+            while (true){
+                System.out.println("Your debt is : " + players.get(index).getDebt()
+                        +" but your cash is : "+players.get(index).getCash());
+                System.out.println("You should sell your properties to pay your debt!");
+                System.out.println("Enter the desired field number to sell: ");
+                Scanner scanner = new Scanner(System.in);
+                int fieldNum = scanner.nextInt();
+                if (fieldNum<1 || fieldNum>24){
+                    throw new IllegalCommand("Please enter a number between 1 and 24!");
+                }else {
+                    players.get(index).getOwnedProperties().get(fieldNum).sell(players.get(index));
+                }
+                if (players.get(index).getCash() >= players.get(index).getDebt()){
+                    Board board = Board.getInstance();
+                    Field field = board.fields[players.get(index).getPosition()-1];
+                    if (field instanceof Cinema){
+                        Cinema cinema = (Cinema) field;
+                        cinema.chargeRent(players.get(index));
+                        break;
+                    }else if (field instanceof EmptyField){
+                        EmptyField emptyField = (EmptyField) field;
+                        emptyField.chargeRent(players.get(index));
+                        break;
+                    }else if (field instanceof Prison){
+                        Prison prison = (Prison) field;
+                        players.get(index).setCash(players.get(index).getCash() - prison.getJAIL_COST());
+                        break;
+                    }else if (field instanceof QuestionMark){
+                        QuestionMark questionMark = (QuestionMark) field;
+                        questionMark.giveGift(players.get(index));
+                        break;
+                    }else if (field instanceof Road){
+                        Road road = (Road) field;
+                        road.payToll(players.get(index));
+                        break;
+                    }
+                }else if (players.get(index).getDebt()>players.get(index).getCash()){
+                    System.out.println("Sell more!, You still don't have enough cash to pay off your debt!");
+                    continue;
+                }
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Please enter a number!");
+        }catch (IllegalCommand e){
+
+        }
     }
     private void removePlayer(int index){
         System.out.println(players.get(index).getName()+" has been removed from game!");
