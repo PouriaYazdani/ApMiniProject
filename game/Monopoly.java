@@ -239,6 +239,7 @@ public class Monopoly {
                         case SWAP_WEALTH:
                           bankManager.swapWealth(player1,player2);//throws IllegalCommand
                             flag = false;
+                            break;
                         default:
                             throw new IllegalCommand(stringCommand + " is not valid here");
                     }
