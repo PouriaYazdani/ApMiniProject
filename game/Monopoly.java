@@ -209,6 +209,9 @@ public class Monopoly {
                 }catch (Bankruptcy e){
                     System.out.println(e.getMessage());
                     //calls the method that removes the player
+                    if(players.size() == 1){//
+                        break outer;
+                    }
                     i++;//next players turn...
                     if(players.size() == i){
                         break inner;
@@ -254,6 +257,7 @@ public class Monopoly {
             System.out.println("==========================================================");
         }
         System.out.println("bankManager.endgame() is called here");
+        bankManager.endGame();
     }
 
     private  String[] collapseCommandToString(){
