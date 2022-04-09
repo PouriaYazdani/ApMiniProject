@@ -237,7 +237,7 @@ public class Monopoly {
                             flag = false;
                             break;
                         case SWAP_WEALTH:
-//                          bankManager.swapWealth(player1,player2);//throws IllegalCommand
+                          bankManager.swapWealth(player1,player2);//throws IllegalCommand
                             flag = false;
                         default:
                             throw new IllegalCommand(stringCommand + " is not valid here");
@@ -250,6 +250,7 @@ public class Monopoly {
                     System.out.println("Please enter the command thoroughly");
                 }
             }
+            System.out.println("==========================================================");
         }
         System.out.println("bankManager.endgame() is called here");
     }
@@ -261,7 +262,7 @@ public class Monopoly {
         temp = temp.substring(whiteSpace + 1);
         whiteSpace = temp.indexOf(" ");
         String player1 = temp.substring(0,whiteSpace);
-        String player2 = temp.substring(whiteSpace);
+        String player2 = temp.substring(whiteSpace + 1);
         String[] names = {player1,player2};
         return names;
     }
