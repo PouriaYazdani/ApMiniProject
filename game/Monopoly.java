@@ -43,8 +43,6 @@ public class Monopoly {
     }
 
     public void gameInit(){
-        board = Board.getInstance();
-        bankManager = BankManager.getInstance();
         System.out.println("Enter player's usernames and then enter command 'start_game',\nif you want to play the game in" +
                 " limited time enter command 'time' after you entered players usernames");
         Scanner scanner = new Scanner(System.in);
@@ -119,6 +117,8 @@ public class Monopoly {
         assignNames();
         sortPlayers();
         printPlayers();
+        bankManager = BankManager.getInstance();
+        board = Board.getInstance();
     }
 
     public void gamerunner() {
