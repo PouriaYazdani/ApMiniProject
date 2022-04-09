@@ -58,10 +58,15 @@ public class Prison extends BankProperties{
                     throw new Bankruptcy("You do not have enough net worth to pay the jail tax," + player.getName() + "the game " +
                             "is OVER for you");
                 }
+                player.setDebt(JAIL_COST);
                 throw new SeriousDebt("You don't have enough money to stay at jail!, you should sell your properties in order to pay your debt!");
             }
             player.setCash(player.getCash() - JAIL_COST);
             System.out.println("You weren't lucky, It costs you 10$");
         }
+    }
+
+    public double getJAIL_COST() {
+        return JAIL_COST;
     }
 }
