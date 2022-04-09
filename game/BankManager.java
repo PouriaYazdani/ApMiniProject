@@ -11,7 +11,7 @@ public class BankManager implements Owner,Comparator<Player>{
     private String[] allPlayers;
     private BankManager(){
         sortedList =  Monopoly.getPlayers();
-        allPlayers = bankManager.getPlayersName();
+        allPlayers = Monopoly.getPlayersName();
     }
 
     public static BankManager getInstance() {

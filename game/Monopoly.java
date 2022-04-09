@@ -20,7 +20,7 @@ public class Monopoly {
     private final double STARTING_CASH = 1500.0;
     private Instant start;
     private int roundCounter;
-    private String[] playersName;
+    private static String[] playersName;
     private boolean isGameFinished = false;
 
     public void waitingMenu(){
@@ -394,7 +394,7 @@ public class Monopoly {
         return players;
     }
 
-    public String[] getPlayersName(){
+    public static String[] getPlayersName(){
         return playersName;
     }
 }
