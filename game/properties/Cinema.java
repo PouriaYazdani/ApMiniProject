@@ -102,6 +102,7 @@ public class Cinema extends BuyableProperties{
                     throw new Bankruptcy("You do not have enough net worth to watch a movie," + player.getName() + "the game " +
                             "is OVER for you");
                 }
+                player.setDebt(rent);
                 throw new SeriousDebt("You don't have enough money to watch a movie! Try selling you're properties");
             }
             player.setCash(player.getCash() - rent);

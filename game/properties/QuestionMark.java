@@ -15,7 +15,7 @@ import game.exceptions.SeriousDebt;
  */
 public class QuestionMark extends Field{
     public final static int[] atFields = {24};
-
+    private final double GIFT_PRICE = 10.0;
     public QuestionMark(int atField) {
         this.atField = atField;
     }
@@ -44,25 +44,26 @@ public class QuestionMark extends Field{
                 break;
                 case GIFT : giveGift(player);
                     System.out.println("Be generous and give a 10$ gift to each player!");
-                break;//this method will be here in the class as a public static
+                break;//this method will be here in the class as a public method
             }
         }
     public  void giveGift(Player p){
         ArrayList<Player> players = Monopoly.getPlayers();
+        if ((players.size()-1)* GIFT_PRICE > p.getCash()){
+            if((players.size()-1)* GIFT_PRICE > p.getNetWorth()){
+                throw new Bankruptcy("You do not have enough net worth to give gift to other players" + p.getName() + "the game " +
+                        "is OVER for you");
+            }
+            p.setDebt((players.size()-1)* GIFT_PRICE);
+            throw new SeriousDebt("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
+        }
+        p.setCash(p.getCash() - ((players.size()-1)* GIFT_PRICE));
         for (int i=0;i<players.size();i++){
             if(players.get(i) != p){
-                players.get(i).setCash(players.get(i).getCash()+10);
+                players.get(i).setCash(players.get(i).getCash()+ GIFT_PRICE);
             }else {
                 continue;
             }
         }
-        if ((players.size()-1)*10 > p.getCash()){
-            if((players.size()-1)*10 > p.getNetWorth()){
-                throw new Bankruptcy("You do not have enough net worth to give gift to other players" + p.getName() + "the game " +
-                        "is OVER for you");
-            }
-            throw new SeriousDebt("You don't have enough cash to give the gifts, you should sell your properties to give the gifts!");
-        }
-        p.setCash(p.getCash() - ((players.size()-1)*10));
     }
 }

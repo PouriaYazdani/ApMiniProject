@@ -19,6 +19,7 @@ public class Road extends BankProperties{
                 throw new Bankruptcy("You do not have enough net worth to pay the toll," + player.getName() + "the game " +
                         "is OVER for you");
             }
+            player.setDebt(TOLL_PRICE);
             throw new SeriousDebt("you don't have enough cash to pay your toll, try selling your property in order to do so");
         }
         player.setCash(player.getCash() - TOLL_PRICE);// getting a 100$ toll

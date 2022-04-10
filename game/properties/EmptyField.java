@@ -129,6 +129,7 @@ public class EmptyField extends BuyableProperties{
                 throw new Bankruptcy("You do not have enough net worth to pay the rent," + player.getName() + "the game " +
                         "is OVER for you");
             }
+            player.setDebt(rent);
             throw new SeriousDebt("You don't have enough money to pay the rent of this field! Try selling you're properties");
         }
         player.setCash(player.getCash() - rent);

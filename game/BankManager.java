@@ -5,7 +5,7 @@ import game.properties.*;
 
 import java.util.*;
 
-public class BankManager implements Owner,Comparator<Player>{
+public class BankManager implements Owner{
     private static BankManager bankManager;
     private ArrayList<Player> sortedList;
     private String[] allPlayers;
@@ -47,6 +47,9 @@ public class BankManager implements Owner,Comparator<Player>{
         money = sortedList.get(firstPlayerIndex).getNetWorth();
         sortedList.get(firstPlayerIndex).setNetWorth(sortedList.get(secondPlayerIndex).getNetWorth());
         sortedList.get(secondPlayerIndex).setNetWorth(money);
+        money = sortedList.get(firstPlayerIndex).getInvestedMoney();
+        sortedList.get(firstPlayerIndex).setInvestedMoney(sortedList.get(secondPlayerIndex).getInvestedMoney());
+        sortedList.get(secondPlayerIndex).setInvestedMoney(money);
         int count = 0;
         count = sortedList.get(firstPlayerIndex).blueProperties;
         sortedList.get(firstPlayerIndex).blueProperties = sortedList.get(secondPlayerIndex).blueProperties;
@@ -60,6 +63,12 @@ public class BankManager implements Owner,Comparator<Player>{
         count = sortedList.get(firstPlayerIndex).yellowProperties;
         sortedList.get(firstPlayerIndex).yellowProperties = sortedList.get(secondPlayerIndex).yellowProperties;
         sortedList.get(secondPlayerIndex).yellowProperties = count;
+        count = sortedList.get(firstPlayerIndex).getBuiltBuildings();
+        sortedList.get(firstPlayerIndex).setBuiltBuildings(sortedList.get(secondPlayerIndex).getBuiltBuildings());
+        sortedList.get(secondPlayerIndex).setBuiltBuildings(count);
+        count = sortedList.get(firstPlayerIndex).getOwnedCinemas();
+        sortedList.get(firstPlayerIndex).setOwnedCinemas(sortedList.get(secondPlayerIndex).getOwnedCinemas());
+        sortedList.get(secondPlayerIndex).setOwnedCinemas(count);
         boolean monopoly = false;
         monopoly = sortedList.get(firstPlayerIndex).blueMonopoly;
         sortedList.get(firstPlayerIndex).blueMonopoly = sortedList.get(secondPlayerIndex).blueMonopoly;
@@ -83,9 +92,11 @@ public class BankManager implements Owner,Comparator<Player>{
         for (int i=0;i<allPlayers.length;i++){
             if (allPlayers[i].equals(firstPlayerName)){
                 foundFirst = true;
+                firstPlayerIndex = i;
             }
             if (allPlayers[i].equals(secondPlayerName)){
                 foundSecond = true;
+                secondPlayerIndex = i;
             }
         }
         boolean isFirstBroke = true,isSecondBroke = true;
@@ -120,7 +131,7 @@ public class BankManager implements Owner,Comparator<Player>{
         System.out.println("Leaderboard : ");
         for (int i=0;i<allPlayers.length;){
             for (int j=0;i<sortedList.size();j++,i++){
-                System.out.println(i+" - "+sortedList.get(j).getName()+"  NetWorth : "+sortedList.get(j).getNetWorth());
+                System.out.println(i+1+" - "+sortedList.get(j).getName()+"  NetWorth : "+sortedList.get(j).getNetWorth());
             }
             for (int k=0;k<allPlayers.length;k++,i++){
                 boolean foundPlayer = false;
@@ -130,13 +141,10 @@ public class BankManager implements Owner,Comparator<Player>{
                     }
                 }
                 if (!foundPlayer){
-                    System.out.println(i+"- "+allPlayers[k]+"  Financial situation : Bankruptcy");
+                    System.out.println(i+1+"- "+allPlayers[k]+"  Financial situation : Bankruptcy");
                 }
             }
         }
     }
-    @Override
-    public int compare(Player o1, Player o2) {
-        return Double.compare(o1.getNetWorth(),o2.getNetWorth());
-    }
+
 }
