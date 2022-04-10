@@ -224,7 +224,7 @@ public class Monopoly {
                     if(players.size() == 1){//
                         break outer;
                     }
-                    i++;//next players turn...
+                    //i++;//next players turn...
                     if(players.size() == i-1){
                         break inner;
                     }
