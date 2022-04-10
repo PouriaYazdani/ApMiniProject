@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game.Commands</OriginalElement>
+  <nodes>
+    <node x="373.0" y="0.0">java.lang.constant.Constable</node>
+    <node x="194.0" y="81.0">java.lang.Enum</node>
+    <node x="187.5" y="162.0">game.Commands</node>
+    <node x="167.0" y="0.0">java.lang.Comparable</node>
+    <node x="0.0" y="0.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.lang.Enum" target="java.io.Serializable" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="260.0" y="56.0" />
+      <point x="73.5" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.lang.constant.Constable" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="260.0" y="56.0" />
+      <point x="441.0" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.Commands" target="java.lang.Enum" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.45" showDependencies="false" x="317.68965517241384" y="110.16312997347484" />
+  <SelectedNodes>
+    <node>game.Commands</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

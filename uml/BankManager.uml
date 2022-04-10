@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game.BankManager</OriginalElement>
+  <nodes>
+    <node x="0.0" y="81.0">game.BankManager</node>
+    <node x="86.5" y="0.0">game.Owner</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.BankManager" target="game.Owner" relationship="REALIZATION">
+      <point x="0.0" y="-114.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="140.5" y="154.5" />
+  <SelectedNodes>
+    <node>game.BankManager</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

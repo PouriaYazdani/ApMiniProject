@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game.Player</OriginalElement>
+  <nodes>
+    <node x="132.0" y="0.0">game.Owner</node>
+    <node x="0.0" y="81.0">game.Player</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.Player" target="game.Owner" relationship="REALIZATION">
+      <point x="0.0" y="-413.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8017241379310345" showDependencies="false" x="186.0" y="454.0" />
+  <SelectedNodes>
+    <node>game.Player</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
