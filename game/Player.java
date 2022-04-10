@@ -272,6 +272,8 @@ public class Player implements Owner {
                 } else {
                     System.out.println("  buildings: " + tmp.getNumberOfBuildings());
                 }
+            }else {
+                System.out.println("");
             }
         }
     }
