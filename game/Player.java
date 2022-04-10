@@ -331,11 +331,15 @@ public class Player implements Owner {
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof EmptyField){
             EmptyField emptyField = (EmptyField) board.fields[position-1];
-            emptyField.addBuilding(this);
-            if (emptyField.isThereHotel()){
-                System.out.println("Hotel built!");
+            if (emptyField.getOwner() == this){
+                emptyField.addBuilding(this);
+                if (emptyField.isThereHotel()){
+                    System.out.println("Hotel built!");
+                }else {
+                    System.out.println("Building added!");
+                }
             }else {
-                System.out.println("Building added!");
+                throw new IllegalCommand("You are not the owner of this field");
             }
         }else {
             Field field = board.fields[position-1];
