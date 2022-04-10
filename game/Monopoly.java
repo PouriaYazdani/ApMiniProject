@@ -23,6 +23,12 @@ public class Monopoly {
     private static String[] playersName;
     private boolean isGameFinished = false;
 
+    public static void main(String[] args) {
+        Monopoly monopoly = new Monopoly();
+        monopoly.waitingMenu();
+        monopoly.gameInit();
+        monopoly.gamerunner();
+    }
     public void waitingMenu(){
         Scanner scanner = new Scanner(System.in);
         while(true){

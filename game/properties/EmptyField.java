@@ -166,7 +166,7 @@ public class EmptyField extends BuyableProperties{
         }
         player.setCash(player.getCash() - BUILDING_COST);//take the money
         player.setBuiltBuildings(player.getBuiltBuildings() + 1);//update number of built buildings by the player
-        player.setPropertyWorth(player.getCash() + BUILDING_COST/2.0);
+        player.setPropertyWorth(player.getPropertyWorth() + BUILDING_COST/2.0);
         numberOfBuildings++;
     }
 
@@ -180,6 +180,7 @@ public class EmptyField extends BuyableProperties{
         }
         isThereHotel = true;
         player.setCash(player.getCash() - HOTEL_LICENSE_COST);//take the money
+        player.setPropertyWorth(player.getPropertyWorth() + HOTEL_LICENSE_COST/2);
         player.setBuiltBuildings(player.getBuiltBuildings() - 4 + 1);
         numberOfBuildings = 1;
     }
