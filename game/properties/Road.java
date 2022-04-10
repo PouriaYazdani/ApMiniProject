@@ -5,7 +5,7 @@ import game.exceptions.Bankruptcy;
 import game.exceptions.SeriousDebt;
 
 /**
- *  every player must pay a 100$ toll then they can pass
+ * This class represents road fields in the game.
  */
 public class Road extends BankProperties{
     public final static int[] atFields = {5,10,16};
@@ -13,6 +13,11 @@ public class Road extends BankProperties{
     public Road(int atField) {
         this.atField = atField;
     }
+
+    /**
+     * simple method to charge the player {@link #TOLL_PRICE} and checks if he/she can pay it or not.
+     * @param player
+     */
     public void payToll(Player player){
         if (player.getCash() < TOLL_PRICE){
             if(TOLL_PRICE > player.getNetWorth()){
