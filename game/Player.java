@@ -188,45 +188,31 @@ public class Player implements Owner {
      */
     public void state(){
         Board board = Board.getInstance();
-        String defOrders = "index, rank, time, property, sell ";
         if (board.fields[position-1] instanceof FreeParking){
             FreeParking tmp = new FreeParking(1);
             tmp.enterParking();
-            System.out.println("available orders are:\n"+defOrders);
         } else if (board.fields[position-1] instanceof EmptyField){
             EmptyField tmp = (EmptyField) board.fields[position-1];
             if (tmp.getOwner() == this){
-                System.out.println("you are at your own property!");
-                System.out.println("available orders are:\n"+defOrders
-                + ",buy, build");
+                System.out.println("you are at your own Field!");
             }else if(tmp.getOwner() == BankManager.getInstance()){
-                System.out.println("this is a bank property!");
-                System.out.println("available orders are:\n"+defOrders
-                + ",buy");
+                System.out.println("this EmptyField is a bank property!");
             }else {
                 tmp.chargeRent(this);
-                System.out.println("you are at someone else's property!\nwe received the rent");
-                System.out.println("available orders are:\n"+defOrders);
+                System.out.println("you are at someone else's Field!\nwe received the rent");
             }
 
         } else if (board.fields[position-1] instanceof Airport){
             System.out.println("you are at airport NO."+position);
-            System.out.println("available orders are:\n"+defOrders
-            + ",fly");
-
         }else if (board.fields[position-1] instanceof Cinema){
             Cinema tmp = (Cinema) board.fields[position-1];
             if (tmp.getOwner() == this){
                 System.out.println("you are at your own cinema!");
-                System.out.println("available orders are:\n"+defOrders);
             }else if (tmp.getOwner() == BankManager.getInstance()){
-                System.out.println("this cinema is a bank property, you can buy it!");
-                System.out.println("available orders are:\n"+defOrders +
-                ",buy");
+                System.out.println("this cinema is a bank property, you can buy it!");;
             } else {
                 tmp.chargeRent(this);
                 System.out.println("you are at someone else's cinema!\nenjoy the movie!");
-                System.out.println("available orders are:\n"+defOrders);
             }
 
         }else if (board.fields[position-1] instanceof Road){
@@ -237,22 +223,18 @@ public class Player implements Owner {
             Prize prize = (Prize) board.fields[position-1];
             prize.wonPrize(this);
             System.out.println("you won a 200$ prize!");
-            System.out.println("available orders are:\n"+defOrders);
 
         }else if (board.fields[position-1] instanceof Prison){
             System.out.println("don't worry, you just passed the prison");
-            System.out.println("available orders are:\n"+defOrders);
         }else if (board.fields[position-1] instanceof Tax){
             Tax tax = (Tax) board.fields[position-1];
             tax.chargeTax(this);
             System.out.println("Should 10 percent appear too small, Be thankful I don't take it all");
-            System.out.println("available orders are:\n"+defOrders);
         }else if (board.fields[position-1] instanceof Bank){
             System.out.println("welcome to bank!\n if you invested any money here we'll give it to you now!");
             Bank bank = (Bank) board.fields[position-1];
             bank.profit(this);
             System.out.println("you can invest your money here");
-            System.out.println("available orders are:\n"+defOrders + ",invest");
 
         }else if (board.fields[position-1] instanceof QuestionMark){
             System.out.println("well well well! let see what's behind the cards");
@@ -273,22 +255,22 @@ public class Player implements Owner {
      * shows the amount of cash and name of the owned properties
      */
     public void property(){
-        System.out.println("cash : " + cash + "$  property worth : " + propertyWorth + "$  net worth : " + netWorth +"$");
+        System.out.println("cash: " + cash + "$  property worth: " + propertyWorth + "$  net worth: " + netWorth +"$");
         for (int i=0; i<ownedProperties.size();i++){
-            System.out.printf("%d - ",i+1);
+            System.out.printf("%d-",i+1);
             if (ownedProperties.get(i) instanceof Cinema){
-                System.out.println("Cinema : ");
+                System.out.println("Cinema: ");
             } else {
-                System.out.println("EmptyField : ");
+                System.out.println("EmptyField: ");
             }
-            System.out.println("position : " + ownedProperties.get(i).getAtField() + "  color : "
+            System.out.printf("position: " + ownedProperties.get(i).getAtField() + "  color: "
                     + ownedProperties.get(i).getColor());
             if (ownedProperties.get(i) instanceof EmptyField){
                 EmptyField tmp = (EmptyField) ownedProperties.get(i);
                 if (tmp.isThereHotel()){
-                    System.out.println(" there is a Hotel here");
+                    System.out.println("  buildings: Hotel");
                 } else {
-                    System.out.println(" buildings : " + tmp.getNumberOfBuildings());
+                    System.out.println("  buildings: " + tmp.getNumberOfBuildings());
                 }
             }
         }

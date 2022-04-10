@@ -30,6 +30,8 @@ public class Monopoly {
         monopoly.gamerunner();
     }
     public void waitingMenu(){
+        System.out.println("Welcome to Monopoly!");
+        System.out.println("Please enter create_game to make the game and get the names");
         Scanner scanner = new Scanner(System.in);
         while(true){
             try {
@@ -58,7 +60,7 @@ public class Monopoly {
             stringCommand = scanner.nextLine();
             if(stringCommand.equalsIgnoreCase("start_game") || stringCommand.equalsIgnoreCase("time")) {
                 if (numOfPlayers < MINIMUM_PLAYERS) {
-                    throw new NotEnoughPlayers("Minimum number of players (" + MINIMUM_PLAYERS + ")has not been reached!");
+                    throw new NotEnoughPlayers("Minimum number of players(" + MINIMUM_PLAYERS + ") has not been reached!");
                 } else {
                     enumCommand = commandProcessor(stringCommand);
                     switch (enumCommand) {
