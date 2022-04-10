@@ -275,7 +275,7 @@ public class Monopoly {
                 if (fieldNum<1 || fieldNum>24){
                     throw new IllegalCommand("Please enter a number between 1 and 24!");
                 }else {
-                    players.get(index).getOwnedProperties().get(fieldNum).sell(players.get(index));
+                    players.get(index).order(Commands.SELL,fieldNum);
                 }
                 if (players.get(index).getCash() >= players.get(index).getDebt()){
                     Board board = Board.getInstance();
@@ -307,9 +307,9 @@ public class Monopoly {
                 }
             }
         }catch (InputMismatchException e){
-            System.out.println("Please enter a number!");
+            System.out.println("Please enter a valid number!(should be integer)");
         }catch (IllegalCommand e){
-
+            System.out.println(e.getMessage());
         }
     }
     private void removePlayer(int index){
