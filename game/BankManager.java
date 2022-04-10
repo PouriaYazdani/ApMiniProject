@@ -5,9 +5,17 @@ import game.properties.*;
 
 import java.util.*;
 
+/**
+ * This singelton class represents bank manager of the game .It has access to all the players via arraylist {@link #sortedList}.
+ * It handles the process of ending the game via {@link #endGame()} and sorts the players via {@link Collections} which
+ * is used for {@link Commands#RANK}.
+ */
 public class BankManager implements Owner{
     private static BankManager bankManager;
     private ArrayList<Player> sortedList;
+    /**
+     * Stores all the player's names.
+     */
     private String[] allPlayers;
     private BankManager(){
         sortedList =  Monopoly.getPlayers();
@@ -19,6 +27,10 @@ public class BankManager implements Owner{
             bankManager = new BankManager();
         return bankManager;
     }
+
+    /**
+     * Sorts the Players based on their {@link Player#netWorth}.
+     */
     private void sort(){
         Collections.sort(sortedList,Collections.reverseOrder(new Comparator<Player>() {
             @Override
@@ -31,11 +43,26 @@ public class BankManager implements Owner{
         sort();
         return sortedList;
     }
+
+    /**
+     * Are used in swapping wealth process and are the core of {@link #swapProp()}.
+     */
     Integer firstPlayerIndex, secondPlayerIndex;
+
+    /**
+     * Is called in {@link Monopoly#gamerunner()} when {@link Commands#SWAP_WEALTH} is invoked.
+     * and executes it with the help of {@link #swapWealth(String, String)} and {@link #swapProp()}.
+     * @param firstPlayerName
+     * @param secondPlayerName
+     */
     public void swapWealth(String firstPlayerName,String secondPlayerName){
         validatePlayers(firstPlayerName,secondPlayerName);
         swapProp();
     }
+
+    /**
+     * This method swaps the necessary properties and fields between arguments of {@link Commands#SWAP_WEALTH} command.
+     */
     private void swapProp(){
         double money = 0;
         money = sortedList.get(firstPlayerIndex).getCash();
@@ -87,6 +114,12 @@ public class BankManager implements Owner{
         sortedList.get(secondPlayerIndex).setOwnedProperties(owned);
     }
 
+    /**
+     * This method checks if the players mentioned in {@link Commands#SWAP_WEALTH} command are not broke
+     * and also whether they were in the game or not.
+     * @param firstPlayerName
+     * @param secondPlayerName
+     */
     private void validatePlayers(String firstPlayerName, String secondPlayerName){
         boolean foundFirst = false,foundSecond = false;
         for (int i=0;i<allPlayers.length;i++){
@@ -125,6 +158,17 @@ public class BankManager implements Owner{
         }
 
     }
+
+    /**
+     * This method is invoked when conditions of ending the game are met.It shows a leaderboard informing the users
+     * the required info.
+     * <p>
+     *     1: time limit is over.
+     * </p>
+     * <p>
+     *     2: only one player has remained in the game.
+     * </p>
+     */
     public void endGame(){
         sort();
         System.out.println(sortedList.get(0).getName()+" won the game!");
