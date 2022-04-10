@@ -5,7 +5,7 @@ import game.properties.*;
 
 import java.util.*;
 
-public class BankManager implements Owner,Comparator<Player>{
+public class BankManager implements Owner{
     private static BankManager bankManager;
     private ArrayList<Player> sortedList;
     private String[] allPlayers;
@@ -83,9 +83,11 @@ public class BankManager implements Owner,Comparator<Player>{
         for (int i=0;i<allPlayers.length;i++){
             if (allPlayers[i].equals(firstPlayerName)){
                 foundFirst = true;
+                firstPlayerIndex = i;
             }
             if (allPlayers[i].equals(secondPlayerName)){
                 foundSecond = true;
+                secondPlayerIndex = i;
             }
         }
         boolean isFirstBroke = true,isSecondBroke = true;
@@ -120,7 +122,7 @@ public class BankManager implements Owner,Comparator<Player>{
         System.out.println("Leaderboard : ");
         for (int i=0;i<allPlayers.length;){
             for (int j=0;i<sortedList.size();j++,i++){
-                System.out.println(i+" - "+sortedList.get(j).getName()+"  NetWorth : "+sortedList.get(j).getNetWorth());
+                System.out.println(i+1+" - "+sortedList.get(j).getName()+"  NetWorth : "+sortedList.get(j).getNetWorth());
             }
             for (int k=0;k<allPlayers.length;k++,i++){
                 boolean foundPlayer = false;
@@ -130,13 +132,10 @@ public class BankManager implements Owner,Comparator<Player>{
                     }
                 }
                 if (!foundPlayer){
-                    System.out.println(i+"- "+allPlayers[k]+"  Financial situation : Bankruptcy");
+                    System.out.println(i+1+"- "+allPlayers[k]+"  Financial situation : Bankruptcy");
                 }
             }
         }
     }
-    @Override
-    public int compare(Player o1, Player o2) {
-        return Double.compare(o1.getNetWorth(),o2.getNetWorth());
-    }
+
 }
