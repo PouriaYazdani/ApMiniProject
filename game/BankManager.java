@@ -47,6 +47,9 @@ public class BankManager implements Owner{
         money = sortedList.get(firstPlayerIndex).getNetWorth();
         sortedList.get(firstPlayerIndex).setNetWorth(sortedList.get(secondPlayerIndex).getNetWorth());
         sortedList.get(secondPlayerIndex).setNetWorth(money);
+        money = sortedList.get(firstPlayerIndex).getInvestedMoney();
+        sortedList.get(firstPlayerIndex).setInvestedMoney(sortedList.get(secondPlayerIndex).getInvestedMoney());
+        sortedList.get(secondPlayerIndex).setInvestedMoney(money);
         int count = 0;
         count = sortedList.get(firstPlayerIndex).blueProperties;
         sortedList.get(firstPlayerIndex).blueProperties = sortedList.get(secondPlayerIndex).blueProperties;
@@ -60,6 +63,12 @@ public class BankManager implements Owner{
         count = sortedList.get(firstPlayerIndex).yellowProperties;
         sortedList.get(firstPlayerIndex).yellowProperties = sortedList.get(secondPlayerIndex).yellowProperties;
         sortedList.get(secondPlayerIndex).yellowProperties = count;
+        count = sortedList.get(firstPlayerIndex).getBuiltBuildings();
+        sortedList.get(firstPlayerIndex).setBuiltBuildings(sortedList.get(secondPlayerIndex).getBuiltBuildings());
+        sortedList.get(secondPlayerIndex).setBuiltBuildings(count);
+        count = sortedList.get(firstPlayerIndex).getOwnedCinemas();
+        sortedList.get(firstPlayerIndex).setOwnedCinemas(sortedList.get(secondPlayerIndex).getOwnedCinemas());
+        sortedList.get(secondPlayerIndex).setOwnedCinemas(count);
         boolean monopoly = false;
         monopoly = sortedList.get(firstPlayerIndex).blueMonopoly;
         sortedList.get(firstPlayerIndex).blueMonopoly = sortedList.get(secondPlayerIndex).blueMonopoly;
