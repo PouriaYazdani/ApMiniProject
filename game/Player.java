@@ -292,8 +292,12 @@ public class Player implements Owner {
             case SELL: sell(index); break;
             case INDEX: indexShower(); break;
             case RANK: rankShower(); break;
+            case FREE: manageFree();break;
         }
         updateNetWorth();
+    }
+    private void manageFree(){
+        System.out.println("You are not a Prisoner!");
     }
     private void buy(){
         Board board = Board.getInstance();
