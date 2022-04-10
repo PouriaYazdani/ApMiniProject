@@ -33,7 +33,7 @@ public class QuestionMark extends Field{
                 case TAX : player.setCash(0.9* player.getCash());
                     System.out.println("10% tax received!");
                 break;
-                case MOVE : player.setPosition(player.getPosition()+3);
+                case MOVE : player.move(3);
                     System.out.println("You moved three fields forward!");
                 break;
                 case OUTJAIL : player.setNoJail(player.getNoJail()+1);
@@ -51,7 +51,7 @@ public class QuestionMark extends Field{
         ArrayList<Player> players = Monopoly.getPlayers();
         if ((players.size()-1)* GIFT_PRICE > p.getCash()){
             if((players.size()-1)* GIFT_PRICE > p.getNetWorth()){
-                throw new Bankruptcy("You do not have enough net worth to give gift to other players" + p.getName() + "the game " +
+                throw new Bankruptcy("You do not have enough net worth to give gift to other players" + p.getName() + " the game " +
                         "is OVER for you");
             }
             p.setDebt((players.size()-1)* GIFT_PRICE);

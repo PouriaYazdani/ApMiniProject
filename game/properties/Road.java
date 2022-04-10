@@ -16,7 +16,7 @@ public class Road extends BankProperties{
     public void payToll(Player player){
         if (player.getCash() < TOLL_PRICE){
             if(TOLL_PRICE > player.getNetWorth()){
-                throw new Bankruptcy("You do not have enough net worth to pay the toll," + player.getName() + "the game " +
+                throw new Bankruptcy("You do not have enough net worth to pay the toll," + player.getName() + " the game " +
                         "is OVER for you");
             }
             player.setDebt(TOLL_PRICE);

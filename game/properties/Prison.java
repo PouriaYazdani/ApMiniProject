@@ -55,7 +55,7 @@ public class Prison extends BankProperties{
         }else {
             if (player.getCash()<JAIL_COST){
                 if(JAIL_COST > player.getNetWorth()){
-                    throw new Bankruptcy("You do not have enough net worth to pay the jail tax," + player.getName() + "the game " +
+                    throw new Bankruptcy("You do not have enough net worth to pay the jail tax," + player.getName() + " the game " +
                             "is OVER for you");
                 }
                 player.setDebt(JAIL_COST);

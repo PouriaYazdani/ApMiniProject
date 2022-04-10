@@ -318,6 +318,8 @@ public class Monopoly {
             System.out.println("Please enter a valid number!(should be integer)");
         }catch (IllegalCommand e){
             System.out.println(e.getMessage());
+        }catch (MonopolyException e){
+            System.out.println(e.getMessage());
         }
     }
     private void removePlayer(int index){

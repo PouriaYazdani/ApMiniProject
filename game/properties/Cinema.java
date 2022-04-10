@@ -99,7 +99,7 @@ public class Cinema extends BuyableProperties{
                 rent *= 2.0;
             if(rent > player.getCash()){
                 if(rent > player.getNetWorth()){
-                    throw new Bankruptcy("You do not have enough net worth to watch a movie," + player.getName() + "the game " +
+                    throw new Bankruptcy("You do not have enough net worth to watch a movie," + player.getName() + " the game " +
                             "is OVER for you");
                 }
                 player.setDebt(rent);
