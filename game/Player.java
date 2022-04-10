@@ -1,11 +1,13 @@
 package game;
 
+
 import game.exceptions.IllegalCommand;
 import game.properties.*;
-import org.w3c.dom.css.CSSImportRule;
-
 import java.util.ArrayList;
-
+/**
+ * This class hold all the necessary information and data the program needs to process each command and operation and
+ * relations between players themselves and {@link game.BankManager}.
+ */
 public class Player implements Owner {
     private final String name;
     private double cash;
@@ -183,8 +185,9 @@ public class Player implements Owner {
     }
 
     /**
-     *   state method take every penalty and rent and throws exception if there is not enough cash for payment
-     *   then shows the state of player (available orders)
+     *   This method is a complete guide to player which is called right after move method from {@link Monopoly#gamerunner()}.
+     *    It takes every penalty and rent and throws exception if there is not enough cash for payment then shows the state
+     *   of player (available orders).
      */
     public void state(){
         Board board = Board.getInstance();
@@ -245,7 +248,7 @@ public class Player implements Owner {
     }
 
     /**
-     * index method shows the position of player
+     * This method shows the position of player
      */
     public void index(){
         System.out.println("you are at field " + position);
@@ -279,10 +282,19 @@ public class Player implements Owner {
     }
 
     /**
-     * this method receive the players orders and throws exception if they are illegal
-     * otherwise it executes the command
+     * this method receives the player's orders and throws exception if they are illegal or invalid
+     * otherwise it executes the command with the help of methods implemented here at {@link Player}.
      * @param commands player order
      * @param index for sale and fly orders
+     * @see #buy()
+     * @see #build()
+     * @see #fly(Integer)
+     * @see #property()
+     * @see #invest()
+     * @see #sell(Integer)
+     * @see #index() ()
+     * @see #rankShower() (Integer)
+     * @see #manageFree()
      */
     public void order(Commands commands, Integer index){
         switch (commands){
@@ -298,9 +310,17 @@ public class Player implements Owner {
         }
         updateNetWorth();
     }
+
+    /**
+     * Tells the player he/she can not invoke {@link Commands#FREE} when  he/she is not in prison.
+     */
     private void manageFree(){
         System.out.println("You are not a Prisoner!");
     }
+
+    /**
+     * This method checks if invoking {@link Commands#BUY} is valid here and if not throws {@link IllegalCommand}.
+     */
     private void buy(){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof Cinema){
@@ -333,6 +353,10 @@ public class Player implements Owner {
             }
         }
     }
+
+    /**
+     *This method checks if invoking {@link Commands#BUILD} is valid here and if not throws {@link IllegalCommand}.
+     */
     private void build(){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof EmptyField){
@@ -370,6 +394,9 @@ public class Player implements Owner {
             }
         }
     }
+    /**
+     *This method checks if invoking {@link Commands#FLY} is valid here and if not throws {@link IllegalCommand}.
+     */
     private void fly(Integer index){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof Airport){
@@ -402,6 +429,9 @@ public class Player implements Owner {
     private void propertyHandler(){
         this.property();
     }
+    /**
+     *This method checks if invoking {@link Commands#INVEST} is valid here and if not throws {@link IllegalCommand}.
+     */
     private void invest(){
         Board board = Board.getInstance();
         if (board.fields[position-1] instanceof Bank){
@@ -431,6 +461,9 @@ public class Player implements Owner {
             }
         }
     }
+    /**
+     *This method checks if invoking {@link Commands#SELL} is valid here and if not throws {@link IllegalCommand}.
+     */
     private void sell(Integer index){
         Board board = Board.getInstance();
         if (board.fields[index-1] instanceof EmptyField){
@@ -463,14 +496,22 @@ public class Player implements Owner {
         }
 
     }
+
+    /**
+     * Just a layer between {@link #order(Commands, Integer)} and {@link #index()}()}.
+     */
     private void indexShower(){
         this.index();
     }
+
+    /**
+     * just a layer between {@link #order(Commands, Integer)} and {@link #rank()}
+     */
     private void rankShower(){
         this.rank();
     }
     /**
-     * rank method shows the rank of the player by getting a sorted list of Players
+     * This method shows the rank of the player by getting a sorted list of Players from {@link BankManager}.
      */
     public void rank(){
         BankManager bankManager = BankManager.getInstance();
@@ -482,7 +523,10 @@ public class Player implements Owner {
         }
         System.out.println("Rank : " + rank);
     }
-    
+
+    /**
+     * Simple method to update player's {@link #netWorth} each time a transaction is made.
+     */
     public void updateNetWorth(){
         netWorth = propertyWorth + cash;
     }
