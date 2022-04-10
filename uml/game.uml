@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game</OriginalElement>
+  <nodes>
+    <node x="0.0" y="157.0">game.exceptions</node>
+    <node x="122.0" y="81.0">game.BankManager</node>
+    <node x="74.5" y="0.0">game.Owner</node>
+    <node x="0.0" y="233.0">game.properties</node>
+    <node x="242.0" y="233.0">game.Commands</node>
+    <node x="0.0" y="309.0">game.Monopoly</node>
+    <node x="180.0" y="309.0">game.Board</node>
+    <node x="0.0" y="81.0">game.Player</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.Player" target="game.Owner" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="51.0" y="56.0" />
+      <point x="128.5" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.BankManager" target="game.Owner" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="206.0" y="56.0" />
+      <point x="128.5" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.75" showDependencies="false" x="167.18719211822662" y="154.57142857142858" />
+  <SelectedNodes>
+    <node>game.Monopoly</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

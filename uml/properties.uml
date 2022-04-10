@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game.properties</OriginalElement>
+  <nodes>
+    <node x="517.0" y="507.5">game.properties.Road</node>
+    <node x="1060.0" y="230.0">game.properties.BankProperties</node>
+    <node x="1570.0" y="507.5">game.properties.Tax</node>
+    <node x="276.0" y="708.0">game.properties.Colors</node>
+    <node x="1162.0" y="495.5">game.properties.Bank</node>
+    <node x="756.5" y="0.0">game.properties.Field</node>
+    <node x="719.0" y="471.0">game.properties.Prison</node>
+    <node x="967.0" y="495.5">game.properties.Airport</node>
+    <node x="1355.0" y="507.5">game.properties.Prize</node>
+    <node x="65.75" y="133.0">game.properties.BuyableProperties</node>
+    <node x="675.5089285714286" y="217.5">game.properties.FreeParking</node>
+    <node x="0.0" y="708.0">game.properties.LuckyCards</node>
+    <node x="229.0" y="435.0">game.properties.EmptyField</node>
+    <node x="1263.0" y="205.5">game.properties.QuestionMark</node>
+    <node x="0.0" y="483.5">game.properties.Cinema</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.properties.Prize" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="1452.5" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.Airport" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-53.5" />
+      <point x="1054.5" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.Prison" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-78.0" />
+      <point x="833.0" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.Bank" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-53.5" />
+      <point x="1248.5" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.BankProperties" target="game.properties.Field" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.0" />
+      <point x="1151.5" y="108.0" />
+      <point x="815.0" y="108.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="game.properties.Tax" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="1671.0" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.FreeParking" target="game.properties.Field" relationship="GENERALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="764.5089285714286" y="108.0" />
+      <point x="815.0" y="108.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="game.properties.QuestionMark" target="game.properties.Field" relationship="GENERALIZATION">
+      <point x="0.0" y="-53.5" />
+      <point x="1372.0" y="108.0" />
+      <point x="815.0" y="108.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="game.properties.EmptyField" target="game.properties.BuyableProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-114.0" />
+      <point x="363.0" y="410.0" />
+      <point x="233.75" y="410.0" />
+      <point x="0.0" y="126.0" />
+    </edge>
+    <edge source="game.properties.Road" target="game.properties.BankProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="608.0" y="410.0" />
+      <point x="1151.5" y="410.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="game.properties.Cinema" target="game.properties.BuyableProperties" relationship="GENERALIZATION">
+      <point x="0.0" y="-65.5" />
+      <point x="104.5" y="410.0" />
+      <point x="233.75" y="410.0" />
+      <point x="0.0" y="126.0" />
+    </edge>
+    <edge source="game.properties.BuyableProperties" target="game.properties.Field" relationship="GENERALIZATION">
+      <point x="0.0" y="-126.0" />
+      <point x="233.75" y="108.0" />
+      <point x="815.0" y="108.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8588169642857142" showDependencies="false" x="886.0000000000001" y="407.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

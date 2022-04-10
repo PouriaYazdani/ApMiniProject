@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>game.exceptions</OriginalElement>
+  <nodes>
+    <node x="905.0292397660818" y="-44.71474983755684">game.exceptions.MonopolyException</node>
+    <node x="228.83430799220267" y="283.5315139701104">game.exceptions.IllegalConstruction</node>
+    <node x="437.8239116309293" y="120.45419103313839">game.exceptions.InvalidDiceNumber</node>
+    <node x="593.5458089668617" y="221.71994801819358">game.exceptions.NotEnoughPlayers</node>
+    <node x="351.36257309941533" y="201.99285250162438">game.exceptions.Bankruptcy</node>
+    <node x="1330.5198180636778" y="177.00519818063674">game.exceptions.SeriousDebt</node>
+    <node x="1102.0513320337882" y="120.45419103313839">game.exceptions.NotEnoughCash</node>
+    <node x="882.2625081221574" y="241.44704353476277">game.exceptions.IllegalPurchase</node>
+    <node x="992.0" y="169.11435997400906">game.exceptions.IllegalSell</node>
+    <node x="1204.20987654321" y="254.5984405458089">game.exceptions.IllegalDestination</node>
+    <node x="741.0071474983757" y="120.45419103313839">game.exceptions.IllegalCommand</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.exceptions.Bankruptcy" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="425.36257309941533" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.NotEnoughPlayers" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="698.0458089668617" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.IllegalCommand" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="835.0071474983757" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.IllegalPurchase" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="971.2625081221574" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.SeriousDebt" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1407.5198180636778" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.IllegalDestination" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1304.70987654321" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.InvalidDiceNumber" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="543.8239116309293" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.IllegalSell" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1057.5" y="100.05717998700453" />
+      <point x="1015.5292397660818" y="100.05717998700453" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.IllegalConstruction" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="335.33430799220264" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="game.exceptions.NotEnoughCash" target="game.exceptions.MonopolyException" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1197.0513320337882" y="56.0" />
+      <point x="1015.5292397660818" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7603754940711462" showDependencies="false" x="1002.0" y="56.0" />
+  <SelectedNodes>
+    <node>game.exceptions.IllegalConstruction</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
