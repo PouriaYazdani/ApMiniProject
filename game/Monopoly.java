@@ -2,18 +2,33 @@ package game;
 
 import game.exceptions.*;
 import game.properties.*;
-
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
+/**
+ * Is the core of the game each element and entity defined in program comes together in this class,{@link Board},
+ * {@link BankManager}, and an array of {@link Player} are main fields off this class.It has 3 important methods -
+ * {@link #waitingMenu()} , {@link #gameInit()} and {@link #gamerunner()} which are used in the main class and basically
+ * run the game.
+ */
 public class Monopoly {
     private Board board;
     private BankManager bankManager;
     private static ArrayList <Player> players = new ArrayList<Player>();
     private Timer timer;
     private int gameDuration;//in minutes
+    /**
+     * Is used as a layer to check if entered command is valid.
+     */
     private String stringCommand;
+    /**
+     * If {@link #stringCommand} was valid it ,we'll convert it and store it in this field as an {@link Commands} data type.
+     */
     private Commands enumCommand;
     private final int MAXIMUM_PLAYERS = 4;
     private final int MINIMUM_PLAYERS = 2;
@@ -29,9 +44,13 @@ public class Monopoly {
         monopoly.gameInit();
         monopoly.gamerunner();
     }
+
+    /**
+     * Is invoked first in execution and with the user entering {@link Commands#CREATE_GAME}
+     */
     public void waitingMenu(){
         System.out.println("Welcome to Monopoly!");
-        System.out.println("Please enter create_game to make the game and get the names");
+        System.out.println("Please enter create_game to initialize the game.");
         Scanner scanner = new Scanner(System.in);
         while(true){
             try {
@@ -50,6 +69,17 @@ public class Monopoly {
         }
     }
 
+    /**
+     * This method has the responsibility of adding the players and sorting them based on their dice ro with the
+     * help of a private method implemented here,also setting the timer to finish the game in particular time limit is
+     * handled here with the help of other private methods(the timer gets activaed once the game is started).
+     * <p>
+     * Also different kind of exception including {@link MonopolyException} and it's subclasses are caught here.At the end
+     * of this method {@link #bankManager} and {@link #board} are initialized.
+     * </p>
+     *
+     * @see #sortPlayers()
+     */
     public void gameInit(){
         System.out.println("Enter player's usernames and then enter command 'start_game',\nif you want to play the game in" +
                 " limited time enter command 'time' after you entered players usernames");
@@ -129,6 +159,29 @@ public class Monopoly {
         board = Board.getInstance();
     }
 
+    /**
+     * Is engine of the program and is invoked when {@link Commands#START_GAME} is entered.
+     * <p>
+     *     It activates the timer and then enters while-loop that breaks when one of ending game condition are met.inside
+     *     the mentioned while-loop we iterate on {@link #players} and their moves and command are processed with the help
+     *     of methods implemented in {@link Player} class.
+     * </p>
+     * <p>
+     *     If the player is on the verge of bankruptcy or is thrown in jail,He/She are cast out of the normal flow of
+     *     the game and other methods are called to handle their situation.
+     * </p>
+     * <p>
+     *     Different kinds of exceptions are caught here and act upon respectfully.
+     * </p>
+     * @see Player#move(int)
+     * @see Player#state()
+     * @see Player#order(Commands, Integer)
+     * @see #jailManager(Player)
+     * @see #debtManager(int)
+     * @see #removePlayer(int)
+     * @see #time()
+     * @see #setTimer()
+     */
     public void gamerunner() {
         Scanner scanner = new Scanner(System.in);
         if (gameDuration != 0){
@@ -152,12 +205,8 @@ public class Monopoly {
                             break inner;
                         }
                         i++;
-                        continue;}
-//                    }else if(seriousDebt){//define a boolean here at gamerunner
-//                        calls a new method like jailManager that forces the player to sell properties to be able to pay the rent
-//                        the player will come out of this method when the debt is paid and joins normal cycle of the gamerunner,,
-//                    }
-                    else {
+                        continue;
+                    } else {
                         if (acceptDice) {
                             diceNumber = scanner.nextInt();
                             checkDiceNumber(diceNumber);
@@ -270,6 +319,15 @@ public class Monopoly {
         }
         bankManager.endGame();
     }
+
+    /**
+     * This method is called when {@link SeriousDebt} is thrown ,meaning the player HAS TO sell his/her properties to
+     * be able to pay his/her debts.Here we force the player to do the mentioned actions.
+     * <p>
+     *  Some exception are handled here.
+     * </p>
+     * @param index
+     */
     private void debtManager(int index){
             while (true){
                 try {
@@ -322,10 +380,21 @@ public class Monopoly {
                 }
             }
     }
+
+    /**
+     * Simple method that removed the player form the players list and is called when {@link Bankruptcy} is thrown.
+     * @param index
+     */
     private void removePlayer(int index){
         System.out.println(players.get(index).getName()+" has been removed from game!");
         players.remove(players.get(index));
     }
+
+    /**
+     * with the help of this method we process {@link Commands#SWAP_WEALTH} command.The arguments of the mentioned command
+     * are derived out of {@link #stringCommand}(two players that we are going to swap their wealth.
+     * @return
+     */
     private  String[] collapseCommandToString(){
         String temp = stringCommand;
         int whiteSpace = stringCommand.indexOf(" ");
@@ -338,6 +407,11 @@ public class Monopoly {
         return names;
     }
 
+    /**
+     * with the help of this method we process {@link Commands#FLY} and {@link Commands#SELL} process.The single argument
+     * of these command is derived here(the destination of the flight and number of field the player wants to sell).
+     * @return
+     */
     private Integer collapseCommandToInteger(){
         Integer at;
         String temp = stringCommand;
@@ -356,6 +430,14 @@ public class Monopoly {
         return at;
     }
 
+    /**
+     * This method is called whenever the player is thrown in jail and tells the player the actions he/she can make
+     * in jail.
+     * <p>
+     *     Some exception are handled here.
+     * </p>
+     * @param player
+     */
     private void jailManager(Player player){
         Prison prison = (Prison)board.fields[12];
         boolean isNumber = true;
@@ -388,6 +470,13 @@ public class Monopoly {
 
     }
 
+    /**
+     * This method simply throws the player in jail with the help of methods implemented in {@link Prison}.
+     * @param player
+     * @param currentDiceNumber
+     * @return Whether the operation is successfull or not.
+     * @see Prison#imprisonment(Player)
+     */
     private boolean sendToJail(Player player,int currentDiceNumber){
         if(player.getLastDiceNumber() == currentDiceNumber && currentDiceNumber == 6){
             Prison.imprisonment(player);
@@ -396,12 +485,20 @@ public class Monopoly {
         return false;
     }
 
+    /**
+     * Is called when {@link Commands#TIME} is invoked and calculates the remaining time with the help of {@link Instant}
+     * and {@link Duration} classes.
+     * @return Minutes to the end of the game.
+     */
     private Long time(){
         Instant now = Instant.now();
         Duration timeElapsed = Duration.between(start,now);
         return gameDuration - timeElapsed.toMinutes();
     }
 
+    /**
+     * Just prints the sorted list of players.
+     */
     private void printPlayers(){
         System.out.println("the order is as following:");
         for (int i = 0; i < players.size(); i++) {
@@ -410,6 +507,9 @@ public class Monopoly {
         }
     }
 
+    /**
+     * Is invoked at the first of {@link #gamerunner()} to activate timer with the help of {@link Timer} class.
+     */
     private void setTimer(){
         timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -446,15 +546,30 @@ public class Monopoly {
         players.set(b,temp);
     }
 
+    /**
+     * Converts string to command enum with the help of {@link Enum#valueOf(Class, String)}
+     * @param command
+     * @return The desired command
+     * @see #stringCommand
+     * @see #enumCommand
+     */
     private Commands commandProcessor(String command){
         return  Commands.valueOf(command.toUpperCase());
     }
 
+    /**
+     * Checks if the entered number can be a dice roll or not.If not throws exception.
+     * @param diceNumber
+     * @see InvalidDiceNumber
+     */
     private void checkDiceNumber(int diceNumber){
         if(diceNumber > 6 || diceNumber < 1 )
             throw new InvalidDiceNumber("Please enter a number between 1 and 6");
     }
 
+    /**
+     * Makes a copy of players names and puts it in {@link #playersName}.
+     */
     private void assignNames(){
         playersName = new String[players.size()];
         for (int i = 0; i < playersName.length; i++) {
@@ -469,4 +584,5 @@ public class Monopoly {
     public static String[] getPlayersName(){
         return playersName;
     }
+
 }
